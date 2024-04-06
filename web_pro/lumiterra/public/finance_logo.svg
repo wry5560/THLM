@@ -1,0 +1,15 @@
+<svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="21.1492" cy="19.9845" rx="15.2542" ry="15.2004" fill="url(#paint0_linear_332_4041)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.6451 6.05629C32.7969 5.93024 31.9287 5.86492 31.0452 5.86492C21.3921 5.86492 13.5667 13.6627 13.5667 23.2818C13.5667 29.4709 16.8064 34.906 21.6881 37.9951C21.0232 38.0648 20.3482 38.1006 19.6648 38.1006C9.10632 38.1006 0.546997 29.5715 0.546997 19.0503C0.546997 8.5291 9.10632 0 19.6648 0C25.1832 0 30.1555 2.32986 33.6451 6.05629Z" fill="url(#paint1_radial_332_4041)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M39.0001 21.8296C36.0261 26.2326 30.9783 29.1291 25.2515 29.1291C16.1052 29.1291 8.69065 21.7408 8.69065 12.6268C8.69065 8.05829 10.5536 3.92341 13.5639 0.935303C5.69401 3.46116 0 10.818 0 19.5C0 30.2696 8.76141 39 19.5692 39C29.5858 39 37.8446 31.501 39.0001 21.8296Z" fill="white"/>
+<defs>
+<linearGradient id="paint0_linear_332_4041" x1="17.594" y1="11.1126" x2="34.7052" y2="27.3423" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0D1B5F"/>
+<stop offset="1" stop-color="#5265BF"/>
+</linearGradient>
+<radialGradient id="paint1_radial_332_4041" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(14.7681 6.29815) rotate(31.1154) scale(13.594 11.7481)">
+<stop stop-color="#3F64F1"/>
+<stop offset="0.953149" stop-color="#4059BC"/>
+</radialGradient>
+</defs>
+</svg>
