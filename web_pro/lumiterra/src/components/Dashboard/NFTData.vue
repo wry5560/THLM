@@ -26,6 +26,8 @@
 			>前往购买</a
 		>
 	</a-divider>
+	<a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ moment(boxInfo?.Common?.update * 1000).format('YYYY-MM-DD HH:mm:ss') }}</a-typography-paragraph>
+
 	<a-row :gutter="24">
 		<a-col :span="6" style="width: 100%">
 			<a-card :loading="loading">
@@ -40,7 +42,7 @@
 						<a-row :align="`middle`">
 							<a-col :span="12">
 								<img
-									src="https://static.okx.com/cdn/nft/1f4d2f3f-774c-4386-b8e1-52533d1af81d.webp"
+									:src="`${base}okx_logo.webp`"
 									style="
 										cursor: pointer;
 										height: 20px;
@@ -98,7 +100,7 @@
 						<a-row :align="`middle`">
 							<a-col :span="12">
 								<img
-									src="https://static.okx.com/cdn/nft/1f4d2f3f-774c-4386-b8e1-52533d1af81d.webp"
+								:src="`${base}okx_logo.webp`"
 									style="
 										cursor: pointer;
 										height: 20px;
@@ -154,7 +156,7 @@
 						<a-row :align="`middle`">
 							<a-col :span="12">
 								<img
-									src="https://static.okx.com/cdn/nft/1f4d2f3f-774c-4386-b8e1-52533d1af81d.webp"
+								:src="`${base}okx_logo.webp`"
 									style="
 										cursor: pointer;
 										height: 20px;
@@ -210,7 +212,7 @@
 						<a-row :align="`middle`">
 							<a-col :span="12">
 								<img
-									src="https://static.okx.com/cdn/nft/1f4d2f3f-774c-4386-b8e1-52533d1af81d.webp"
+								:src="`${base}okx_logo.webp`"
 									style="
 										cursor: pointer;
 										height: 20px;
@@ -254,7 +256,7 @@
 			</a-card>
 		</a-col>
 	</a-row>
-	<a-divider orientation="left">
+		<a-divider orientation="left">
 		<span
 			style="
 				width: 28px;
@@ -281,16 +283,107 @@
 			>前往购买</a
 		>
 	</a-divider>
-	<Building />
+	<a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ moment(totemInfo[0]?.update * 1000).format('YYYY-MM-DD HH:mm:ss') }}</a-typography-paragraph>
+	<a-row :gutter="24">
+		<div :span="5" style="width: 19%;margin-right: 12px;margin-bottom: 12px; display: inline-block;" v-for="item in totemInfo" :key="item.nft_type">
+			<a-card :loading="loading">
+				<template #cover>
+					<img :alt="item.nft_type" :src="base +'Totem/'+ item.nft_type + '.png'" />
+				</template>
+				<a-card-meta>
+					<template #title>
+						<div style="margin-bottom: 4px">
+							{{ item.nft_type }} Floor Price:
+						</div>
+						<a-row :align="`middle`">
+							<a-col :span="12">
+								<img
+								:src="`${base}okx_logo.webp`"
+									style="
+										cursor: pointer;
+										height: 20px;
+										width: 20px;
+										object-fit: cover;
+										vertical-align: middle;
+									"
+								/>
+							</a-col>
+							<a-col :span="12" style="text-align: left">
+								{{ item?.nft_price }} LUA
+							</a-col>
+							<a-col
+								:span="12"
+								style="text-align: left; margin-top: 4px"
+							>
+								<div></div>
+								<!-- <div>
+									<img
+										src="https://opensea.io/static/images/logos/opensea-logo.svg"
+										style="
+											cursor: pointer;
+											height: 20px;
+											width: 20px;
+											object-fit: cover;
+											vertical-align: middle;
+										"
+									/>
+								</div> -->
+							</a-col>
+							<a-col
+								:span="12"
+								style="text-align: left; margin-top: 4px"
+							>
+								{{ Number(item?.nft_usd).toFixed(2) }}
+								USDT
+							</a-col>
+						</a-row>
+					</template>
+				</a-card-meta>
+			</a-card>
+		</div>
+	</a-row>
+	<!-- <Building /> -->
 </template>
 
 <script setup name="defi-data">
+import {ref,onBeforeMount,onBeforeUnmount,onDeactivated} from "vue";
 import { isDev } from "@/config";
 import Building from "@/components/Building.vue";
 import moment from "dayjs";
+import {	getLumiBoxInfo,
+	getLumiTotemInfo,getLumiTotemNftInfo} from "@/api";
 const base = isDev ? "/" : "/Static/lumi/";
-const props = defineProps({
-	boxInfo: Object,
-	loading: Boolean,
+const loading = ref(true);
+const boxInfo = ref([]);
+const totemInfo = ref([]);
+const timer = ref(null);
+
+onBeforeMount(async () => {
+	loadData()
+	timer.value = setInterval(loadData, 30 * 1000);
+});
+
+const loadData = async()=>{
+	await getLumiBoxInfo().then((res) => {
+		if (res.state === "success") {
+				res.data.forEach((item) => {
+					boxInfo.value[item.nft_type.split(" ")[0]] = item;
+				});
+			}
+	});
+	await getLumiTotemNftInfo().then((res) => {
+		if (res.state === "success") {
+			totemInfo.value = res.data;
+		}
+	});
+
+	loading.value = false;
+}
+
+onBeforeUnmount(() => {
+	clearInterval(timer.value);
+});
+onDeactivated(() => {
+	clearInterval(timer.value);
 });
 </script>

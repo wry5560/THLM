@@ -23,4 +23,12 @@ export const blackList = [
 		name: "Golden Sickle",
 		id: "0x5625f7c930b8b40de87dc8e69145d83fd1d81c61b6c31fb7cfe69fac65b28642",
 	},
+	{
+		name: "Battery",
+		id: "0x55f448fdea98c4d29eb340757ef0a66cd03dbb9538908a6a81d96026b71ec475",
+	},
+	{
+		name: "Starlight Sickle",
+		id: "0x6cb0db1d7354dfb4a1464318006df0643cafe2002a86a29ff8560f900fef28a1",
+	},
 ];

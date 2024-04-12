@@ -11,19 +11,25 @@ export const equipmentTypes = [
 
 //装备职业
 export const careerOptions = [
-	{ label: "战斗套", value: "Warrior" },
-	{ label: "采集套", value: "Collector" },
-	{ label: "种植畜牧", value: "Farmer" },
-	{ label: "时装", value: "Fashion" },
+	{ label: "战斗套", value: "战斗" },
+	{ label: "采集套", value: "采集" },
+	{ label: "农业畜牧", value: "农业" },
+	{ label: "时装", value: "时装" },
 	// { label: "全部", value: "All" },
 	// { label: "其他", value: "Other" },
+];
+//技能职业
+export const skillCareerOptions = [
+	{ label: "战斗技能", value: "战斗" },
+	{ label: "采集技能", value: "采集" },
+	{ label: "农牧技能", value: "农牧" },
 ];
 
 //精华类型
 export const essenceOptions = [
 	{ label: "战斗", value: "Combat" },
 	{ label: "采集", value: "Gather" },
-	{ label: "种植", value: "Planting" },
+	{ label: "农业", value: "Planting" },
 	{ label: "畜牧", value: "Livestock" },
 	{ label: "全部", value: "All" },
 ];

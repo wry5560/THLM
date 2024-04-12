@@ -1,3 +1,6 @@
+import { isDev } from "@/config";
+const base = isDev ? "/" : "/Static/lumi/";
+
 export const skills = [
 	{
 		name: "Lv 1 战斗主干",
@@ -2683,3 +2686,53 @@ export const skills = [
 		skill_effect: "解锁套装配方 Lv6，解锁精力药水配方 Lv6",
 	},
 ];
+export const skillsData = initSkills()
+export const skillNames = {
+	"战斗":[
+		{name:'战斗主干',image:`${base}Skill/战斗主干.png`},
+		{name:'技巧',image:`${base}Skill/技巧.png`},
+		{name:'战斗数值-攻击',image:`${base}Skill/战斗数值-攻击.png`},
+		{name:'战斗数值-防御值',image:`${base}Skill/战斗数值-防御值.png`},
+		{name:'战斗数值-血量',image:`${base}Skill/战斗数值-血量.png`},
+		{name:'践踏',image:`${base}Skill/践踏.png`},
+		{name:'战争践踏',image:`${base}Skill/战争践踏.png`},
+		{name:'战斗精华配方',image:`${base}Skill/战斗精华配方.png`},
+		{name:'套装配方解锁',image:`${base}Skill/套装配方解锁.png`},
+		{name:'冲撞',image:`${base}Skill/冲撞.png`},
+		{name:'剑舞',image:`${base}Skill/剑舞.png`},
+		{name:'金蝉脱壳',image:`${base}Skill/金蝉脱壳.png`},
+		{name:'爆炸艺术',image:`${base}Skill/爆炸艺术.png`},
+		// {name:'其他',image:`${base}Skill/其他.png`},
+	],
+	"农牧":[
+		{name:'农牧主干',image:`${base}Skill/农牧主干.png`},
+		{name:'耕田数值-单位地块输出肥沃度',image:`${base}Skill/耕田数值-单位地块输出肥沃度.png`},
+		{name:'耕田数值-收获熟练度',image:`${base}Skill/耕田数值-收获熟练度.png`},
+		{name:'农牧数值-单位宠物输出幸福指数',image:`${base}Skill/农牧数值-单位宠物输出幸福指数.png`},
+		{name:'农牧数值-收获熟练度',image:`${base}Skill/农牧数值-收获熟练度.png`},
+		{name:'捕获',image:`${base}Skill/捕获.png`},
+		{name:'效率技能-群体挖地',image:`${base}Skill/效率技能-群体挖地.png`},
+		{name:'精华配方解锁-宠物',image:`${base}Skill/精华配方解锁-宠物.png`},
+		{name:'精华配方解锁-种植',image:`${base}Skill/精华配方解锁-种植.png`},
+		{name:'农牧套装配方解锁',image:`${base}Skill/农牧套装配方解锁.png`},
+		{name:'效率技能-群体灌溉',image:`${base}Skill/效率技能-群体灌溉.png`},
+		{name:'效率技能-宠物爱抚',image:`${base}Skill/效率技能-宠物爱抚.png`},
+		{name:'效率技能-群体锄地',image:`${base}Skill/效率技能-群体锄地.png`},
+		// {name:'其他',image:`${base}Skill/其他.png`},
+	],
+	"采集":[
+		{name:'采集主干',image:`${base}Skill/采集主干.png`},
+		{name:'采集数值-对草',image:`${base}Skill/采集数值-对草.png`},
+		{name:'采集数值-对树',image:`${base}Skill/采集数值-对树.png`},
+		{name:'采集数值-对矿',image:`${base}Skill/采集数值-对矿.png`},
+		{name:'采集道具配方解锁',image:`${base}Skill/采集道具配方解锁.png`},
+		{name:'采集精华配方解锁',image:`${base}Skill/采集精华配方解锁.png`},
+		{name:'采集套装配方解锁',image:`${base}Skill/采集套装配方解锁.png`},
+		// {name:'其他',image:`${base}Skill/其他.png`},
+	],
+
+}
+
+function initSkills() {
+	return skills
+}

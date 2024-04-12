@@ -1,5 +1,5 @@
 <template>
-	<div style="width: 1000px; margin: auto">
+	<div :style="style">
 		<div style="display: inline-block; width: 100%; margin: 8px 0">
 			<!-- 点击跳转至  https://dao.thlm.com -->
 			<a-button @click="gotoHome" style="float: left">返回主站</a-button>
@@ -21,8 +21,8 @@
 			</a-typography-title>
 			<a-typography-paragraph
 				>持有THLM代币超过
-				<a-typography-text strong>1000W</a-typography-text>
-				的小伙伴们可以通过在这里链接钱包进行验证，验证通过即可获得进群的邀请码。</a-typography-paragraph
+				<a-typography-text strong>500W</a-typography-text>
+				的小伙伴们可以通过点击右上角【钱包登录】进行验证，验证通过即可获得进群的邀请码。</a-typography-paragraph
 			>
 			<a-typography-paragraph style="color: darkred"
 				>注:本操作只获取您钱包 THLM
@@ -39,7 +39,7 @@
 			<a-spin :spinning="loading">
 				<div style="width: 100%; height: 100px" v-if="loading"></div>
 				<span v-else>
-					<div v-if="addressBalance > requiredBalance">
+					<div v-if="addressBalance >= requiredBalance">
 						<a-result
 							status="success"
 							title="恭喜您符合入群条件，赶快来做家人吧！"
@@ -106,15 +106,17 @@
 			</a-spin>
 		</div>
 		<div v-else style="text-align: center">
-			<!-- <a-button
+			<a-button
 				type="primary"
 				style="width: 150px; margin-top: 64px"
 				size="large"
 				:loading="connectLoading"
 				@click="connectWallet"
 			>
-				钱包登录
-			</a-button> -->
+				钱包验证
+			</a-button>
+			<div style="margin-top: 12px;"><a-typography-link href="https://thlm.com/2317.html" target="_blank">查看验证操作保姆级教程 <ArrowRightOutlined /></a-typography-link></div>
+			
 		</div>
 		<a-modal
 			:visible="modalVisible"
@@ -183,14 +185,14 @@
 
 <script setup>
 import { ref, computed, onBeforeMount, h } from "vue";
-import thlmDaoImgUrl from "../assets/thlm_dao.jpg?url";
+import thlmDaoImgUrl from "../assets/thlm_dao-new.jpg?url";
 import thlmVxImgUrl from "../assets/thlm_com_vx.png?url";
 import Web3 from "web3";
 import { notification } from "ant-design-vue";
-import { InfoCircleOutlined, InfoCircleTwoTone } from "@ant-design/icons-vue";
+import { InfoCircleOutlined, InfoCircleTwoTone,ArrowRightOutlined } from "@ant-design/icons-vue";
 
 const walletAddress = ref(null);
-const requiredBalance = 10000000;
+const requiredBalance = 5000000;
 const groupSignData = "THLM_VIP_GROUP_01";
 const addressBalance = ref(0);
 const loading = ref(true);
@@ -198,6 +200,17 @@ const connectLoading = ref(false);
 const signLoading = ref(false);
 const modalVisible = ref(false);
 const base64EncodedData = ref("");
+const deviceType = ref('')
+const style = computed(() => {
+	return {
+		width: deviceType.value === 'mobile' ? '100%' : '1000px',
+		margin: deviceType.value === 'mobile' ? '0' : 'auto',
+	}
+})
+onBeforeMount(()=>{
+	const userAgent = navigator.userAgent;
+	deviceType.value = /mobile/i.test(userAgent) ? 'mobile' : 'desktop';
+})
 autoConnectWallet();
 const gotoHome = () => {
 	//跳转至 https://dao.thlm.com

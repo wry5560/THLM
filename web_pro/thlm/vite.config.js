@@ -19,8 +19,8 @@ export default defineConfig({
 		}),
 	],
 	//根据当前运行环境设置 base值
-	base: process.env.NODE_ENV === "production" ? "/Static/lumi/thlm" : "/",
-	// base: process.env.NODE_ENV === "production" ? "/thlmholder" : "/",
+	// base: process.env.NODE_ENV === "production" ? "/Static/lumi/thlm" : "/",
+	base: process.env.NODE_ENV === "production" ? "/thlmholder" : "/",
 	resolve: {
 		alias: [
 			// /@/xxxx => src/xxxx

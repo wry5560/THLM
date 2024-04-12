@@ -8,7 +8,31 @@
 			style="margin-right: 12px"
 			block
 		/> -->
-		<div style="width: 100%; text-align: center">
+		<div
+			style="
+				display: inline-block;
+				width: 120px;
+				vertical-align: middle;
+				background-color: white;
+				line-height: 45px;
+			"
+		>
+			<a-button
+				size="middle"
+				href="https://lumi.thlm.com"
+				target="_blank"
+				style="color: black"
+				><HomeOutlined /> 主题站
+			</a-button>
+		</div>
+		<div
+			style="
+				display: inline-block;
+				vertical-align: middle;
+				width: calc(100% - 120px);
+				text-align: center;
+			"
+		>
 			<a-radio-group
 				v-model:value="selectedType"
 				style="width: 100%"
@@ -20,7 +44,7 @@
 					:key="item.value"
 					:value="item.value"
 					size="large"
-					style="width: 400px"
+					style="width: 360px"
 					>{{ item.label }}</a-radio-button
 				>
 			</a-radio-group>
@@ -28,7 +52,12 @@
 
 		<a-alert type="warning" style="margin-top: 16px" show-icon>
 			<template #description>
-				本页面由头号联盟成员开发维护，随着游戏二测的展开，内容将会持续更新，敬请期待！
+				本页面由头号联盟(<a-typography-link
+					href="https://thlm.com"
+					target="_blank"
+				>
+					thlm.com </a-typography-link
+				>)成员开发维护，随着游戏二测的展开，内容将会持续更新，敬请期待！
 				如发现问题或有任何好的建议，请私信网站开发人员
 				<a-typography-link
 					href="https://twitter.com/xiaoyaoyin2023"
@@ -60,21 +89,19 @@
 		</a-alert>
 
 		<template v-if="selectedType === 'Defi'">
-			<defi-data :defiInfo="defiInfo" :loading="defiInfoLoading" />
+			<defi-data />
 		</template>
 		<template v-if="selectedType === 'Marketplace'">
-			<market-place
-				:marketPlaceData="marketPlaceData"
-				:loading="maketPlaceLoading"
-			/>
+			<market-place />
 		</template>
 		<template v-if="selectedType === 'NFT'">
-			<NFTData :boxInfo="boxInfo" :loading="boxInfoLoading" />
+			<NFTData />
 		</template>
 	</div>
 </template>
 
 <script setup>
+import HomeOutlined from "@ant-design/icons-vue/HomeOutlined";
 import MarketPlace from "@/components/Dashboard/MarketPlace/index.vue";
 import DefiData from "@/components/Dashboard/DefiData.vue";
 import NFTData from "@/components/Dashboard/NFTData.vue";
@@ -89,6 +116,7 @@ import {
 	getLumiBoxInfo,
 	getLumiTotemInfo,
 	getLumiDefiInfo,
+	getLumiPortInfo,
 } from "../api";
 import { isDev } from "../config";
 import moment from "dayjs";
@@ -113,6 +141,8 @@ const totemInfo = ref([]);
 const totemInfoLoading = ref(true);
 const defiInfo = ref([]);
 const defiInfoLoading = ref(true);
+const portInfo = ref([]);
+const portInfoLoading = ref(true);
 let timer = null;
 onBeforeMount(() => {
 	//获取当前router的query参数
@@ -135,51 +165,62 @@ onDeactivated(() => {
 });
 
 const loadData = () => {
-	getLumiMarketTvl()
-		.then((res) => {
-			// debugger;
-			if (res.state === "success") {
-				marketPlaceData.value = res.data;
-				// console.log(marketPlaceData.value);
-			}
-		})
-		.finally(() => {
-			maketPlaceLoading.value = false;
-		});
-	getLumiBoxInfo()
-		.then((res) => {
-			// debugger;
-			if (res.state === "success") {
-				res.data.forEach((item) => {
-					boxInfo.value[item.nft_type.split(" ")[0]] = item;
-				});
-			}
-		})
-		.finally(() => {
-			boxInfoLoading.value = false;
-		});
-	getLumiTotemInfo()
-		.then((res) => {
-			// debugger;
-			if (res.state === "success") {
-				totemInfo.value = res.data;
-				// console.log(totemInfo.value);
-			}
-		})
-		.finally(() => {
-			totemInfoLoading.value = false;
-		});
-	getLumiDefiInfo()
-		.then((res) => {
-			// debugger;
-			if (res.state === "success") {
-				defiInfo.value = res.data;
-				// console.log(defiInfo.value);
-			}
-		})
-		.finally(() => {
-			defiInfoLoading.value = false;
-		});
+	// getLumiMarketTvl()
+	// 	.then((res) => {
+	// 		// debugger;
+	// 		if (res.state === "success") {
+	// 			marketPlaceData.value = res.data;
+	// 			// console.log(marketPlaceData.value);
+	// 		}
+	// 	})
+	// 	.finally(() => {
+	// 		maketPlaceLoading.value = false;
+	// 	});
+	// getLumiBoxInfo()
+	// 	.then((res) => {
+	// 		// debugger;
+	// 		if (res.state === "success") {
+	// 			res.data.forEach((item) => {
+	// 				boxInfo.value[item.nft_type.split(" ")[0]] = item;
+	// 			});
+	// 		}
+	// 	})
+	// 	.finally(() => {
+	// 		boxInfoLoading.value = false;
+	// 	});
+	// getLumiTotemInfo()
+	// 	.then((res) => {
+	// 		// debugger;
+	// 		if (res.state === "success") {
+	// 			totemInfo.value = res.data;
+	// 			// console.log(totemInfo.value);
+	// 		}
+	// 	})
+	// 	.finally(() => {
+	// 		totemInfoLoading.value = false;
+	// 	});
+	// getLumiDefiInfo()
+	// 	.then((res) => {
+	// 		// debugger;
+	// 		if (res.state === "success") {
+	// 			defiInfo.value = res.data;
+	// 			// console.log(defiInfo.value);
+	// 		}
+	// 	})
+	// 	.finally(() => {
+	// 		defiInfoLoading.value = false;
+	// 	});
+	// getLumiPortInfo()
+	// 	.then((res) => {
+	// 		// debugger;
+	// 		if (res.state === "success") {
+	// 			// console.log(res.data);
+	// 			portInfo.value = res.data;
+	// 		}
+	// 	})
+	// 	.finally(() => {
+	// 		portInfoLoading.value = false;
+	// 	});
 };
 // 当顶部selectedType改变时，将类型添加到 当前路由的paramer参数中
 const selectedChange = (e) => {

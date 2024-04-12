@@ -15,6 +15,12 @@ export function getLumiDefiInfo() {
 export function getLumiTotemInfo() {
 	return getAction("/lumi/totem_infos");
 }
+export function getLumiPortInfo() {
+	return getAction("/lumi/pool_infos");
+}
+export function getLumiTotemNftInfo() {
+	return getAction("/lumi/totem_nfts");
+}
 
 function getAction(url, parameter) {
 	return axios({

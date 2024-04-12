@@ -8,6 +8,8 @@
 			/>
 			Marketplace Price Tool - 价格工具
 		</a-divider>
+		<!-- <a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ updateTime }}</a-typography-paragraph> -->
+
 		<!-- <a-segmented
 			v-model:value="selectedCategory"
 			:options="options"
@@ -141,7 +143,8 @@
 					</span>
 				</template>
 				<template v-if="column.key === 'rule'">
-					<span v-if="record.compose.length > 0">
+					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' || selectedCategory ==='Potion'"> - </span>
+					<span v-else-if="record.compose.length > 0">
 						<div
 							v-for="(item, index) in record.compose"
 							:key="index"
@@ -216,18 +219,53 @@
 										</span>
 									</a-flex>
 								</span>
+								<span v-if="record.luausd > 0">
+											+ <span></span
+											><a-tooltip>
+												<template #title>LUAUSD</template>
+												<span
+													style="
+														width: 24px;
+														height: 24px;
+														line-height: 24px;
+														border: 1px solid
+															#f0f0f0;
+														background-color: rgb(
+															251,
+															251,
+															251
+														);
+														border-radius: 5px;
+														display: inline-block;
+														text-align: center;
+													"
+												>
+													<a-image
+														:src="`${base}luausd.svg`"
+														style="width: 18px"
+														fallback="data:image/png;base64,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"
+														:preview="false"
+													/> 
+												</span> <span> {{ record.luausd }}</span></a-tooltip
+										></span>
+										<span style="display: inline-block;margin-left: 8px;" v-if="item[0].pf_name?.includes('重铸')">
+													<a-tag color="red">重铸</a-tag>
+												</span>
 							</a-flex>
+							
 						</div>
 					</span>
 					<span v-else> - </span>
 				</template>
 				<template v-if="column.key === 'synthetic_price'">
-					<span v-if="record.compose.length > 0">
+					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' || selectedCategory ==='Potion'"> - </span>
+					<span v-else-if="record.compose.length > 0">
 						<div
 							v-for="item in record.synthetic_price"
 							style="line-height: 26px"
+							:key="item.id"
 						>
-							{{ (item / 1000000000000000000).toFixed(2) }}
+							{{ (Number(item / 1000000000000000000) + Number(!!record.luausd? record.luausd :0 )).toFixed(2) }}
 						</div>
 					</span>
 				</template>
@@ -237,10 +275,11 @@
 </template>
 
 <script setup>
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, ref,onBeforeUnmount,onDeactivated } from "vue";
 import { getLumiMarketProduct } from "/@/api";
 import { isDev } from "/@/config";
-import { lumiProductInfo } from "@/data/lumiProductInfo";
+// import { lumiProductInfo } from "@/data/lumiProductInfo";
+import { lumiProductInfo } from "@/data/items";
 import moment from "dayjs";
 import {
 	equipmentTypes,
@@ -271,14 +310,23 @@ const selectedCategory = ref("Equipment");
 //装备类型
 const selectedEquipmentType = ref("All");
 //装备职业
-const selectedCareer = ref("Warrior");
+const selectedCareer = ref("战斗");
 //精华类型
 const selectedEssence = ref("Combat");
 //药水类型
 const selectedPotion = ref("Energy");
-
+const timer	= ref(null);
 onBeforeMount(() => {
 	loadData();
+	timer.value = setInterval(() => {
+		loadData();
+	}, 30000);
+});
+onBeforeUnmount(() => {
+	clearInterval(timer.value);
+});
+onDeactivated(() => {
+	clearInterval(timer.value);
 });
 const computedData = computed(() => {
 	const tmp = [];
@@ -291,14 +339,17 @@ const computedData = computed(() => {
 					item.type === "装备")
 			) {
 				if (selectedCareer.value === "All") tmp.push(item);
-				if (selectedCareer.value === "Warrior") {
+				if (selectedCareer.value === "战斗") {
 					if (item.job_type === "战斗") tmp.push(item);
 				}
-				if (selectedCareer.value === "Collector") {
+				if (selectedCareer.value === "采集") {
 					if (item.job_type === "采集") tmp.push(item);
 				}
-				if (selectedCareer.value === "Farmer") {
-					if (item.job_type === "种植") tmp.push(item);
+				if (selectedCareer.value === "农业") {
+					if (item.job_type === "农业") tmp.push(item);
+				}
+				if (selectedCareer.value === "时装") {
+					if (item.job_type === "时装") tmp.push(item);
 				}
 				// if (selectedCareer.value === "Fashion") {
 				// 	if (
@@ -309,10 +360,10 @@ const computedData = computed(() => {
 				// 	if (item.name.includes("Woof")) tmp.push(item);
 				// 	if (["Hair", "Woof"].includes(item.name)) tmp.push(item);
 				// }
-				if (selectedCareer.value === "Fashion") {
-					if (!["战斗", "采集", "种植"].includes(item.job_type))
-						tmp.push(item);
-				}
+				// if (selectedCareer.value === "Fashion") {
+				// 	if (!["战斗", "采集", "种植","农业","畜牧"].includes(item.job_type))
+				// 		tmp.push(item);
+				// }
 			}
 		});
 	} else if (selectedCategory.value === "Essence") {
@@ -483,6 +534,7 @@ const loadData = () => {
 					item.level = productInfo?.level || 0;
 					item.job_type = productInfo?.job_type || "-";
 					item.compose = productInfo?.compose || [];
+					item.luausd = productInfo?.luausd || [];
 					if (item.category.includes("Equipment")) {
 						item.equipmentType = item.category.split("-")[1];
 						item.category = "Equipment";
@@ -531,6 +583,7 @@ const loadData = () => {
 								item.synthetic_price[index] +=
 									product?.token_price * j.amount;
 							});
+							// item.synthetic_price[index] += item.luausd
 						});
 					}
 					return {
@@ -539,7 +592,7 @@ const loadData = () => {
 					};
 				});
 
-				// console.log(maketPlaceProductData.value);
+				console.log(maketPlaceProductData.value);
 				// console.log(categories.value);
 				// console.log(equipmentTypes);
 			}
