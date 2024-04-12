@@ -939,6 +939,7 @@ export const items =[
                     "name": "1级畜牧精华",
                     "amount": "1",
                     "price": 0
+                    
                 }
             ]
         ]
