@@ -151,6 +151,7 @@
 		</a-divider>
 		<a-card
 			style=""
+			id="essence-card"
 			:body-style="{ padding: 0, overflow: 'hidden' }"
 			v-if="!loading"
 		>
@@ -203,7 +204,9 @@
 							{{ selectedProduct.from_desc_cn }}
 						</a-descriptions-item>
 						<a-descriptions-item label="合成花费">
-							-
+							<span style="margin-top:5px;display: inline-block;vertical-align: middle;"><img :src="`${base}luausd.svg`" style="width: 18px;margin-right: 4px;"/></span>
+							<span style="display: inline-block;vertical-align: middle;"> {{ selectedProduct.luausd }}</span>
+						
 						</a-descriptions-item>
 						<a-descriptions-item label="合成材料">
 							<span v-if="selectedProduct.compose.length > 0">
@@ -416,6 +419,7 @@ onBeforeMount(() => {
 					item.from_desc_cn = productInfo?.from_desc_cn || "-";
 					item.from_desc_eng = productInfo?.from_desc_eng || "-";
 					item.act = productInfo?.act || "-";
+					item.luausd = productInfo?.luausd || "-";
 					if (item.job_type === "战斗") item.career = "Warrior";
 					if (item.job_type === "采集") item.career = "Collector";
 					if (item.job_type === "种植") item.career = "Farmer";
@@ -436,6 +440,9 @@ onBeforeMount(() => {
 
 const selectE = (item) => {
 	selectedProduct.value = item;
+	//跳转至锚点
+	const anchor = document.getElementById("essence-card");
+	anchor.scrollIntoView({ behavior: "smooth" });
 };
 const essenceChange = () => {
 	selectedProduct.value = essenceProducts.value[0];

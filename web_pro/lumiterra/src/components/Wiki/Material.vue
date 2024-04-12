@@ -71,7 +71,7 @@
 			v-if="!loading"
 		>
 			<a-flex justify="space-between" :align="`center`">
-				<a-card style="width: 256px; margin-right: 8px">
+				<a-card style="width: 256px; margin-right: 8px" id="material-card">
 					<template #cover>
 						<span
 							style="
@@ -309,6 +309,9 @@ onBeforeMount(() => {
 
 const selectE = (item) => {
 	selectedProduct.value = item;
+	//跳转至锚点 material-card
+	const anchor = document.getElementById("material-card");
+	anchor.scrollIntoView({ behavior: "smooth" });
 };
 // const careerChange = () => {
 // 	selectedProduct.value = totalProducts.value[0];

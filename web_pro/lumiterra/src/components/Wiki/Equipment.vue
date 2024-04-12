@@ -62,6 +62,7 @@
 			<a-typography-text strong>装备信息</a-typography-text>
 		</a-divider>
 		<a-card
+		id="equipment-card"
 			style=""
 			:body-style="{ padding: 0, overflow: 'hidden' }"
 			v-if="!loading"
@@ -115,7 +116,9 @@
 							{{ selectedProduct.from_desc_cn }}
 						</a-descriptions-item>
 						<a-descriptions-item label="合成花费">
-							-
+							<span style="margin-top:5px;display: inline-block;vertical-align: middle;"><img :src="`${base}luausd.svg`" style="width: 18px;margin-right: 4px;"/></span>
+							<span style="display: inline-block;vertical-align: middle;"> {{ selectedProduct.luausd }}</span>
+							 
 						</a-descriptions-item>
 						<a-descriptions-item label="合成材料">
 							<span v-if="selectedProduct.compose.length > 0">
@@ -281,6 +284,7 @@ onBeforeMount(() => {
 						item.from_desc_eng = productInfo?.from_desc_eng || "-";
 						item.attributes = productInfo?.attributes || "-";
 						item.act = productInfo?.act || "-";
+						item.luausd = productInfo?.luausd || "-";
 						if (item.job_type === "战斗") item.career = "Warrior";
 						if (item.job_type === "采集") item.career = "Collector";
 						if (item.job_type === "种植") item.career = "Farmer";
@@ -318,6 +322,10 @@ onBeforeMount(() => {
 
 const selectE = (item) => {
 	selectedProduct.value = item;
+	//锚点定位到equipment-card
+	const anchor = document.getElementById("equipment-card");
+	anchor.scrollIntoView({ behavior: "smooth" });
+
 };
 const careerChange = () => {
 	selectedProduct.value = equipmentProducts.value[0];

@@ -1,7 +1,7 @@
 <template>
 	<a-card
 		hoverable
-		style="width: 112px"
+		:style="cardStyle"
 		:bodyStyle="{ padding: '8px' }"
 		size="small"
 		bordered
@@ -15,7 +15,7 @@
 				:preview="false"
 			/>
 		</template>
-		<a-card-meta>
+		<a-card-meta v-if="!noMeta">
 			<template #title
 				><div style="text-align: center">{{ title }}</div></template
 			>
@@ -25,20 +25,34 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 const props = defineProps({
 	src: {
 		type: String,
-		default: "NPCs/01.png",
+		default: "",
 	},
 	title: {
 		type: String,
-		default: "XXXXXX",
+		default: "",
 	},
 	description: {
 		type: String,
-		default: "xxxxxxxxxxxxxxx",
+		default: "",
 	},
+	style: {
+		type: Object,
+		default: {},
+	},
+	noMeta: {
+		type: Boolean,
+		default: false,
+	},
+});
+const cardStyle = computed(() => {
+	return {
+	width: "112px",
+	...props.style,
+};
 });
 </script>
 <style>

@@ -74,7 +74,7 @@
 			v-if="!loading"
 		>
 			<a-flex justify="space-between" :align="`center`">
-				<a-card style="width: 256px; margin-right: 8px">
+				<a-card style="width: 256px; margin-right: 8px" id="seed-card">
 					<template #cover>
 						<span
 							style="
@@ -305,7 +305,10 @@ onBeforeMount(() => {
 
 const selectE = (item) => {
 	selectedProduct.value = item;
-	console.log(item);
+	// 跳转至锚点 seed-card
+	document.getElementById("seed-card").scrollIntoView({ behavior: "smooth" });
+
+	// console.log(item);
 };
 // const careerChange = () => {
 // 	selectedProduct.value = equipmentProducts.value[0];
