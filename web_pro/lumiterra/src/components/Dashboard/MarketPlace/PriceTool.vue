@@ -8,7 +8,7 @@
 			/>
 			Marketplace Price Tool - 价格工具
 		</a-divider>
-		<!-- <a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ updateTime }}</a-typography-paragraph> -->
+		<a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ updateTime }}</a-typography-paragraph>
 
 		<!-- <a-segmented
 			v-model:value="selectedCategory"
@@ -17,7 +17,10 @@
 			size="large"
 		/> -->
 		<a-tabs v-model:activeKey="selectedCategory">
-			<template #rightExtra>数据更新时间： {{ updateTime }}</template>
+			<!-- <template #rightExtra>数据更新时间： {{ updateTime }}</template> -->
+			<template #rightExtra>
+				<a-input-search placeholder="商品名称..." v-model="searchName" @change="searchChange"/>
+			</template>
 			<a-tab-pane
 				v-for="item in options"
 				:key="item.value"
@@ -64,6 +67,14 @@
 			<a-segmented
 				v-model:value="selectedPotion"
 				:options="potionOptions"
+				@change="currentToOne"
+				size="middle"
+			/>
+		</template>
+		<template v-if="selectedCategory === 'Material'">
+			<a-segmented
+				v-model:value="selectedMaterial"
+				:options="materialOptions"
 				@change="currentToOne"
 				size="middle"
 			/>
@@ -143,7 +154,7 @@
 					</span>
 				</template>
 				<template v-if="column.key === 'rule'">
-					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' || selectedCategory ==='Potion'"> - </span>
+					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' "> - </span>
 					<span v-else-if="record.compose.length > 0">
 						<div
 							v-for="(item, index) in record.compose"
@@ -159,7 +170,13 @@
 														(j) => j.id === i.id
 													)?.name_zh
 												}}</template>
-												<span
+												<a
+													:href="'https://market.layerlumi.com/index_marketplace#/detail?id=' +maketPlaceProductData.find(
+																(j) =>
+																	j.id ===
+																	i.id
+															)?.id"
+													target="_blank"
 													style="
 														width: 24px;
 														height: 24px;
@@ -188,7 +205,7 @@
 														fallback="data:image/png;base64,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"
 														:preview="false"
 													/>
-												</span>
+												</a>
 											</a-tooltip>
 											<span
 												style="
@@ -217,6 +234,8 @@
 										>
 											+
 										</span>
+
+
 									</a-flex>
 								</span>
 								<span v-if="record.luausd > 0">
@@ -251,6 +270,12 @@
 										<span style="display: inline-block;margin-left: 8px;" v-if="item[0].pf_name?.includes('重铸')">
 													<a-tag color="red">重铸</a-tag>
 												</span>
+												<span
+											style="margin: 0 4px"
+											v-if="selectedCategory ==='Potion' && selectedPotion === 'Energy Restoration'"
+										>
+											（3瓶）
+										</span>
 							</a-flex>
 							
 						</div>
@@ -258,14 +283,18 @@
 					<span v-else> - </span>
 				</template>
 				<template v-if="column.key === 'synthetic_price'">
-					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' || selectedCategory ==='Potion'"> - </span>
+					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG'"> - </span>
 					<span v-else-if="record.compose.length > 0">
 						<div
 							v-for="item in record.synthetic_price"
 							style="line-height: 26px"
 							:key="item.id"
 						>
-							{{ (Number(item / 1000000000000000000) + Number(!!record.luausd? record.luausd :0 )).toFixed(2) }}
+							{{ selectedCategory ==='Potion' && selectedPotion === 'Energy Restoration' 
+							? ((Number(item / 1000000000000000000) + Number(!!record.luausd? record.luausd :0 ))/3).toFixed(2) + ' / 瓶'
+							: (Number(item / 1000000000000000000) + Number(!!record.luausd? record.luausd :0 )).toFixed(2) 
+						}} 
+
 						</div>
 					</span>
 				</template>
@@ -286,6 +315,7 @@ import {
 	careerOptions,
 	essenceOptions,
 	potionOptions,
+	materialOptions,
 } from "@/data/typeOptions";
 import { blackList } from "@/data/productBlackList";
 
@@ -295,18 +325,20 @@ const loading = ref(true);
 const categories = ref(["Equipment"]);
 const updateTime = ref("");
 const options = ref([
+	{ label: "全部", value: "All" },
 	{ label: "装备", value: "Equipment" },
 	{ label: "精华", value: "Essence" },
 	{ label: "药水", value: "Potion" },
 	{ label: "种子", value: "Seed" },
 	{ label: "饲料肥料", value: "Fertilizer" },
+	{ label: "宠物蛋", value: "Egg" },
 	{ label: "奖券门票", value: "Ticket" },
 	{ label: "材料", value: "Material" },
 	{ label: "LUAG", value: "LUAG" },
 	{ label: "其他", value: "Consumable" },
 ]);
 
-const selectedCategory = ref("Equipment");
+const selectedCategory = ref("All");
 //装备类型
 const selectedEquipmentType = ref("All");
 //装备职业
@@ -314,8 +346,11 @@ const selectedCareer = ref("战斗");
 //精华类型
 const selectedEssence = ref("Combat");
 //药水类型
-const selectedPotion = ref("Energy");
+const selectedPotion = ref("Energy Restoration");
+//材料类型
+const selectedMaterial = ref("Combat");
 const timer	= ref(null);
+const searchName = ref("");
 onBeforeMount(() => {
 	loadData();
 	timer.value = setInterval(() => {
@@ -329,8 +364,12 @@ onDeactivated(() => {
 	clearInterval(timer.value);
 });
 const computedData = computed(() => {
-	const tmp = [];
-	if (selectedCategory.value === "Equipment") {
+	let tmp = [];
+	if (selectedCategory.value === "All") {
+		maketPlaceProductData.value.forEach((item) => {
+			tmp.push(item);
+		});
+	} else if (selectedCategory.value === "Equipment") {
 		maketPlaceProductData.value.forEach((item) => {
 			if (
 				item.category === "Equipment" &&
@@ -397,6 +436,11 @@ const computedData = computed(() => {
 				) {
 					tmp.push(item);
 				} else if (
+					selectedPotion.value === "Nature" &&
+					item.name.includes("Nature")
+				) {
+					tmp.push(item);
+				}else if (
 					selectedPotion.value === "Other" &&
 					!item.name.includes("Energy") &&
 					!item.name.includes("Attack") &&
@@ -407,12 +451,47 @@ const computedData = computed(() => {
 					!item.name.includes("Life") &&
 					!item.name.includes("Defensive") &&
 					!item.name.includes("Treatment") &&
+					!item.name.includes("Nature") &&
 					!item.name.includes("Movement")
 				)
 					tmp.push(item);
 			}
 		});
-	} else {
+	}else if (selectedCategory.value === "Material") {
+		maketPlaceProductData.value.forEach((item) => {
+			if (item.category === "Material") {
+
+				const livestork = ['Blue Crystal Stone','Feces','Bone Meal','Orange Leaf','Resilient Vine','Luminescent Bone Powder','Dark Spice','Elf Snowball','Shell Scale','Snow Rabbit Fluff','Refined Arrow']
+				if (selectedMaterial.value === 'Combat' && item.job_type === '战斗') {
+					tmp.push(item);
+				} else if (
+					selectedMaterial.value === 'Gather' && item.job_type === '采集'
+				) {
+					tmp.push(item);
+				} else if (
+					selectedMaterial.value === 'Planting' && item.job_type === '农业'
+				) {
+					if(!item.name_zh.includes('畜牧') && !item.name_zh.includes('养殖')&& !livestork.includes(item.name) )
+					tmp.push(item);
+				} else if (
+					selectedMaterial.value === 'Livestock' && item.job_type === '农业' 
+				) {
+					if(item.name_zh.includes('畜牧') || item.name_zh.includes('养殖') || livestork.includes(item.name))
+					tmp.push(item);
+				}else if (
+					selectedMaterial.value === "Other" && item.job_type !== '战斗' && item.job_type !== '采集'&& item.job_type !== '农业'
+				)
+					tmp.push(item);
+			}
+		});
+	}  
+	else if (selectedCategory.value === "Egg") {
+		maketPlaceProductData.value.forEach((item) => {
+			if(item.name_zh.includes("宠物蛋")){
+				tmp.push(item);
+			}
+		});
+	}else {
 		maketPlaceProductData.value.forEach((item) => {
 			if (item.category === selectedCategory.value) {
 				tmp.push(item);
@@ -420,15 +499,17 @@ const computedData = computed(() => {
 		});
 	}
 
-	if (["Material", "Consumable", "Ticket"].includes(selectedCategory.value))
+	if ([ "Consumable", "Ticket"].includes(selectedCategory.value))
 		tmp.sort((a, b) => b.stock - a.stock);
 	if (
-		["Equipment", "Essence", "Potion", "Seed"].includes(
+		["Equipment", "Essence", "Potion", "Material","Seed","Egg"].includes(
 			selectedCategory.value
 		)
 	)
 		tmp.sort((a, b) => a.level - b.level);
-
+	if(!!searchName.value){
+		tmp = tmp.filter(i => i.name.includes(searchName.value) || i.name_zh.includes(searchName.value))
+	}
 	return tmp.filter(
 		(item) => blackList.findIndex((i) => item.id === i.id) < 0
 	);
@@ -558,7 +639,7 @@ const loadData = () => {
 					if (item.name.includes("Ticket")) {
 						item.category = "Ticket";
 					}
-					if (item.name.includes("Potion")) {
+					if (item.name.includes("Potion") || item.name.includes("Energy Slime") || item.name.includes("Power of Nature")) {
 						item.category = "Potion";
 					}
 					if (item.name.includes("Seed")) {
@@ -610,6 +691,13 @@ function currentToOne() {
 	// debugger;
 	pagination.value.current = 1;
 }
+function searchChange(e){
+	// console.log(e.target.value);
+	searchName.value = e.target.value;
+	selectedCategory.value = "All";
+}
+
+
 </script>
 
 <style>

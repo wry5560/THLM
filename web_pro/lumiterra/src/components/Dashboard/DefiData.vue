@@ -115,12 +115,12 @@
 					:value="defiInfo.collateral_rate"
 				/>
 			</a-col>
-			<a-col :span="6">
+			<!-- <a-col :span="6">
 				<a-statistic
 					title="DAO Treasury"
 					:value="defiInfo.dao_treasury"
 				/>
-			</a-col>
+			</a-col> -->
 		</a-row>
 	</a-card>
 	<a-divider orientation="left">
@@ -154,7 +154,7 @@
 	>
 		<template #bodyCell="{ column, record }">
 			<span v-if="column.key === 'token_price'">
-				{{ Number(record.token_price).toFixed(2) }}
+				{{ Number(record.token_price).toFixed(6) }}
 				{{ record.base_token_name }}
 				<span v-if="record.symbol_token_name === 'LTM04'">
 					({{ (record.token_price * luaPrice).toFixed(2) }} USDT)

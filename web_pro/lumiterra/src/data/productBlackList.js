@@ -31,4 +31,34 @@ export const blackList = [
 		name: "Starlight Sickle",
 		id: "0x6cb0db1d7354dfb4a1464318006df0643cafe2002a86a29ff8560f900fef28a1",
 	},
+	{
+		//Lv 4 精力恢复药水
+		name: "Energy Restoration Potion",
+		id: "0xe8bbfecd380c4167d6a1f763a233ec73e73f534b1970c4e1683f437ec23c1f44",
+	},
+	{
+		//Lv 5 精力恢复药水
+		name: "Energy Restoration Potion",
+		id: "0x9a37fbd5e796e9046c2f5f7e29046a230a4ba9ada48a80535ed93a51fec5cfbc",
+	},
+	{
+		//Lv 6 精力恢复药水
+		name: "Energy Restoration Potion",
+		id: "0x41bf21270d8c221a457e2f64e0b5e3c274a814409eea17edf41bb9eb4ee64eb0",
+	},
+	{
+		//Lv 7 精力恢复药水
+		name: "Energy Restoration Potion",
+		id: "0xbc547bc6c2b40b8f07a79a719cdb1f7f6a36b77cd638f6b5d598388825ab3194",
+	},
+	{
+		//Lv 8 精力恢复药水
+		name: "Energy Restoration Potion",
+		id: "0x8ca50451c8a8e02502f6b28a30ed3fa34e5aaea699d576a319c66dc0119ca508",
+	},
+	{
+		//Lv 9 精力恢复药水
+		name: "Energy Restoration Potion",
+		id: "0xc7c0d14be439d5c4da6b16179406bf0ac78e800b0dccf7bda3d194a44403f657",
+	},
 ];

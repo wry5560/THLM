@@ -36,12 +36,22 @@ export const essenceOptions = [
 
 //药水类型
 export const potionOptions = [
-	{ label: "精力", value: "Energy" },
+	{ label: "精力药水", value: "Energy Restoration" },
+	{ label: "精力溶液", value: "Energy Slime" },
 	{ label: "攻击", value: "Attack" },
 	{ label: "暴击", value: "Critical" },
 	{ label: "治疗", value: "Healing" },
 	{ label: "防御", value: "Defense" },
 	{ label: "敏捷", value: "Swiftness" },
 	{ label: "生命", value: "Life" },
+	{ label: "自然之灵", value: "Nature" },
+	{ label: "其他", value: "Other" },
+];
+//材料类型
+export const materialOptions = [
+	{ label: "战斗掉落", value: "Combat" },
+	{ label: "采集掉落", value: "Gather" },
+	{ label: "种植掉落", value: "Planting" },
+	{ label: "畜牧掉落", value: "Livestock" },
 	{ label: "其他", value: "Other" },
 ];

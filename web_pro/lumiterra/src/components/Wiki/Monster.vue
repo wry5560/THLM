@@ -103,7 +103,7 @@
 											maketPlaceProductData?.find(
 												(product) =>
 													product.id === item.id_int
-											).image
+											)?.image
 										"
 										style="
 											width: 24px;
@@ -175,27 +175,32 @@ const monsterData = computed(() => {
 	if (!showBeta.value) {
 		tmp = tmp.filter((monster) => {
 			const balckList = [
-				"Lv1 PvEP副本队长",
-				"Lv1 PvEP副本Boss",
+				"Electric totem",
+				"Healing totem",
+				"Lv1 PvEP Captain",
+				"Lv1 PvEP Boss",
 				"Lv 1 Captain",
-				"Lv2 PvEP副本队长",
+				"Lv2 PvEP Boss",
+				"Lv2 PvEP Captain",
 				"Lv 2 Captain",
-				"Lv3 PvEP副本队长",
+				"Lv3 PvEP Captain",
 				"Lv 3 Captain",
-				"Lord Of The Forest",
-				"Lv4 PvEP副本队长",
+				"Soul - Lord Of The Forest",
+				"Lv4 PvEP Boss",
+				"Lv4 PvEP Captain",
 				"Lv 4 Captain",
-				"Lord Of The Arctic",
+				"Soul - Lord Of The Arctic",
 				"Lv5 PvEP副本队长",
 				"Lv5 PvEP副本Boss",
 				"Lv 5 Captain",
 				"Warrior Soul",
 				"Tank Soul",
-				"Lord Of The Soul",
-				"Lv6 PvEP副本队长",
+				"Range Soul",
+				"Lv6 PvEP Boss",
 				"Lv 6 Captain",
+				"Lv6 PvEP Captain",
 			];
-			return monster.level < 7 && !balckList.includes(monster.name_en);
+			return !balckList.includes(monster.name_en);
 		});
 	}
 	return tmp.sort((a, b) => a.level - b.level);

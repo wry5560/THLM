@@ -293,7 +293,7 @@
 				<a-card-meta>
 					<template #title>
 						<div style="margin-bottom: 4px">
-							{{ item.nft_type }} Floor Price:
+							{{ item.nft_type.substring(6) }} Floor Price:
 						</div>
 						<a-row :align="`middle`">
 							<a-col :span="12">

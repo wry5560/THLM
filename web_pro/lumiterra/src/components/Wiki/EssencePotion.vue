@@ -47,7 +47,7 @@
 						<a-col :span="22">
 							<a-row :gutter="2">
 								<template
-									v-for="item in essenceProducts.concat(
+									v-for="(item) in essenceProducts.concat(
 										potionProducts
 									)"
 								>
@@ -56,6 +56,7 @@
 										:key="item.id"
 										@click="selectE(item)"
 										v-if="item.level === level"
+										style="margin-bottom: 4px;"
 									>
 										<a-card
 											hoverable
@@ -486,12 +487,26 @@ const potionProducts = computed(() => {
 	const f = [];
 	const g = [];
 	const h = [];
+	const i = [];
+	const j = [];
 	props.maketPlaceProductData.forEach((item) => {
+		const energyBlackList = [
+			'0x43e121b8c896d871152e24b4128b7c12ab20c2130aff2e680c2d795c4a9a01cc',
+			'0xb906525aa76988aa0c2ffb84e6e4dd20c529819ef02e465250aeb8d3f769e57b',
+			'0xda06e8fbcdc8b227751de178e177a823e605bd676db878be053d3eeb27aeb3ea',
+			'0xe8bbfecd380c4167d6a1f763a233ec73e73f534b1970c4e1683f437ec23c1f44',
+			'0x9a37fbd5e796e9046c2f5f7e29046a230a4ba9ada48a80535ed93a51fec5cfbc',
+			'0x41bf21270d8c221a457e2f64e0b5e3c274a814409eea17edf41bb9eb4ee64eb0',
+			'0xbc547bc6c2b40b8f07a79a719cdb1f7f6a36b77cd638f6b5d598388825ab3194',
+			'0x8ca50451c8a8e02502f6b28a30ed3fa34e5aaea699d576a319c66dc0119ca508',
+			'0xc7c0d14be439d5c4da6b16179406bf0ac78e800b0dccf7bda3d194a44403f657',
+		]
 		if (
-			item.name_en.includes("Potion") &&
-			!blackList.includes(item.name_en)
+			(item.name_en.includes("Potion") || item.name_en.includes("Energy Slime") || item.name_en.includes('Power of Nature')) &&
+			!energyBlackList.includes(item.id)
 		) {
-			if (item.name_en.includes("Energy")) a.push(item);
+			if (item.name_en.includes("Energy Restoration")) a.push(item);
+			else if (item.name_en.includes("Energy Slime")) i.push(item);
 			else if (item.name_en.includes("Attack")) b.push(item);
 			else if (item.name_en.includes("Critical")) c.push(item);
 			else if (
@@ -510,16 +525,20 @@ const potionProducts = computed(() => {
 			)
 				f.push(item);
 			else if (item.name_en.includes("Life")) g.push(item);
+			else if (item.name_en.includes("Nature")) j.push(item);
 			else h.push(item);
 		}
 	});
+	console.log('a',a);
 	return a
+		.concat(i)
 		.concat(b)
 		.concat(c)
 		.concat(d)
 		.concat(e)
 		.concat(f)
 		.concat(g)
+		.concat(j)
 		.concat(h);
 });
 const essenceLevels = computed(() => {

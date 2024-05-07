@@ -71,6 +71,24 @@ export const monsters =[
         ]
     },
     {
+        "name": "电击图腾",
+        "name_en": "Electric totem",
+        "images": "Electric totem.png",
+        "level": "1",
+        "type": "机关",
+        "is_script": "是",
+        "fall": []
+    },
+    {
+        "name": "治疗图腾",
+        "name_en": "Healing totem",
+        "images": "Healing totem.png",
+        "level": "1",
+        "type": "机关",
+        "is_script": "是",
+        "fall": []
+    },
+    {
         "name": "南瓜恶魔",
         "name_en": "Pumpkin Fiend",
         "images": "Pumpkin Fiend.png",
@@ -160,17 +178,17 @@ export const monsters =[
     },
     {
         "name": "Lv1 PvEP副本队长",
-        "name_en": "Lv1 PvEP副本队长",
-        "images": "Lv1 PvEP副本队长.png",
+        "name_en": "Lv1 PvEP Captain",
+        "images": "Lv1 PvEP Captain.png",
         "level": "1",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
     {
         "name": "Lv1 PvEP副本Boss",
-        "name_en": "Lv1 PvEP副本Boss",
-        "images": "Lv1 PvEP副本Boss.png",
+        "name_en": "Lv1 PvEP Boss",
+        "images": "Lv1 PvEP Boss.png",
         "level": "1",
         "type": "Boss",
         "is_script": "是",
@@ -181,7 +199,7 @@ export const monsters =[
         "name_en": "Lv 1 Captain",
         "images": "Lv 1 Captain.png",
         "level": "1",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "否",
         "fall": []
     },
@@ -337,28 +355,35 @@ export const monsters =[
     },
     {
         "name": "Lv2 PvEP副本队长",
-        "name_en": "Lv2 PvEP副本队长",
-        "images": "Lv2 PvEP副本队长.png",
+        "name_en": "Lv2 PvEP Captain",
+        "images": "Lv2 PvEP Captain.png",
         "level": "2",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
     {
         "name": "Lv2 PvEP副本Boss",
-        "name_en": "Lv2 PvEP副本Boss",
-        "images": "Lv2 PvEP副本Boss.png",
+        "name_en": "Cyber Raze",
+        "images": "Cyber Raze.png",
         "level": "2",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
         "name": "Lv 2 Captain",
         "name_en": "Lv 2 Captain",
         "images": "Lv 2 Captain.png",
         "level": "2",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "否",
         "fall": []
     },
@@ -523,28 +548,35 @@ export const monsters =[
     },
     {
         "name": "Lv3 PvEP副本队长",
-        "name_en": "Lv3 PvEP副本队长",
-        "images": "Lv3 PvEP副本队长.png",
+        "name_en": "Lv3 PvEP Captain",
+        "images": "Lv3 PvEP Captain.png",
         "level": "3",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
     {
         "name": "Lv3 PvEP副本Boss",
-        "name_en": "Lv3 PvEP副本Boss",
-        "images": "Lv3 PvEP副本Boss.png",
+        "name_en": "Frosty Lord",
+        "images": "Frosty Lord.png",
         "level": "3",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
         "name": "Lv 3 Captain",
         "name_en": "Lv 3 Captain",
         "images": "Lv 3 Captain.png",
         "level": "3",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -648,7 +680,7 @@ export const monsters =[
     {
         "name": "森林之主",
         "name_en": "Lord Of The Forest",
-        "images": "Lord Of The Forest.png",
+        "images": "Soul - Lord Of The Forest.png",
         "level": "4",
         "type": "Boss",
         "is_script": "是",
@@ -700,28 +732,35 @@ export const monsters =[
     },
     {
         "name": "Lv4 PvEP副本队长",
-        "name_en": "Lv4 PvEP副本队长",
-        "images": "Lv4 PvEP副本队长.png",
+        "name_en": "Lv4 PvEP Captain",
+        "images": "Lv4 PvEP Captain.png",
         "level": "4",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": ""
     },
     {
         "name": "Lv4 PvEP副本Boss",
-        "name_en": "Lv4 PvEP副本Boss",
-        "images": "Lv4 PvEP副本Boss.png",
+        "name_en": "Lord Of The Forest",
+        "images": "Soul - Lord Of The Forest.png",
         "level": "4",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
         "name": "Lv 4 Captain",
         "name_en": "Lv 4 Captain",
         "images": "Lv 4 Captain.png",
         "level": "4",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -880,7 +919,7 @@ export const monsters =[
         "name_en": "Lv5 PvEP副本队长",
         "images": "Lv5 PvEP副本队长.png",
         "level": "5",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -891,14 +930,21 @@ export const monsters =[
         "level": "5",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
         "name": "Lv 5 Captain",
         "name_en": "Lv 5 Captain",
         "images": "Lv 5 Captain.png",
         "level": "5",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -1072,28 +1118,35 @@ export const monsters =[
     },
     {
         "name": "Lv6 PvEP副本队长",
-        "name_en": "Lv6 PvEP副本队长",
-        "images": "Lv6 PvEP副本队长.png",
+        "name_en": "Lv6 PvEP Captain",
+        "images": "Lv6 PvEP Captain.png",
         "level": "6",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
     {
         "name": "Lv6 PvEP副本Boss",
-        "name_en": "Lv6 PvEP副本Boss",
-        "images": "Lv6 PvEP副本Boss.png",
+        "name_en": "Lv6 PvEP Boss",
+        "images": "Lv6 PvEP Boss.png",
         "level": "6",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
         "name": "Lv 6 Captain",
         "name_en": "Lv 6 Captain",
         "images": "Lv 6 Captain.png",
         "level": "6",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -1113,14 +1166,21 @@ export const monsters =[
         "level": "7",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
         "name": "烈焰战神",
         "name_en": "Flame War God",
         "images": "Flame War God.png",
         "level": "7",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -1129,7 +1189,7 @@ export const monsters =[
         "name_en": "Flame War God",
         "images": "Flame War God.png",
         "level": "7",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -1138,7 +1198,7 @@ export const monsters =[
         "name_en": "Dazzling Little Overlord",
         "images": "Dazzling Little Overlord.png",
         "level": "7",
-        "type": "坦克",
+        "type": "远程",
         "is_script": "是",
         "fall": [
             {
@@ -1182,7 +1242,7 @@ export const monsters =[
         "name_en": "Giant Rock Sentinel",
         "images": "Giant Rock Sentinel.png",
         "level": "7",
-        "type": "远程",
+        "type": "坦克",
         "is_script": "是",
         "fall": [
             {
@@ -1204,47 +1264,7 @@ export const monsters =[
         "name_en": "Yellow-Striped Rock Beast",
         "images": "Yellow-Striped Rock Beast.png",
         "level": "8",
-        "type": "远程",
-        "is_script": "是",
-        "fall": [
-            {
-                "id": "505",
-                "id_int": "0x29eba5f30ca2030a69ed2d7f74871c83bbc526b071320256f127653c7dfff4e9",
-                "name": "战斗掉落3",
-                "name_en": "战斗掉落3"
-            },
-            {
-                "id": "619",
-                "id_int": "0x89d47f6e273c3ea95c93bc3225eda1160e65583806d640eac08703adb56b2ef7",
-                "name": "Lv8 种子",
-                "name_en": "Lv8 种子"
-            }
-        ]
-    },
-    {
-        "name": "翱翔霸主",
-        "name_en": "Soaring Overlord",
-        "images": "Soaring Overlord.png",
-        "level": "8",
-        "type": "Boss",
-        "is_script": "是",
-        "fall": []
-    },
-    {
-        "name": "翱翔霸主",
-        "name_en": "Soaring Overlord",
-        "images": "Soaring Overlord.png",
-        "level": "8",
-        "type": "Boss",
-        "is_script": "是",
-        "fall": []
-    },
-    {
-        "name": "智眸鹰守",
-        "name_en": "Wise-Eyed Eagle Guardian",
-        "images": "Wise-Eyed Eagle Guardian.png",
-        "level": "8",
-        "type": "战士",
+        "type": "坦克",
         "is_script": "是",
         "fall": [
             {
@@ -1262,11 +1282,58 @@ export const monsters =[
         ]
     },
     {
+        "name": "翱翔霸主",
+        "name_en": "Soaring Overlord",
+        "images": "Soaring Overlord.png",
+        "level": "8",
+        "type": "Boss",
+        "is_script": "是",
+        "fall": []
+    },
+    {
+        "name": "翱翔霸主",
+        "name_en": "Soaring Overlord",
+        "images": "Soaring Overlord.png",
+        "level": "8",
+        "type": "Boss",
+        "is_script": "是",
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
+    },
+    {
+        "name": "智眸鹰守",
+        "name_en": "Wise-Eyed Eagle Guardian",
+        "images": "Wise-Eyed Eagle Guardian.png",
+        "level": "8",
+        "type": "战士",
+        "is_script": "是",
+        "fall": [
+            {
+                "id": "505",
+                "id_int": "0x29eba5f30ca2030a69ed2d7f74871c83bbc526b071320256f127653c7dfff4e9",
+                "name": "战斗掉落3",
+                "name_en": "战斗掉落3"
+            },
+            {
+                "id": "619",
+                "id_int": "0x89d47f6e273c3ea95c93bc3225eda1160e65583806d640eac08703adb56b2ef7",
+                "name": "Lv8 种子",
+                "name_en": "Lv8 种子"
+            }
+        ]
+    },
+    {
         "name": "星辰幼龙",
         "name_en": "Starlight Young Dragon",
         "images": "Starlight Young Dragon.png",
         "level": "8",
-        "type": "坦克",
+        "type": "远程",
         "is_script": "是",
         "fall": [
             {
@@ -1284,11 +1351,11 @@ export const monsters =[
         ]
     },
     {
-        "name": "幽林魔导P",
+        "name": "幽林魔导",
         "name_en": "Shadowy Forest Mage",
         "images": "Shadowy Forest Mage.png",
         "level": "8",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -1297,7 +1364,7 @@ export const monsters =[
         "name_en": "Shadowy Forest Mage",
         "images": "Shadowy Forest Mage.png",
         "level": "8",
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "fall": []
     },
@@ -1305,6 +1372,46 @@ export const monsters =[
         "name": "谜光古灵",
         "name_en": "Enigmatic Light Spirit",
         "images": "Enigmatic Light Spirit.png",
+        "level": "9",
+        "type": "战士",
+        "is_script": "是",
+        "fall": [
+            {
+                "id": "515",
+                "id_int": "0x55e22de832dfbc1d02387c99822a1e340fe19148f79621897f9b552e9e244748",
+                "name": "战斗掉落1",
+                "name_en": "战斗掉落1"
+            },
+            {
+                "id": "620",
+                "id_int": "0x08d17f67925bee7f527c995f456310f0cbb9714f3c5933816d3fbb40955f91cc",
+                "name": "Lv9 种子",
+                "name_en": "Lv9 种子"
+            }
+        ]
+    },
+    {
+        "name": "荧光守卫",
+        "name_en": "Fluorescent Sentinel",
+        "images": "Fluorescent Sentinel.png",
+        "level": "9",
+        "type": "精英",
+        "is_script": "是",
+        "fall": []
+    },
+    {
+        "name": "荧光守卫",
+        "name_en": "Fluorescent Sentinel",
+        "images": "Fluorescent Sentinel.png",
+        "level": "9",
+        "type": "精英",
+        "is_script": "是",
+        "fall": []
+    },
+    {
+        "name": "绿石雕灵",
+        "name_en": "Greenstone Carved Spirit",
+        "images": "Greenstone Carved Spirit.png",
         "level": "9",
         "type": "坦克",
         "is_script": "是",
@@ -1324,27 +1431,34 @@ export const monsters =[
         ]
     },
     {
-        "name": "荧光守卫",
-        "name_en": "Fluorescent Sentinel",
-        "images": "Fluorescent Sentinel.png",
+        "name": "绿焰战神",
+        "name_en": "Verdant Flame Warlord",
+        "images": "Verdant Flame Warlord.png",
         "level": "9",
         "type": "Boss",
         "is_script": "是",
         "fall": []
     },
     {
-        "name": "荧光守卫",
-        "name_en": "Fluorescent Sentinel",
-        "images": "Fluorescent Sentinel.png",
+        "name": "绿焰战神",
+        "name_en": "Verdant Flame Warlord",
+        "images": "Verdant Flame Warlord.png",
         "level": "9",
         "type": "Boss",
         "is_script": "是",
-        "fall": []
+        "fall": [
+            {
+                "id": "718",
+                "id_int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
+                "name": "",
+                "name_en": ""
+            }
+        ]
     },
     {
-        "name": "绿石雕灵",
-        "name_en": "Greenstone Carved Spirit",
-        "images": "Greenstone Carved Spirit.png",
+        "name": "笑面刺盾",
+        "name_en": "Smiling Spike Shield",
+        "images": "Smiling Spike Shield.png",
         "level": "9",
         "type": "远程",
         "is_script": "是",
@@ -1364,43 +1478,44 @@ export const monsters =[
         ]
     },
     {
-        "name": "绿焰战神",
-        "name_en": "Verdant Flame Warlord",
+        "name": "浪刃武士",
+        "name_en": "Wandering Blade Samurai",
         "images": "Verdant Flame Warlord.png",
         "level": "9",
-        "type": "Boss",
-        "is_script": "是",
-        "fall": []
-    },
-    {
-        "name": "绿焰战神",
-        "name_en": "Verdant Flame Warlord",
-        "images": "Verdant Flame Warlord.png",
-        "level": "9",
-        "type": "Boss",
-        "is_script": "是",
-        "fall": []
-    },
-    {
-        "name": "笑面刺盾",
-        "name_en": "Smiling Spike Shield",
-        "images": "Smiling Spike Shield.png",
-        "level": "9",
-        "type": "战士",
-        "is_script": "是",
+        "type": "世界Boss",
+        "is_script": "否",
         "fall": [
             {
-                "id": "515",
-                "id_int": "0x55e22de832dfbc1d02387c99822a1e340fe19148f79621897f9b552e9e244748",
-                "name": "战斗掉落1",
-                "name_en": "战斗掉落1"
-            },
-            {
-                "id": "620",
-                "id_int": "0x08d17f67925bee7f527c995f456310f0cbb9714f3c5933816d3fbb40955f91cc",
-                "name": "Lv9 种子",
-                "name_en": "Lv9 种子"
+                "id": "725",
+                "id_int": "0xf1e764f2e88f48e08025ec86f3d897612b1372d084158469606fae70df6ac982",
+                "name": "",
+                "name_en": ""
             }
         ]
+    },
+    {
+        "name": "幽魂主教",
+        "name_en": "Specter Bishop",
+        "images": "Verdant Flame Warlord.png",
+        "level": "9",
+        "type": "世界Boss",
+        "is_script": "否",
+        "fall": [
+            {
+                "id": "726",
+                "id_int": "0xbd93f16804136c309e5a22fbf7fadfd9d6475178d1cefec04d8e18c18f82ee8d",
+                "name": "",
+                "name_en": ""
+            }
+        ]
+    },
+    {
+        "name": "南瓜蝙蝠",
+        "name_en": "",
+        "images": "Verdant Flame Warlord.png",
+        "level": "9",
+        "type": "世界Boss",
+        "is_script": "否",
+        "fall": []
     }
 ]

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "airtable": "^0.12.2",
     "ant-design-vue": "4.x",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",

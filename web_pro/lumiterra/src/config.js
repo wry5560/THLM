@@ -1,2 +1,2 @@
 export const isDev = true;
-export const showBeta = false;
+export const showBeta = true;

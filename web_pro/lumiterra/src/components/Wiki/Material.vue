@@ -214,6 +214,8 @@ const totalProducts = computed(() => {
 			!item.name_en.includes("Seed") &&
 			!item.name_en.includes("Fertilizer") &&
 			!item.name_en.includes("Feed") &&
+			!item.name_en.includes("Energy") &&
+			!item.name_en.includes("Nature") &&
 			blackList.findIndex((i) => i.id === item.id) < 0
 			// !blackList.includes(item.name_en)
 		);

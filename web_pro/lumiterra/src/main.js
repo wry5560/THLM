@@ -26,6 +26,7 @@ import {
 	Alert,
 	Radio,
 	Tag,
+	Input,
 } from "ant-design-vue";
 
 const i18n = createI18n({
@@ -60,6 +61,7 @@ async function bootstrap() {
 	app.use(Alert);
 	app.use(Radio);
 	app.use(Tag);
+	app.use(Input);
 	await router.isReady();
 	app.mount("#app");
 }
