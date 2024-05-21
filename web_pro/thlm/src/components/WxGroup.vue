@@ -39,7 +39,7 @@
 			<a-spin :spinning="loading">
 				<div style="width: 100%; height: 100px" v-if="loading"></div>
 				<span v-else>
-					<div v-if="addressBalance >= requiredBalance">
+					<div v-if=" parseInt(addressBalance) + parseInt(stakeBalance) >= requiredBalance">
 						<a-result
 							status="success"
 							title="恭喜您符合入群条件，赶快来做家人吧！"
@@ -51,7 +51,7 @@
 										walletDisplay
 									}}</a-tooltip
 									>, THLM 余额为:
-									{{ parseInt(addressBalance) }}
+									{{ parseInt(addressBalance) }}, 质押余额为：{{ parseInt(stakeBalance) }}
 								</div>
 							</template>
 							<template #extra>
@@ -90,7 +90,7 @@
 										walletDisplay
 									}}</a-tooltip
 									>, THLM 余额为:
-									{{ parseInt(addressBalance) }}
+									{{ parseInt(addressBalance) }}， 质押余额为：{{ parseInt(stakeBalance) }}
 								</div>
 							</template>
 							<template #extra>
@@ -195,6 +195,7 @@ const walletAddress = ref(null);
 const requiredBalance = 5000000;
 const groupSignData = "THLM_VIP_GROUP_01";
 const addressBalance = ref(0);
+const stakeBalance = ref(0);
 const loading = ref(true);
 const connectLoading = ref(false);
 const signLoading = ref(false);
@@ -312,6 +313,24 @@ async function getTHLMBalance() {
 			type: "function",
 		},
 	];
+	let stakeAbi = [
+	{
+            "inputs":[
+                {"internalType":"address","name":"user","type":"address"}
+            ],
+            "name":"getUserStakeInfo",
+            "outputs":[
+                {"components":[
+                    {"internalType":"uint256","name":"stakeLevel","type":"uint256"},
+                    {"internalType":"uint256","name":"stakeAmount","type":"uint256"},
+                    {"internalType":"uint256","name":"stakeTimestamp","type":"uint256"}
+                ],
+                "internalType":"struct THLMMember.StakeInfo","name":"","type":"tuple"}
+            ],
+            "stateMutability":"view",
+            "type":"function"
+        },
+	]
 	const web3s = new Web3(
 		new Web3.providers.HttpProvider("https://rpc.ankr.com/eth")
 	);
@@ -319,11 +338,20 @@ async function getTHLMBalance() {
 		abi,
 		"0xa8218cbdb4accce36ee92874fe34a999abc30a7a"
 	);
+	const stakeContract = new web3s.eth.Contract(
+		stakeAbi,
+		"0x4a6fBae4975F92Ed0085795C159A75552Cf8F952"
+	);
 	try {
 		const balance = await contract.methods
 			.balanceOf(walletAddress.value)
 			.call();
+		const stakeInfo = await stakeContract.methods
+			.getUserStakeInfo(walletAddress.value)
+			.call();
+		// console.log("stakeAmount:", stakeInfo.stakeAmount);
 		addressBalance.value = web3.utils.fromWei(balance, "ether");
+		stakeBalance.value = web3.utils.fromWei(Number(stakeInfo.stakeAmount), "ether");
 	} catch (error) {
 		console.error("获取余额失败:", error);
 		notification.error({
@@ -345,7 +373,7 @@ async function requestJoinGroup(item) {
 	signLoading.value = true;
 	try {
 		const web3 = new Web3(window.ethereum);
-		if (parseInt(addressBalance) < item.requiredBalance) {
+		if (parseInt(addressBalance.value) + parseInt(stakeBalance.value) < item.requiredBalance) {
 			notification.error({
 				message: "您的代币余额不足",
 				duration: 1.5,
@@ -387,6 +415,7 @@ function disconnectWallet() {
 	walletAddress.value = null;
 	// 这里你可能还需要清除其他相关的状态，比如余额信息等
 	addressBalance.value = 0;
+	stakeBalance.value = 0;
 	window.ethereum
 		.request({
 			method: "wallet_revokePermissions",

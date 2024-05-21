@@ -1,13 +1,9 @@
 import axios from "axios";
+import { apiUrl } from "./config";
 
 // 创建 axios 实例
 const service = axios.create({
-	baseURL:
-		process.env.NODE_ENV === "production"
-			? "https://thlm.bond/"
-			// : "http://192.168.1.12:5173/api/",
-			: "http://192.168.32.18:5173/api/",
-	// baseURL: "http://103.119.106.13:15181/",
+	baseURL:apiUrl,
 	timeout: 60000, // 请求超时时间
 });
 

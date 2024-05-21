@@ -1,4 +1,4 @@
-import Airtable from 'airtable'
+// import Airtable from 'airtable'
 import axios from "axios";
 
 let request = axios.create({
@@ -8,7 +8,7 @@ let request = axios.create({
     }
 })
 
-request.get('https://api.airtable.com/v0/appdal3zeKKovXaCU/shrUqDSi79egHYGmL')
+request.get('https://api.airtable.com/v0/appdal3zeKKovXaCU/tbl2CIBydXmcGErov')
 .then(res=>{
     console.log(res.data.records)
 

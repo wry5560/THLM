@@ -3,6 +3,8 @@ import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
+import { productUrl} from "./src/views/Membership/config";
+
 function pathResolve(dir) {
 	return resolve(process.cwd(), ".", dir);
 }
@@ -19,8 +21,9 @@ export default defineConfig({
 		}),
 	],
 	//根据当前运行环境设置 base值
-	// base: process.env.NODE_ENV === "production" ? "/Static/lumi/thlm" : "/",
-	base: process.env.NODE_ENV === "production" ? "/thlmholder" : "/",
+	// base: process.env.NODE_ENV === "production" ? "/Static/lumi/thlm" : "/",  	// 持币入群页面测试环境编译
+	// base: process.env.NODE_ENV === "production" ? "/thlmholder" : "/",					// 持币入群页面生产环境编译
+	base: process.env.NODE_ENV === "production" ? productUrl : "/",			// 会员中心页面生产环境编译
 	resolve: {
 		alias: [
 			// /@/xxxx => src/xxxx

@@ -1,15 +1,18 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
 import WxGroup from "./components/WxGroup.vue";
+import Membership from "./views/Membership/index.vue";
 </script>
 
 <template>
-	<wx-group />
+	<!-- <wx-group /> -->
+	<membership />
 </template>
 
 <style>
 body {
 	background: #fafafa !important;
+	margin:0
 }
 .logo {
 	height: 6em;

@@ -1,0 +1,487 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model exchange_info {
+  exchange_id        Int       @id @default(autoincrement())
+  exchange_en        String?   @db.VarChar(255)
+  exchange_cn        String?   @db.VarChar(255)
+  exchange_character String    @db.Char(1)
+  create_time        DateTime? @default(now()) @db.Timestamp(0)
+  update_time        DateTime? @updatedAt
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model investor_info {
+  investor_id            Int                 @id @default(autoincrement())
+  investor_name          String?             @unique @db.VarChar(255)
+  user_id                String              @db.VarChar(50)
+  exchange_id            Int
+  api_key                String?             @db.VarChar(255)
+  secret_key             String?             @db.VarChar(255)
+  ex_password            String?             @db.VarChar(255)
+  recharge_address_TRC20 String?             @db.VarChar(255)
+  position_side          Int?
+  effective              Int?                @default(1)
+  is_master              Int?                @default(1)
+  master_investor_id     Int?                @default(0)
+  create_time            DateTime?           @default(now()) @db.Timestamp(0)
+  update_time            DateTime?           @updatedAt
+  user                   quant_user          @relation(fields: [user_id], references: [id])
+  sub_investor_info      sub_investor_info[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model quant_user {
+  id              String          @id @db.VarChar(20)
+  phone           String          @unique @db.VarChar(20)
+  nick_name       String?         @unique @db.VarChar(50)
+  avatar          String?         @db.VarChar(500)
+  email           String?         @db.VarChar(100)
+  password        String          @db.VarChar(50)
+  salt            String?         @db.VarChar(50)
+  openid          String?         @db.VarChar(50)
+  invitation_code String?         @db.VarChar(50)
+  type            String?         @db.VarChar(10)
+  status          String?         @default("1") @db.VarChar(2)
+  level           Int?            @default(0)
+  create_time     DateTime?       @default(now()) @db.Timestamp(0)
+  update_time     DateTime?       @updatedAt
+  create_by       String?         @db.VarChar(50)
+  update_by       String?         @db.VarChar(50)
+  investor_id     Decimal?        @db.Decimal(10, 0)
+  del_flag        String?         @default("0") @db.VarChar(1)
+  investor_info   investor_info[]
+
+  @@map("t_qt_user")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model strategy_info {
+  strategy_id     Int       @id @default(autoincrement()) @db.UnsignedInt
+  strategy_name   String?   @unique(map: "t_strategy_info_strategy_name_uindex") @db.VarChar(255)
+  developer_id    Int?
+  strategy_status Int?
+  exchange_code   String?   @db.VarChar(100)
+  create_time     DateTime? @default(now()) @db.Timestamp(0)
+  update_time     DateTime? @updatedAt
+  strategy_code   String?   @db.VarChar(100)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model sub_investor_info {
+  id                      Int           @id @unique @default(autoincrement())
+  sub_investor            String?       @unique @db.VarChar(255)
+  investor_id             Int
+  investor_name           String?       @db.VarChar(255)
+  strategy_id             String?       @db.VarChar(50)
+  strategy_code           String?       @db.VarChar(50)
+  is_active               String?       @default("1") @db.VarChar(1)
+  exchange_id             Int?
+  account_strategy_status Int?          @default(0)
+  create_time             DateTime?     @default(now()) @db.Timestamp(0)
+  create_by               String?       @db.VarChar(50)
+  update_by               String?       @db.VarChar(50)
+  update_time             DateTime?     @updatedAt
+  investor_info           investor_info @relation(fields: [investor_id], references: [investor_id])
+
+  @@index([investor_id], map: "investor_id")
+  @@index([strategy_id], map: "strategy_id")
+}
+
+view client_info {
+  investor_name   String
+  investor_id     Int
+  sub_investor_id Int?
+  strategy_code   String?
+  strategy_name   String?
+  client_id       String  @unique
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model account_asset_stat {
+  id                               String    @id @db.VarChar(20)
+  investor_id                      String?   @db.VarChar(50)
+  risk_type                        String?   @db.VarChar(10)
+  insert_time                      DateTime? @db.DateTime(0)
+  currency_unit                    String?   @db.VarChar(20)
+  total_amount                     Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  spot_amount                      Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  futures_amount                   Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  profit_amount                    Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  total_revenue                    Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  annualized_income_7              Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  cumulative_trading_days          Int?      @default(0)
+  profit_days                      Int?      @default(0)
+  lost_days                        Int?      @default(0)
+  annualized_income_30             Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  position_value                   Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  leverage                         Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  spot_position_distribution       String?   @db.LongText
+  futures_position_distribution    String?   @db.LongText
+  spot_transaction_distribution    String?   @db.LongText
+  futures_transaction_distribution String?   @db.LongText
+  create_time                      DateTime? @db.DateTime(0)
+  create_by                        String?   @db.VarChar(50)
+  update_by                        String?   @db.VarChar(50)
+  update_time                      DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model anno_dir {
+  id          String    @id @db.VarChar(20)
+  parent_id   String    @default("0") @db.VarChar(20)
+  full_path   String?   @db.VarChar(1000)
+  dir_name    String    @db.VarChar(200)
+  dir_desc    String?   @db.VarChar(500)
+  is_display  String?   @default("1") @db.VarChar(2)
+  sort_num    Int?      @default(0)
+  create_time DateTime? @default(now()) @db.Timestamp(0)
+  update_time DateTime? @default(now()) @db.Timestamp(0)
+  create_by   String?   @db.VarChar(50)
+  update_by   String?   @db.VarChar(50)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model asset_category_info {
+  id            Int     @id @default(autoincrement())
+  binance_asset String? @db.VarChar(255)
+  okx_asset     String? @db.VarChar(255)
+  ftx_asset     String? @db.VarChar(255)
+  industry_id   Int?
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model developer_info {
+  developer_id   Int       @id
+  developer_name String?   @db.VarChar(255)
+  sys_user_id    String?   @db.VarChar(50)
+  create_time    DateTime? @default(now()) @db.Timestamp(0)
+  update_time    DateTime? @default(now()) @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model hfs_liquidation {
+  id                    BigInt    @id @default(autoincrement())
+  date_time             DateTime  @db.DateTime(0)
+  investor_name         String    @db.VarChar(50)
+  sub_investor          String    @db.VarChar(50)
+  client_id             String?   @db.VarChar(50)
+  close_commission      Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  close_commission_type String?   @db.VarChar(10)
+  close_direction       String?   @db.VarChar(10)
+  close_event_time      BigInt?
+  close_motives         Int?
+  close_position        Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  close_price           Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  close_profit          Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  close_value           Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  loss_price            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  open_commission       Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  open_commission_type  String?   @db.VarChar(10)
+  open_direction        String?   @db.VarChar(10)
+  open_event_time       BigInt?
+  open_position         Decimal?  @db.Decimal(32, 18)
+  open_price            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  open_value            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  order_event_time      BigInt?
+  order_position        Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  order_price           Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  order_value           Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  position_status       String?   @db.VarChar(10)
+  real_price            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  real_profit           Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  real_value            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  stop_price            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  symbol                String?   @db.VarChar(20)
+  create_time           DateTime? @db.DateTime(0)
+  create_by             String?   @db.VarChar(50)
+  update_by             String?   @db.VarChar(50)
+  update_time           DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model hfs_stat {
+  date_time                 String    @db.VarChar(20)
+  investor_name             String    @db.VarChar(50)
+  sub_investor              String    @db.VarChar(50)
+  today_commission_loss     Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_commission_profit   Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_speculative_loss    Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_speculative_profit  Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_commission_revenue  Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_speculative_revenue Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_win_rate            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_loss_num            Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_win_num             Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_revenue             Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  total_revenue             Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  strategy_available        Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  today_available           Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  create_time               DateTime? @db.DateTime(0)
+  create_by                 String?   @db.VarChar(50)
+  update_by                 String?   @db.VarChar(50)
+  update_time               DateTime? @db.DateTime(0)
+
+  @@id([date_time, investor_name])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model industry_category_info {
+  industry_id   Int     @id @default(autoincrement())
+  industry_name String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model investor_account_dynamic_min1 {
+  id                          Int      @id @default(autoincrement())
+  event_date                  String?  @db.VarChar(255)
+  event_time                  String?  @db.VarChar(255)
+  investor_name               String?  @db.VarChar(255)
+  total_fund                  Decimal? @db.Decimal(20, 8)
+  spot_fund                   Decimal? @db.Decimal(20, 8)
+  spot_position_value         Decimal? @db.Decimal(20, 8)
+  futures_fund                Decimal? @db.Decimal(20, 8)
+  futures_position_value      Decimal? @db.Decimal(20, 8)
+  futures_position_real_value Decimal? @db.Decimal(20, 8)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model investor_info_backups_2023_02_21 {
+  investor_id            Int       @id @default(autoincrement())
+  investor_name          String?   @db.VarChar(255)
+  user_id                BigInt?
+  exchange_id            Int       @default(1)
+  api_key                String?   @db.VarChar(255)
+  secret_key             String?   @db.VarChar(255)
+  ex_password            String?   @db.VarChar(255)
+  recharge_address_TRC20 String?   @db.VarChar(255)
+  position_side          Int?
+  effective              Int?      @default(1)
+  create_time            DateTime? @default(now()) @db.Timestamp(0)
+  update_time            DateTime? @default(now()) @db.Timestamp(0)
+
+  @@map("investor_info-backups-2023-02-21")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model investor_strategy_relevance {
+  id          BigInt    @id @default(autoincrement())
+  investor_id Int
+  strategy_id Int?
+  status      Int?
+  create_time DateTime? @default(now()) @db.Timestamp(0)
+  update_time DateTime? @default(now()) @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model investor_strategy_relevance_backups_2023_02_22 {
+  id          BigInt    @id @default(autoincrement())
+  investor_id Int
+  strategy_id Int?
+  status      Int?
+  create_time DateTime? @default(now()) @db.Timestamp(0)
+  update_time DateTime? @default(now()) @db.Timestamp(0)
+
+  @@map("investor_strategy_relevance-backups-2023-02-22")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model log_errorstack {
+  id         String    @id @db.VarChar(64)
+  err_stack  String    @db.Text
+  url        String    @db.LongText
+  err_code   String    @db.LongText
+  first_time DateTime? @default(now()) @db.DateTime(0)
+  last_time  DateTime? @default(now()) @db.DateTime(0)
+  is_fix     String?   @default("0") @db.VarChar(2)
+  fix_time   DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_investor_info {
+  investor_id   Int       @id @default(autoincrement())
+  investor_name String?   @db.VarChar(255)
+  user_id       String?   @db.VarChar(50)
+  exchange_id   Int?      @default(4)
+  api_key       String?   @db.VarChar(255)
+  secret_key    String?   @db.VarChar(255)
+  password      String?   @db.VarChar(255)
+  effective     Int?      @default(1)
+  create_time   DateTime? @default(now()) @db.DateTime(0)
+  create_by     String?   @db.VarChar(50)
+  update_by     String?   @db.VarChar(50)
+  update_time   DateTime? @default(now()) @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model okex_product_info {
+  channel     String?   @db.VarChar(50)
+  inst_type   String?   @db.VarChar(50)
+  inst_id     String?   @db.VarChar(50)
+  category    String?   @db.VarChar(50)
+  uly         String?   @db.VarChar(50)
+  base_ccy    String?   @db.VarChar(50)
+  quote_ccy   String?   @db.VarChar(50)
+  settle_ccy  String?   @db.VarChar(50)
+  ct_val      String?   @db.VarChar(50)
+  ct_mult     String?   @db.VarChar(50)
+  ct_val_ccy  String?   @db.VarChar(50)
+  opt_type    String?   @db.VarChar(50)
+  stk         String?   @db.VarChar(50)
+  list_time   String?   @db.VarChar(50)
+  exp_time    String?   @db.VarChar(50)
+  lever       String?   @db.VarChar(50)
+  tick_sz     String?   @db.VarChar(50)
+  lot_sz      String?   @db.VarChar(50)
+  min_sz      String?   @db.VarChar(50)
+  ct_type     String?   @db.VarChar(50)
+  alias       String?   @db.VarChar(50)
+  state       String?   @db.VarChar(50)
+  create_time DateTime? @db.DateTime(0)
+  create_by   String?   @db.VarChar(50)
+  update_by   String?   @db.VarChar(50)
+  update_time DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model quant_server_info {
+  id               String    @id @db.VarChar(20)
+  server_name      String?   @db.VarChar(50)
+  server_nick_name String?   @db.VarChar(50)
+  server_ip        String?   @db.VarChar(255)
+  remark           String?   @db.VarChar(255)
+  create_time      DateTime? @db.DateTime(0)
+  create_by        String?   @db.VarChar(50)
+  update_by        String?   @db.VarChar(50)
+  update_time      DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model quant_service_info {
+  id                Int       @id @default(autoincrement())
+  service_name      String?   @db.VarChar(50)
+  service_code      String?   @db.VarChar(50)
+  server_ip         String?   @db.VarChar(255)
+  service_conn_type String?   @db.VarChar(10)
+  create_time       DateTime? @db.DateTime(0)
+  create_by         String?   @db.VarChar(50)
+  update_by         String?   @db.VarChar(50)
+  update_time       DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model strategy_info_backups_2023_02_21 {
+  strategy_id     Int       @id @default(autoincrement()) @db.UnsignedInt
+  strategy_name   String?   @unique(map: "t_strategy_info_strategy_name_uindex") @db.VarChar(255)
+  developer_id    Int?
+  strategy_status Int?
+  exchange_code   String?   @db.VarChar(100)
+  create_time     DateTime? @default(now()) @db.Timestamp(0)
+  update_time     DateTime? @default(now()) @db.Timestamp(0)
+  strategy_code   String?   @db.VarChar(100)
+
+  @@map("strategy_info-backups-2023-02-21")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model sub_investor_info_backups_2023_02_24 {
+  id                      Int       @id @default(autoincrement())
+  sub_investor            String?   @db.VarChar(255)
+  investor_id             String?   @db.VarChar(255)
+  investor_name           String?   @db.VarChar(255)
+  strategy_id             String?   @db.VarChar(50)
+  strategy_code           String?   @db.VarChar(50)
+  account_strategy_status Int?      @default(0)
+  is_active               String?   @default("1") @db.VarChar(1)
+  create_time             DateTime? @db.DateTime(0)
+  create_by               String?   @db.VarChar(50)
+  update_by               String?   @db.VarChar(50)
+  update_time             DateTime? @db.DateTime(0)
+
+  @@map("sub_investor_info-backups-2023-02-24")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model sub_investor_journal {
+  id                   Int       @id @default(autoincrement())
+  investor_id          String?   @db.VarChar(255)
+  investor_name        String?   @db.VarChar(255)
+  sub_investor         String?   @db.VarChar(255)
+  busi_type            String?   @default("1") @db.VarChar(2)
+  asset                String?   @default("USDT") @db.VarChar(50)
+  cash_amount          Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  balance_change       Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  available_amount_old Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  available_change     Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  available_amount     Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  frozen_amount_old    Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  frozen_change        Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  frozen_amount        Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  direction            String?   @db.VarChar(50)
+  create_time          DateTime? @db.DateTime(0)
+  create_by            String?   @db.VarChar(50)
+  update_by            String?   @db.VarChar(50)
+  update_time          DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model t_qt_referral_record {
+  id              String   @id @db.VarChar(20)
+  user_id         String   @db.VarChar(50)
+  invitation_code String   @db.VarChar(50)
+  referraled_user String   @db.VarChar(50)
+  register_time   DateTime @db.DateTime(0)
+  referral_path   String?  @db.LongText
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model task_record {
+  id                   String    @id @db.VarChar(255)
+  task_code            String?   @db.VarChar(255)
+  task_type            Int?      @default(0)
+  task_status          Int?      @default(0)
+  exchange1            String?   @db.VarChar(20)
+  account1             String?   @db.VarChar(255)
+  symbol1              String?   @db.VarChar(255)
+  trade_type1          String?   @db.VarChar(20)
+  direction1           String?   @db.VarChar(20)
+  trade_unit_type1     Int?      @default(0)
+  quote1               Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  finished_quote1      Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  once_amount1         Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  order_type1          Int?
+  exchange2            String?   @db.VarChar(20)
+  account2             String?   @db.VarChar(255)
+  symbol2              String?   @db.VarChar(255)
+  trade_type2          String?   @db.VarChar(20)
+  direction2           String?   @db.VarChar(20)
+  trade_unit_type2     Int?
+  quote2               Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  finished_quote2      Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  once_amount2         Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  order_type2          Int?
+  condition_type       String?   @db.VarChar(20)
+  condition_args       Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  ex_time              String?   @db.VarChar(255)
+  open_condition_type  String?   @db.VarChar(20)
+  open_condition_args  Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  open_ex_time         String?   @db.VarChar(255)
+  close_condition_type String?   @db.VarChar(20)
+  close_condition_args Decimal?  @default(0.000000000000000000) @db.Decimal(32, 18)
+  close_ex_time        String?   @db.VarChar(255)
+  task_step            Int?      @default(0)
+  create_time          DateTime? @db.DateTime(0)
+  create_by            String?   @db.VarChar(50)
+  update_by            String?   @db.VarChar(50)
+  update_time          DateTime? @db.DateTime(0)
+}

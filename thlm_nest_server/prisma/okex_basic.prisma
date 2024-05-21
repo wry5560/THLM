@@ -1,0 +1,296 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./OkexBasicClient"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("OKEX_BASIC_DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model borrow_record {
+  id            String    @id @db.VarChar(20)
+  creditor      String    @db.VarChar(50)
+  debtor        String    @db.VarChar(50)
+  borrow_status Int?      @default(0)
+  inst_type     String?   @db.VarChar(50)
+  inst_id       String?   @db.VarChar(50)
+  borrow_size   Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  paid_up       Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  un_paid       Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  pos_side      String?   @db.VarChar(50)
+  create_time   DateTime? @db.DateTime(0)
+  update_time   DateTime? @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_account_bills {
+  id          String    @unique @db.VarChar(20)
+  investor_id Int
+  inst_type   String?   @db.VarChar(20)
+  bill_id     String    @db.VarChar(20)
+  type        String?   @db.VarChar(20)
+  sub_type    String?   @db.VarChar(20)
+  ts          DateTime? @db.DateTime(0)
+  bal_chg     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  pos_bal_chg Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  bal         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  pos_bal     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  sz          Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  ccy         String?   @db.VarChar(20)
+  pnl         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  fee         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  mgn_mode    String?   @db.VarChar(20)
+  inst_id     String?   @db.VarChar(20)
+  ord_id      String?   @db.VarChar(20)
+  exec_type   String?   @db.VarChar(20)
+  from        String?   @db.VarChar(20)
+  to          String?   @db.VarChar(20)
+  notes       String?   @db.VarChar(200)
+  create_time DateTime? @db.DateTime(0)
+  update_time DateTime? @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_deposit_history {
+  id                     String    @unique @db.VarChar(20)
+  investor_id            Int?
+  ccy                    String?   @db.VarChar(20)
+  chain                  String?   @db.VarChar(200)
+  amt                    Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  ts                     DateTime? @db.DateTime(0)
+  from                   String    @db.VarChar(200)
+  to                     String    @db.VarChar(200)
+  txId                   String?   @db.VarChar(200)
+  state                  String?   @db.VarChar(20)
+  dep_id                 String?   @db.VarChar(200)
+  actual_dep_blk_confirm String?   @db.VarChar(20)
+  create_time            DateTime? @db.DateTime(0)
+  update_time            DateTime? @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_fills_history {
+  id          String    @unique @db.VarChar(20)
+  investor_id Int?
+  inst_type   String?   @db.VarChar(20)
+  inst_id     String?   @db.VarChar(200)
+  trade_id    String?   @db.VarChar(20)
+  ord_id      String?   @db.VarChar(20)
+  bill_id     String?   @db.VarChar(20)
+  cl_ord_id   String?   @db.VarChar(200)
+  tag         String?   @db.VarChar(20)
+  fill_px     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  fill_sz     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  side        String?   @db.VarChar(20)
+  pos_side    String?   @db.VarChar(20)
+  exec_type   String?   @db.VarChar(20)
+  fee_ccy     String?   @db.VarChar(20)
+  fee         String?   @db.VarChar(20)
+  ts          DateTime? @db.DateTime(0)
+  create_time DateTime? @db.DateTime(0)
+  update_time DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_funding_rate_info {
+  id                Int       @id @default(autoincrement())
+  inst_id           String?   @db.VarChar(50)
+  inst_type         String?   @db.VarChar(50)
+  funding_rate      String?   @db.VarChar(50)
+  next_funding_rate String?   @db.VarChar(50)
+  funding_time      DateTime? @db.DateTime(0)
+  create_time       DateTime? @default(now()) @db.DateTime(0)
+  update_time       DateTime? @default(now()) @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_funding_ratio_history {
+  inst_type    String   @db.VarChar(200)
+  inst_id      String   @db.VarChar(200)
+  funding_rate Decimal? @default(0.00000000) @db.Decimal(20, 8)
+  realize_rate Decimal? @default(0.00000000) @db.Decimal(20, 8)
+  fundingTime  DateTime @db.Timestamp(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_instruments_info {
+  id         String    @unique @db.VarChar(20)
+  inst_type  String    @db.VarChar(64)
+  inst_id    String    @db.VarChar(200)
+  uly        String?   @db.VarChar(64)
+  category   String    @db.VarChar(32)
+  base_ccy   String?   @db.VarChar(32)
+  quote_ccy  String?   @db.VarChar(32)
+  settle_ccy String?   @db.VarChar(32)
+  ct_val     String?   @db.VarChar(64)
+  ct_mult    String?   @db.VarChar(32)
+  ct_val_ccy String?   @db.VarChar(32)
+  opt_type   String?   @db.VarChar(32)
+  stk        Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  list_time  DateTime? @db.Timestamp(0)
+  exp_time   DateTime  @db.Timestamp(0)
+  lever      String    @db.VarChar(200)
+  tick_sz    Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  lot_sz     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  min_sz     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  ct_type    String    @db.VarChar(64)
+  alias      String    @db.VarChar(64)
+  state      String?   @db.VarChar(64)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_investor_bills {
+  id          String    @unique @db.VarChar(20)
+  investor_id Int?
+  ccy         String?   @db.VarChar(20)
+  bill_id     String?   @db.VarChar(200)
+  client_id   String?   @db.VarChar(20)
+  bal_chg     Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  bal         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  type        String?   @db.VarChar(20)
+  ts          DateTime? @db.DateTime(0)
+  create_time DateTime? @db.DateTime(0)
+  update_time DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_product_info {
+  channel     String?   @db.VarChar(50)
+  inst_type   String    @db.VarChar(50)
+  inst_id     String    @db.VarChar(50)
+  category    String?   @db.VarChar(50)
+  uly         String?   @db.VarChar(50)
+  base_ccy    String?   @db.VarChar(50)
+  quote_ccy   String?   @db.VarChar(50)
+  settle_ccy  String?   @db.VarChar(50)
+  ct_val      String?   @db.VarChar(50)
+  ct_mult     String?   @db.VarChar(50)
+  ct_val_ccy  String?   @db.VarChar(50)
+  opt_type    String?   @db.VarChar(50)
+  stk         String?   @db.VarChar(50)
+  list_time   String?   @db.VarChar(50)
+  exp_time    String?   @db.VarChar(50)
+  lever       String?   @db.VarChar(50)
+  tick_sz     String?   @db.VarChar(50)
+  lot_sz      String?   @db.VarChar(50)
+  min_sz      String?   @db.VarChar(50)
+  ct_type     String?   @db.VarChar(50)
+  alias       String?   @db.VarChar(50)
+  state       String?   @db.VarChar(50)
+  create_time DateTime? @default(now()) @db.DateTime(0)
+  create_by   String?   @db.VarChar(50)
+  update_by   String?   @db.VarChar(50)
+  update_time DateTime? @default(now()) @db.DateTime(0)
+
+  @@id([inst_type, inst_id])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_withdrawal_history {
+  id          String    @unique @db.VarChar(20)
+  investor_id Int?
+  ccy         String?   @db.VarChar(20)
+  chain       String?   @db.VarChar(200)
+  amt         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  ts          DateTime? @db.DateTime(0)
+  from        String    @db.VarChar(200)
+  to          String    @db.VarChar(200)
+  tag         String?   @db.VarChar(20)
+  pmt_id      String?   @db.VarChar(20)
+  memo        String?   @db.VarChar(20)
+  txId        String?   @db.VarChar(200)
+  fee         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  state       String?   @db.VarChar(20)
+  wd_id       String?   @db.VarChar(200)
+  client_id   String?   @db.VarChar(20)
+  create_time DateTime? @db.DateTime(0)
+  update_time DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_feature_extraction {
+  observation_level     Int
+  raw_data_cycle        String    @db.VarChar(50)
+  inst_id               String    @db.VarChar(50)
+  inst_type             String    @db.VarChar(50)
+  start_time            String    @db.VarChar(50)
+  end_time              String    @db.VarChar(50)
+  start_price           Decimal?  @db.Decimal(20, 8)
+  end_price             Decimal?  @db.Decimal(20, 8)
+  spread                Decimal?  @db.Decimal(20, 8)
+  data_length           Decimal?  @db.Decimal(20, 8)
+  rf_feature            Int?
+  rf_feature_extraction Int?
+  create_time           DateTime? @db.DateTime(0)
+  create_by             String?   @db.VarChar(50)
+  update_by             String?   @db.VarChar(50)
+  update_time           DateTime? @db.DateTime(0)
+
+  @@id([observation_level, raw_data_cycle, inst_id, start_time, end_time])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model okex_investor_history_orders {
+  id                    Int       @id @default(autoincrement())
+  investor_id           Int?
+  inst_type             String?   @db.VarChar(20)
+  inst_id               String?   @db.VarChar(20)
+  tgt_ccy               String?   @db.VarChar(20)
+  base_ccy              String?   @db.VarChar(20)
+  quote_ccy             String?   @db.VarChar(20)
+  ccy                   String?   @db.VarChar(20)
+  ord_id                String?   @db.VarChar(255)
+  cl_ord_id             String?   @db.VarChar(255)
+  tag                   String?   @db.VarChar(255)
+  px                    Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  px_usd                Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  px_vol                Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  px_type               String?   @db.VarChar(20)
+  sz                    Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  ord_type              String?   @db.VarChar(20)
+  side                  String?   @db.VarChar(20)
+  pos_side              String?   @db.VarChar(20)
+  td_mode               String?   @db.VarChar(20)
+  acc_fill_sz           Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  fill_px               Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  trade_id              String?   @db.VarChar(255)
+  fill_sz               Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  fill_time             String?   @db.VarChar(20)
+  avg_px                Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  state                 String?   @db.VarChar(20)
+  lever                 String?   @db.VarChar(20)
+  attach_algo_cl_ord_id String?   @db.VarChar(255)
+  tp_trigger_px         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  tp_trigger_px_type    String?   @db.VarChar(20)
+  sl_trigger_px         Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  sl_trigger_px_type    String?   @db.VarChar(20)
+  stp_id                String?   @db.VarChar(255)
+  stp_mode              String?   @db.VarChar(255)
+  fee_ccy               String?   @db.VarChar(20)
+  fee                   Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  rebate_ccy            String?   @db.VarChar(20)
+  rebate                Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  pnl                   Decimal?  @default(0.00000000) @db.Decimal(20, 8)
+  source                String?   @db.VarChar(255)
+  category              String?   @db.VarChar(255)
+  reduce_only           String?   @db.VarChar(255)
+  cancel_source         String?   @db.VarChar(20)
+  cancel_source_reason  String?   @db.VarChar(255)
+  algo_cl_ord_id        String?   @db.VarChar(255)
+  algo_id               String?   @db.VarChar(255)
+  u_time                String?   @db.VarChar(20)
+  c_time                String?   @db.VarChar(20)
+  create_time           DateTime? @default(now()) @db.DateTime(0)
+  update_time           DateTime? @default(now()) @db.DateTime(0)
+}
