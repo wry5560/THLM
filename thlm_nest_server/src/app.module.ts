@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { RedisModule } from '@nestjs-modules/ioredis';
-import { MongooseModule } from '@nestjs/mongoose';
+// import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './moudles/users/user.module';
 import { ScheduleTasksModule } from './moudles/scheduleTasks/scheduleTasks.module';
 import { BenefitsModule } from './moudles/benefits/benefits.module';
@@ -14,7 +14,7 @@ import { redisOptions, mongoOptions } from 'src/config';
     UserModule,
     ScheduleTasksModule,
     BenefitsModule,
-    MongooseModule.forRoot(mongoOptions.url),
+    // MongooseModule.forRoot(mongoOptions.url),
     // RedisModule.forRoot({
     //   config: redisOptions,
     // }),

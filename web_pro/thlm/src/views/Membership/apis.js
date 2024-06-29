@@ -57,3 +57,17 @@ export function joinBenefits(params) {
     params,
   })
 }
+export function editSocialInfo(data) {
+  return axios({
+    url: '/user/editSocial',
+    method: 'post',
+    data,
+  })
+}
+export function editRealAddress(params) {
+  return axios({
+    url: '/user/editRealAddress',
+    method: 'get',
+    params,
+  })
+}

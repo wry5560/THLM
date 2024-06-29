@@ -102,7 +102,7 @@
 										:src="
 											maketPlaceProductData?.find(
 												(product) =>
-													product.id === item.id_int
+													product.id === item['id-int']
 											)?.image
 										"
 										style="
@@ -145,6 +145,7 @@ const selectedType = ref("All");
 const selectedLevel = ref("All");
 const monsterData = computed(() => {
 	let tmp = [];
+	console.log(monsters.length);
 	monsters.forEach((monster) => {
 		const index = tmp.findIndex((item) => item.name === monster.name);
 		if (index === -1)
@@ -175,43 +176,47 @@ const monsterData = computed(() => {
 	if (!showBeta.value) {
 		tmp = tmp.filter((monster) => {
 			const balckList = [
+				"Lv 1 Captain",
+				"Trap_Buff",
+				"Trap_bomb",
+				"Trap_push",
+				"Lv1 PvEP Boss",
+				"Lv1 PvEP Captain",
 				"Electric totem",
 				"Healing totem",
-				"Lv1 PvEP Captain",
-				"Lv1 PvEP Boss",
-				"Lv 1 Captain",
-				"Lv2 PvEP Boss",
-				"Lv2 PvEP Captain",
 				"Lv 2 Captain",
+				"Lv2 PvEP Captain",
 				"Lv3 PvEP Captain",
+				"Lv2 PvEP副本Boss",
+				"Lv3 PvEP副本Boss",
 				"Lv 3 Captain",
-				"Soul - Lord Of The Forest",
-				"Lv4 PvEP Boss",
-				"Lv4 PvEP Captain",
+				"森林之主_分身",
+				"Lv4 PvEP副本队长",
+				"Lv4 PvEP副本Boss",
+				"Lv6 PvEP副本Boss",
 				"Lv 4 Captain",
-				"Soul - Lord Of The Arctic",
-				"Lv5 PvEP副本队长",
 				"Lv5 PvEP副本Boss",
+				"Lv5 PvEP副本队长",
+				"Lv6 PvEP副本队长",
+				"北境之主_分身",
 				"Lv 5 Captain",
-				"Warrior Soul",
-				"Tank Soul",
-				"Range Soul",
-				"Lv6 PvEP Boss",
+				"灵魂之主_坦克分身",
+				"灵魂之主_战士分身",
 				"Lv 6 Captain",
-				"Lv6 PvEP Captain",
 			];
-			return !balckList.includes(monster.name_en);
+			return !balckList.includes(monster.name_en) && !balckList.includes(monster.name);
 		});
 	}
 	return tmp.sort((a, b) => a.level - b.level);
 });
 const monsterTypes = ref([
 	{ label: "全部", value: "All" },
-	{ label: "机关", value: "机关" },
+	// { label: "机关", value: "机关" },
 	{ label: "战士", value: "战士" },
 	{ label: "远程", value: "远程" },
 	{ label: "坦克", value: "坦克" },
 	{ label: "Boss", value: "Boss" },
+	{ label: "世界Boss", value: "世界Boss" },
 	{ label: "奶妈", value: "奶妈" },
 ]);
 // const monsterTypes = computed(() => {

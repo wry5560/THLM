@@ -39,4 +39,12 @@ export class UserController {
   async queryMemberStake(@Query() params) {
     return await this.userService.queryMemberStake(params.address)
   }
+  @Get('editRealAddress')
+  async editRealAddress(@Query() params) {
+    return await this.userService.editRealAddress(params)
+  }
+  @Post('editSocial')
+  async editSocial(@Body() data) {
+    return await this.userService.editSocial(data)
+  }
 }

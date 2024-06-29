@@ -22,6 +22,7 @@ const sendRequest = async (config)=>{
   let tmpParams = {}
   if(config.method === 'get') tmpParams = config.params
   if(config.method === 'post') tmpParams = config.data
+  Logger.log('tmpParams', tmpParams)
   let postStr = ''
   Object.keys(tmpParams).sort().forEach(key => {
     postStr += key + '='+tmpParams[key] + '&'
@@ -112,6 +113,20 @@ export class ApisService {
       url: baseApiUrl + '/thlm/api/delStake',
       method: 'get',
       params
+    });
+  }
+  async editRealAddress(params: any): Promise<any> {
+    return await sendRequest({
+      url: baseApiUrl + '/thlm/api/editRealAddress',
+      method: 'get',
+      params
+    });
+  }
+  async editSocial(data: any): Promise<any> {
+    return await sendRequest({
+      url: baseApiUrl + '/thlm/api/editSocial',
+      method: 'post',
+      data
     });
   }
 }

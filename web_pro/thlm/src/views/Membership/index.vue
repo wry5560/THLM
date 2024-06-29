@@ -2,7 +2,7 @@
 		<div class="header-bar">
 			<div :style="style">
 				<a-row>
-					<a-col :span="16">
+					<a-col :span="18">
 						<a href="https://thlm.com" target="_blank">
 							<img 
 							:src="deviceType =='desktop' ? 'https://dao.thlm.com/assets/img/logo.png' : logoMobileUrl" alt="logo" 
@@ -12,14 +12,16 @@
 							}"  
 							/>
 						</a>
-						<span :style="{'margin-left':deviceType == 'desktop'?'24px':'0' }" class="head-link">
-						<a-button type="link" href="https://dao.thlm.com" target="_blank">THLM DAO</a-button>
-						<a-button type="link" href="https://thlm.com/score" target="_blank">积分规则</a-button>
+						<span :style="{'margin-left':deviceType == 'desktop'?'12px':'0' }" class="head-link">
+							<a-button type="link" href="https://thlm.com/score" target="_blank" :style="{padding:deviceType == 'desktop'?'4px 15px':'4px 5px'}">福利规则</a-button>
+							<a-button type="link" href="https://dao.thlm.com/vipinfo" target="_blank":style="{padding:deviceType == 'desktop'?'4px 15px':'4px 5px'}">会员信息</a-button>
+							<a-button type="link" href="https://dao.thlm.com" target="_blank":style="{padding:deviceType == 'desktop'?'4px 15px':'4px 5px'}">THLM DAO</a-button>
+							
 						<!-- <a-button type="link" href="https://dao.thlm.com/benefits" target="_blank">往期福利</a-button> -->
 						<!-- <a-button type="link" href="/contact">联系我们</a-button> -->
 						</span>
 					</a-col>
-					<a-col :span="8" style="text-align: right;padding-right: 8px;">
+					<a-col :span="6" style="text-align: right;padding-right: 8px;">
 						<a-button
 							@click="connectWallet"
 							type="primary"
@@ -53,34 +55,36 @@
 				<div :style="{'margin-bottom':deviceType ==='desktop' ?'24px':'12px',padding:deviceType ==='desktop' ? '0':'0 16px'}">
 					<template v-if="deviceType ==='desktop'">
 						<span style="display: inline-block;margin-right: 8px;vertical-align: top;">账号：{{ walletAddress || '-' }}</span>	
-						<a v-if="walletAddress && memberInfo.memberLevel == '3'" style="cursor: pointer;" href="https://dao.thlm.com/donations/" target="_blank">
+						<a v-if="walletAddress && memberInfo.memberLevel == '3'" style="cursor: pointer;" href="https://dao.thlm.com/vipinfo" target="_blank">
                             <svg t="1715747612048" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6856" width="22" height="22"><path d="M507.4432 510.8224m-450.816 0a450.816 450.816 0 1 0 901.632 0 450.816 450.816 0 1 0-901.632 0Z" fill="#FF9552" p-id="6857"></path><path d="M806.0928 382.208a50.10432 50.10432 0 0 0-49.2544 59.392l-129.5872 78.4896-93.4912-182.3232c20.9408-10.7008 35.328-32.4608 35.328-57.6 0-35.7376-28.9792-64.6656-64.6656-64.6656-35.7376 0-64.6656 28.9792-64.6656 64.6656 0 26.2144 15.616 48.6912 37.9904 58.88l-86.8352 181.0432L257.2288 439.808c0.3584-2.4576 0.6144-4.9664 0.6144-7.5264 0-27.6992-22.4256-50.1248-50.1248-50.1248s-50.1248 22.4256-50.1248 50.1248c0 24.4224 17.4592 44.7488 40.5504 49.2032l56.1664 279.6032c5.5296 27.4432 29.6448 47.2064 57.6512 47.2064h390.7072c28.0064 0 52.1216-19.7632 57.6512-47.2064l56.2176-279.7568c22.6816-4.8128 39.7312-24.9344 39.7312-49.0496-0.0512-27.648-22.528-50.0736-50.176-50.0736z m-184.6272 361.0624H392.2944c-15.5136 0-28.0576-12.544-28.0576-28.0576 0-15.5136 12.544-28.0576 28.0576-28.0576h229.1712c15.5136 0 28.0576 12.544 28.0576 28.0576 0 15.5136-12.544 28.0576-28.0576 28.0576z" fill="#FFFFFF" p-id="6858"></path><path d="M756.48 439.2448c-0.0512-3.9936-0.1024-7.9872-0.3072-11.9808-0.1536 1.6384-0.256 3.328-0.256 5.0176 0 2.4064 0.256 4.7104 0.5632 6.9632z" fill="#FF7E3E" p-id="6859"></path></svg>
                             <a-tag color="orange" style="vertical-align: top;margin-top: 1px">超级永久会员</a-tag>
                         </a>
-                        <a v-if="walletAddress && memberInfo.memberLevel == '2'" style="cursor: pointer;" href="https://dao.thlm.com/donations/" target="_blank">
+                        <a v-if="walletAddress && memberInfo.memberLevel == '2'" style="cursor: pointer;" href="https://dao.thlm.com/vipinfo" target="_blank">
                             <svg t="1715748696623" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7631" width="24" height="24"><path d="M512.8704 511.6416m-450.816 0a450.816 450.816 0 1 0 901.632 0 450.816 450.816 0 1 0-901.632 0Z" fill="#FBE1FF" p-id="7632"></path><path d="M843.4176 425.216l-124.1088-161.8944c-9.728-12.6976-24.832-20.1216-40.8064-20.1216H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-15.4624 19.8144-14.3872 47.872 2.56 66.4064l292.0448 318.9248c20.224 22.1184 55.04 22.272 75.52 0.4096l291.84-312.1152c17.152-18.3296 18.5344-46.4384 3.2768-66.4064z m-158.208 75.4176l-152.32 167.3216a25.51296 25.51296 0 0 1-18.7904 8.2944h-0.1536a25.6256 25.6256 0 0 1-18.8928-8.5504L347.6992 501.6576a25.43104 25.43104 0 0 1 2.1504-35.8912 25.43104 25.43104 0 0 1 35.8912 2.1504l128.5632 144.896 133.2736-146.3808a25.43104 25.43104 0 0 1 35.9424-1.6896 25.36448 25.36448 0 0 1 1.6896 35.8912z" fill="#BD50D3" p-id="7633"></path><path d="M678.4512 243.1488H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-15.4624 19.8144-14.3872 47.872 2.56 66.4064l264.1408 288.4608c175.6672-61.5936 301.6192-228.8128 301.6192-425.5232 0-17.7664-1.0752-35.328-3.072-52.5824l-24.1664-31.5392c-9.728-12.5952-24.7808-20.0704-40.8064-20.0704z m6.7584 257.4848l-152.32 167.3216a25.51296 25.51296 0 0 1-18.7904 8.2944h-0.1536a25.6256 25.6256 0 0 1-18.8928-8.5504L347.6992 501.6576a25.43104 25.43104 0 0 1 2.1504-35.8912 25.43104 25.43104 0 0 1 35.8912 2.1504l128.5632 144.896 133.2736-146.3808a25.43104 25.43104 0 0 1 35.9424-1.6896 25.36448 25.36448 0 0 1 1.6896 35.8912z" fill="#C65EDB" p-id="7634"></path><path d="M347.6992 501.6576a25.43104 25.43104 0 0 1 2.1504-35.8912 25.43104 25.43104 0 0 1 35.8912 2.1504l65.3824 73.728c90.9824-71.68 153.6512-177.664 168.6016-298.4448H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-15.4624 19.8144-14.3872 47.872 2.56 66.4064l122.9312 134.2464a448.6144 448.6144 0 0 0 105.5232-47.7184L347.6992 501.6576z" fill="#CA6EE0" p-id="7635"></path><path d="M455.1168 243.1488H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-10.6496 13.6192-13.4656 31.232-8.6016 46.8992 123.136-31.0784 226.1504-112.7936 285.5424-221.7472z" fill="#D786EA" p-id="7636"></path></svg>
                             <a-tag color="purple" style="vertical-align: top;margin-top: 1px">永久会员</a-tag>
                         </a>
-                        <a v-if="walletAddress && memberInfo.memberLevel == '1'" style="cursor: pointer;"  href="https://dao.thlm.com/donations/" target="_blank">
+                        <a v-if="walletAddress && memberInfo.memberLevel == '1'" style="cursor: pointer;"  href="https://dao.thlm.com/vipinfo" target="_blank">
                             <svg t="1715748738100" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7788" width="24" height="24"><path d="M507.8016 507.5456m-456.8576 0a456.8576 456.8576 0 1 0 913.7152 0 456.8576 456.8576 0 1 0-913.7152 0Z" fill="#529FF4" p-id="7789"></path><path d="M509.3888 822.3744a78.2848 78.2848 0 0 1-56.32-23.7056l-274.2272-279.6032a79.2576 79.2576 0 0 1-5.8368-103.8848l150.9888-193.3312a78.3872 78.3872 0 0 1 62.208-30.3616h236.3904a78.6432 78.6432 0 0 1 61.7472 29.7472L842.6496 419.84a78.9504 78.9504 0 0 1-5.6832 104.704l-271.36 274.2272a78.3872 78.3872 0 0 1-56.2176 23.6032zM356.3008 247.04L205.312 440.32a38.0416 38.0416 0 0 0 2.816 49.9712l274.1248 279.6032a37.9392 37.9392 0 0 0 27.0336 11.4176 37.5808 37.5808 0 0 0 26.9824-11.264l271.36-274.2272a38.0416 38.0416 0 0 0 2.7136-50.3808L652.288 246.7328a37.888 37.888 0 0 0-29.696-14.2848H386.2016a37.6832 37.6832 0 0 0-29.9008 14.592z" fill="#FFFFFF" p-id="7790"></path><path d="M509.184 690.2272a20.48 20.48 0 0 1-14.848-6.3488l-153.088-160.9216a20.48 20.48 0 0 1 29.696-28.2112l138.24 145.2544 140.4416-148.48a20.48 20.48 0 0 1 29.7472 28.2112l-155.2896 163.84a20.48 20.48 0 0 1-14.848 6.4z" fill="#FFFFFF" p-id="7791"></path></svg>
                             <a-tag color="blue" style="vertical-align: top;margin-top: 1px">质押会员</a-tag>
                         </a>
+						<a-button v-if="!!walletAddress" style="float:right;vertical-align: middle;" @click="openEditSocialInfoModal"><FormOutlined />个人信息</a-button>
 					</template>
 					<template v-else>
 						<span style="display: inline-block;margin-right: 8px;vertical-align: top;">
 							<span style="vertical-align: top;">账号：</span>
-							<a v-if="walletAddress && memberInfo.memberLevel == '3'" style="cursor: pointer;" href="https://dao.thlm.com/donations/" target="_blank">
+							<a v-if="walletAddress && memberInfo.memberLevel == '3'" style="cursor: pointer;" href="https://dao.thlm.com/vipinfo" target="_blank">
                             <svg t="1715747612048" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6856" width="22" height="22"><path d="M507.4432 510.8224m-450.816 0a450.816 450.816 0 1 0 901.632 0 450.816 450.816 0 1 0-901.632 0Z" fill="#FF9552" p-id="6857"></path><path d="M806.0928 382.208a50.10432 50.10432 0 0 0-49.2544 59.392l-129.5872 78.4896-93.4912-182.3232c20.9408-10.7008 35.328-32.4608 35.328-57.6 0-35.7376-28.9792-64.6656-64.6656-64.6656-35.7376 0-64.6656 28.9792-64.6656 64.6656 0 26.2144 15.616 48.6912 37.9904 58.88l-86.8352 181.0432L257.2288 439.808c0.3584-2.4576 0.6144-4.9664 0.6144-7.5264 0-27.6992-22.4256-50.1248-50.1248-50.1248s-50.1248 22.4256-50.1248 50.1248c0 24.4224 17.4592 44.7488 40.5504 49.2032l56.1664 279.6032c5.5296 27.4432 29.6448 47.2064 57.6512 47.2064h390.7072c28.0064 0 52.1216-19.7632 57.6512-47.2064l56.2176-279.7568c22.6816-4.8128 39.7312-24.9344 39.7312-49.0496-0.0512-27.648-22.528-50.0736-50.176-50.0736z m-184.6272 361.0624H392.2944c-15.5136 0-28.0576-12.544-28.0576-28.0576 0-15.5136 12.544-28.0576 28.0576-28.0576h229.1712c15.5136 0 28.0576 12.544 28.0576 28.0576 0 15.5136-12.544 28.0576-28.0576 28.0576z" fill="#FFFFFF" p-id="6858"></path><path d="M756.48 439.2448c-0.0512-3.9936-0.1024-7.9872-0.3072-11.9808-0.1536 1.6384-0.256 3.328-0.256 5.0176 0 2.4064 0.256 4.7104 0.5632 6.9632z" fill="#FF7E3E" p-id="6859"></path></svg>
                             <a-tag color="orange" style="vertical-align: top;margin-top: 1px">超级永久会员</a-tag>
 							</a>
-							<a v-if="walletAddress && memberInfo.memberLevel == '2'" style="cursor: pointer;" href="https://dao.thlm.com/donations/" target="_blank">
+							<a v-if="walletAddress && memberInfo.memberLevel == '2'" style="cursor: pointer;" href="https://dao.thlm.com/vipinfo" target="_blank">
 								<svg t="1715748696623" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7631" width="24" height="24"><path d="M512.8704 511.6416m-450.816 0a450.816 450.816 0 1 0 901.632 0 450.816 450.816 0 1 0-901.632 0Z" fill="#FBE1FF" p-id="7632"></path><path d="M843.4176 425.216l-124.1088-161.8944c-9.728-12.6976-24.832-20.1216-40.8064-20.1216H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-15.4624 19.8144-14.3872 47.872 2.56 66.4064l292.0448 318.9248c20.224 22.1184 55.04 22.272 75.52 0.4096l291.84-312.1152c17.152-18.3296 18.5344-46.4384 3.2768-66.4064z m-158.208 75.4176l-152.32 167.3216a25.51296 25.51296 0 0 1-18.7904 8.2944h-0.1536a25.6256 25.6256 0 0 1-18.8928-8.5504L347.6992 501.6576a25.43104 25.43104 0 0 1 2.1504-35.8912 25.43104 25.43104 0 0 1 35.8912 2.1504l128.5632 144.896 133.2736-146.3808a25.43104 25.43104 0 0 1 35.9424-1.6896 25.36448 25.36448 0 0 1 1.6896 35.8912z" fill="#BD50D3" p-id="7633"></path><path d="M678.4512 243.1488H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-15.4624 19.8144-14.3872 47.872 2.56 66.4064l264.1408 288.4608c175.6672-61.5936 301.6192-228.8128 301.6192-425.5232 0-17.7664-1.0752-35.328-3.072-52.5824l-24.1664-31.5392c-9.728-12.5952-24.7808-20.0704-40.8064-20.0704z m6.7584 257.4848l-152.32 167.3216a25.51296 25.51296 0 0 1-18.7904 8.2944h-0.1536a25.6256 25.6256 0 0 1-18.8928-8.5504L347.6992 501.6576a25.43104 25.43104 0 0 1 2.1504-35.8912 25.43104 25.43104 0 0 1 35.8912 2.1504l128.5632 144.896 133.2736-146.3808a25.43104 25.43104 0 0 1 35.9424-1.6896 25.36448 25.36448 0 0 1 1.6896 35.8912z" fill="#C65EDB" p-id="7634"></path><path d="M347.6992 501.6576a25.43104 25.43104 0 0 1 2.1504-35.8912 25.43104 25.43104 0 0 1 35.8912 2.1504l65.3824 73.728c90.9824-71.68 153.6512-177.664 168.6016-298.4448H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-15.4624 19.8144-14.3872 47.872 2.56 66.4064l122.9312 134.2464a448.6144 448.6144 0 0 0 105.5232-47.7184L347.6992 501.6576z" fill="#CA6EE0" p-id="7635"></path><path d="M455.1168 243.1488H339.968c-15.8208 0-30.7712 7.2704-40.4992 19.7632L178.176 417.9968c-10.6496 13.6192-13.4656 31.232-8.6016 46.8992 123.136-31.0784 226.1504-112.7936 285.5424-221.7472z" fill="#D786EA" p-id="7636"></path></svg>
 								<a-tag color="purple" style="vertical-align: top;margin-top: 1px">永久会员</a-tag>
 							</a>
-							<a v-if="walletAddress && memberInfo.memberLevel == '1'" style="cursor: pointer;"  href="https://dao.thlm.com/donations/" target="_blank">
+							<a v-if="walletAddress && memberInfo.memberLevel == '1'" style="cursor: pointer;"  href="https://dao.thlm.com/vipinfo" target="_blank">
 								<svg t="1715748738100" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7788" width="24" height="24"><path d="M507.8016 507.5456m-456.8576 0a456.8576 456.8576 0 1 0 913.7152 0 456.8576 456.8576 0 1 0-913.7152 0Z" fill="#529FF4" p-id="7789"></path><path d="M509.3888 822.3744a78.2848 78.2848 0 0 1-56.32-23.7056l-274.2272-279.6032a79.2576 79.2576 0 0 1-5.8368-103.8848l150.9888-193.3312a78.3872 78.3872 0 0 1 62.208-30.3616h236.3904a78.6432 78.6432 0 0 1 61.7472 29.7472L842.6496 419.84a78.9504 78.9504 0 0 1-5.6832 104.704l-271.36 274.2272a78.3872 78.3872 0 0 1-56.2176 23.6032zM356.3008 247.04L205.312 440.32a38.0416 38.0416 0 0 0 2.816 49.9712l274.1248 279.6032a37.9392 37.9392 0 0 0 27.0336 11.4176 37.5808 37.5808 0 0 0 26.9824-11.264l271.36-274.2272a38.0416 38.0416 0 0 0 2.7136-50.3808L652.288 246.7328a37.888 37.888 0 0 0-29.696-14.2848H386.2016a37.6832 37.6832 0 0 0-29.9008 14.592z" fill="#FFFFFF" p-id="7790"></path><path d="M509.184 690.2272a20.48 20.48 0 0 1-14.848-6.3488l-153.088-160.9216a20.48 20.48 0 0 1 29.696-28.2112l138.24 145.2544 140.4416-148.48a20.48 20.48 0 0 1 29.7472 28.2112l-155.2896 163.84a20.48 20.48 0 0 1-14.848 6.4z" fill="#FFFFFF" p-id="7791"></path></svg>
 								<a-tag color="blue" style="vertical-align: top;margin-top: 1px">质押会员</a-tag>
 							</a>
+							<a-button v-if="!!walletAddress" size="small" style="float:right;vertical-align: middle;" @click="openEditSocialInfoModal"><FormOutlined />个人信息</a-button>
 						</span>
 						<div style="font-size: 14px;color:darkgray">{{ walletAddress || '-' }}</div>
 					</template>
@@ -115,7 +119,7 @@
 						<a-col :span="deviceType ==='desktop' ? 8 : 12">
 							<a-statistic
 								title="THLM 捐赠数量"
-								:value="memberInfo.donationAmount"
+								:value="parseInt(memberInfo.donationAmount)"
 							/>
 						</a-col>
 						<a-col :span="deviceType ==='desktop' ? 8 : 12">
@@ -125,7 +129,7 @@
 							/>
 						</a-col>
 						<a-col :span="deviceType ==='desktop' ? 8 : 12">
-							<a-statistic title="THLM 质押数量" :value="stakeInfo.stakedAmount" v-if="stakeInfo.stakedAmount > 0"/>
+							<a-statistic title="THLM 质押数量" :value="parseInt(stakeInfo.stakedAmount)" v-if="stakeInfo.stakedAmount > 0"/>
 								<a-statistic
 								title="THLM 质押数量"
 								value="--"
@@ -185,6 +189,7 @@
 				</a-radio-group>
 			</p>
 			<p style="color:red">注意：每个账户只能有一个质押周期，后续可以延长，不可以缩短！</p>
+			<p style="color:red" v-if="needApprove">请勿修改授权数量！</p>
 			<div style="text-align: right">
 				<a-button @click="stakeModalVisible = false" style="margin-right:8px">取消</a-button>
 				<a-button @click="handleStake" type="primary" v-if="!needApprove" :loading="stakeLoading">质押</a-button>
@@ -240,9 +245,28 @@
 				<div style="text-align: right">
 				<a-button @click="unStakeModalVisible = false" style="margin-right:8px">取消</a-button>
 				<a-button @click="handleUnStake" type="primary" :loading="unstakeLoading">解押</a-button>
-				<div v-if="showWaitTip" style="margin-top:4px;color:darkgray">交易确认中，请耐心等待...</div>
-			</div>
+					<div v-if="showWaitTip" style="margin-top:4px;color:darkgray">交易确认中，请耐心等待...</div>
+				</div>
 			</template>
+		</a-modal>
+		<a-modal title="编辑个人信息" v-model:visible="editInfoModalVisible" :footer="false" >
+			<p>钱包地址：{{ walletAddress }}</p>
+			<p>
+				<span style="display: inline-block;width:110px">昵称 : </span><a-input style="width:300px" placeholder="请输入您的昵称..." v-model:value="socialInfo.nickName" />
+			</p>
+			<p>
+				<span style="display: inline-block;width:110px;vertical-align:middle">微信号(非昵称) : </span><a-input style="width:300px" placeholder="请输入您的微信账号..." v-model:value="socialInfo.wechart" />
+			</p>
+			<p>
+				<span style="display: inline-block;width:110px">Discord : </span><a-input style="width:300px" placeholder="请输入您的Discord账号..." v-model:value="socialInfo.discord" />
+			</p>
+			<p>
+				<span style="display: inline-block;width:110px">Twitter : </span><a-input style="width:300px" placeholder="请输入您的Twitter账号..." v-model:value="socialInfo.twitter" />
+			</p>
+			<div style="text-align: right">
+				<a-button @click="editInfoModalVisible = false" style="margin-right:8px">取消</a-button>
+				<a-button @click="handleEditInfo" type="primary" :loading="editInfoLoading">确认修改</a-button>	
+			</div>
 		</a-modal>
 		<div style="width:100%;height:100px"></div>
 </template>
@@ -250,13 +274,14 @@
 <script setup>
 import { ref, computed, onBeforeMount, h,onBeforeUnmount,onDeactivated } from "vue";
 import Benefits from "./Benefits.vue";
+import { FormOutlined } from '@ant-design/icons-vue'
 import StakeHistory from "./StakeHistory.vue";
 import PointsHistory from "./PointsHistory.vue";
 import moment from 'dayjs';
 import Web3 from "web3";
 import { notification } from "ant-design-vue";
 import { thlmContractAddress,thlmContractAbi,providerUrl,stakeContractAbi,stakeContractAddress,chainId } from './config';
-import { getMemberPointsBalance,getMemberInfo} from './apis'
+import { getMemberPointsBalance,getMemberInfo,editSocialInfo} from './apis'
 import logoUrl from '../../assets/thlm_logo_black.png?url'
 import logoMobileUrl from '../../assets/thlm_logo.png?url'
 import bannerUrl from '../../assets/banner_1920.png?url'
@@ -274,6 +299,12 @@ const stakeInfo = ref({
 const memberInfo = ref({
 	memberLevel:1,
 	donationAmount:0,
+})
+const socialInfo = ref({
+	nickName:'',
+	wechart:'',
+	discord:'',
+	twitter:'',
 })
 const bannerStyle = computed(()=>{
 	return {
@@ -313,6 +344,7 @@ const deadline = computed(() => {
 const stakeModalVisible = ref(false);
 const unStakeModalVisible = ref(false);
 const addStakeModalVisible = ref(false);
+const editInfoModalVisible = ref(false);
 const stakeLevel = ref(1);
 const addStakeLevel = ref(1);
 const needApprove = ref(true);
@@ -321,6 +353,7 @@ const stakeLoading = ref(false);
 const approveLoading = ref(false);
 const unstakeLoading = ref(false);
 const addStakeLoading = ref(false);
+const editInfoLoading = ref(false);
 const getUserUnstakeLoading = ref(false)
 const userGetAmount = ref(0)
 const userLostAmount = ref(0)
@@ -530,6 +563,17 @@ async function openStakeModal(){
 		getTHLMBalance()
 		getStakeInfo()
 	 }
+}
+async function openEditSocialInfoModal(){
+	socialInfo.value = {
+		address:walletAddress.value,
+		nickName:memberInfo.value.nickName,
+		wechart:memberInfo.value.wechart,
+		discord:memberInfo.value.discord,
+		twitter:memberInfo.value.twitter,
+	}
+	editInfoModalVisible.value = true;
+
 }
 
 async function openUnStakeModal(){
@@ -742,7 +786,30 @@ async function handleUnStake(){
 				showWaitTip.value = false;
 			})
 }
-
+async function handleEditInfo(){
+	editInfoLoading.value = true;
+	 editSocialInfo(socialInfo.value).then(res=>{
+		// debugger
+		if(res.success && res.result.success){
+			notification.success({
+				message: "修改成功",
+				// description: "请稍后刷新页面查看最新数据",
+				duration: 1.5,
+			});
+			
+			getData()
+		}else{
+			notification.error({
+				message: "修改失败",
+				description: res.result.message || res.message,
+				duration: 1.5,
+			});
+		}
+		}).finally(()=>{
+			editInfoLoading.value = false
+			editInfoModalVisible.value = false
+		})
+}
 async function handleDisconnectWallet(){
 	walletAddress.value = null;
 		addressBalance.value = 0;
@@ -784,14 +851,17 @@ async function handleApprove(){
 						console.log('getTransactionReceipt');
 						try {
 							const receipt = await web3Client.eth.getTransactionReceipt(hash);
-							if(receipt) notification.success({
+							if(receipt) {
+								notification.success({
 								message: receipt.status ? "授权成功" : "授权失败",
 								description: receipt.status ? "请继续进行质押操作" : "请稍后再试",
 									duration: 3,
 								});
+								await checkAllowance()
 								approveLoading.value = false
 								showWaitTip.value = false;	
-							clearInterval(tmpInterval)
+								clearInterval(tmpInterval)
+							}
 						} catch (error) {
 							console.error(error);
 						}

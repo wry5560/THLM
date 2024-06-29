@@ -502,7 +502,7 @@ const potionProducts = computed(() => {
 			'0xc7c0d14be439d5c4da6b16179406bf0ac78e800b0dccf7bda3d194a44403f657',
 		]
 		if (
-			(item.name_en.includes("Potion") || item.name_en.includes("Energy Slime") || item.name_en.includes('Power of Nature')) &&
+			(item.name_en.includes("Potion") || item.name_en.includes("Energy Slime") || item.name_en.includes("Bomb") ) &&
 			!energyBlackList.includes(item.id)
 		) {
 			if (item.name_en.includes("Energy Restoration")) a.push(item);
@@ -566,6 +566,8 @@ watch(
 );
 const selectE = (item) => {
 	selectedProduct.value = item;
+
+	console.log(potionLevels.value);
 	//跳转至锚点
 	// const anchor = document.getElementById("essence-card");
 	// anchor.scrollIntoView({ behavior: "smooth" });

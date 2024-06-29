@@ -119,7 +119,7 @@ import { getLumiMarketProduct } from "/@/api";
 import { lumiProductInfo } from "@/data/items";
 import { computed } from "vue";
 
-const current = ref(["map"]);
+const current = ref(["home"]);
 const { t, locale } = useI18n();
 const selectedLocal = ref("zh");
 const loading = ref(true);
@@ -141,7 +141,7 @@ onBeforeMount(() => {
 						);
 						item.name_cn = item.name;
 						item.name_zh = item.name;
-						item.name_en = productInfo?.name || "-";
+						// item.name_en = productInfo?.name || "-";
 						item.level = item?.level || 99;
 						item.job_type = item?.job_type || "-";
 						item.compose = item?.compose || [];
@@ -150,7 +150,7 @@ onBeforeMount(() => {
 						item.sort = 99;
 						item.category = productInfo?.category || "";
 						item.contract = productInfo?.contract || "";
-						item.image = productInfo?.image || "";
+						item.image = productInfo?.image || `https://icons.lumiterra.net/item-icon-${item['id-int']}.png`;
 						item.info_url = productInfo?.info_url || "";
 						item.stock = productInfo?.stock || "";
 						item.token_price = productInfo?.token_price || "";
@@ -199,18 +199,18 @@ const changeLocale = (lang) => {
 };
 
 const items = computed(() => [
-	// {
-	// 	key: "home",
-	// 	label: "首页",
-	// },
+	{
+		key: "home",
+		label: "攻略导航",
+	},
 	{
 		key: "map",
 		label: t("message.wiki.menu.map"),
 	},
-	{
-		key: "basicOperations",
-		label: t("message.wiki.menu.basicOperations"),
-	},
+	// {
+	// 	key: "basicOperations",
+	// 	label: t("message.wiki.menu.basicOperations"),
+	// },
 	{
 		key: "skill",
 		label: t("message.wiki.menu.skill"),

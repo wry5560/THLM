@@ -39,4 +39,12 @@ export class UserService {
     const res = await this.apisService.queryMemberStake({address})
     return res.code === 200 ? res.result : res
   }
+  async editSocial(data: any): Promise<any> {
+    const res = await this.apisService.editSocial(data)
+    return res
+  }
+  async editRealAddress(data: any): Promise<any> {
+    const res = await this.apisService.editRealAddress(data)
+    return res
+  }
 }

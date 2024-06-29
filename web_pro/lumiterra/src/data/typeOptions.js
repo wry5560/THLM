@@ -7,6 +7,7 @@ export const equipmentTypes = [
 	{ label: "武器", value: "Sword" },
 	{ label: "胸甲", value: "ChestArmor" },
 	{ label: "腿甲", value: "LegsArmor" },
+	{ label: "装备碎片", value: "装备碎片" },
 ];
 
 //装备职业

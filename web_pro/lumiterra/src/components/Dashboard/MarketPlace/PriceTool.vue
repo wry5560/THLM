@@ -9,7 +9,9 @@
 			Marketplace Price Tool - 价格工具
 		</a-divider>
 		<a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ updateTime }}</a-typography-paragraph>
-
+		<!-- <a-alert type="warning" style="margin-top: 16px" show-icon>
+			<template #description>Lumiterra Beta 测试市场已迁移至 Okx Market ，由于Okx API 机制问题，THLM团队仍在努力对接中，暂时无法提供实时数据，敬请谅解！
+			</template>	</a-alert> -->
 		<!-- <a-segmented
 			v-model:value="selectedCategory"
 			:options="options"
@@ -114,11 +116,21 @@
 					</span>
 					<span style="display: inline-block; vertical-align: middle">
 						<div>
-							<a-typography-link
+							<!-- <a-typography-link
 								:href="
 									'https://market.layerlumi.com/index_marketplace#/detail?id=' +
 									record.id
 								"
+								target="_blank"
+								style="margin-left: 8px"
+							> -->
+							<a-typography-link
+								:href="
+									record.category === 'Equipment'
+									? 'https://www.okx.com/zh-hans/web3/marketplace/nft/collection/lumilayer3/lumiterra-game-item' 
+									: 'https://www.okx.com/zh-hans/web3/marketplace/nft/asset/lumilayer3/0x3fa10a9d43113687f2fd143fca7445d8ef8e334a/' + record.id
+								"
+									
 								target="_blank"
 								style="margin-left: 8px"
 							>
@@ -126,16 +138,20 @@
 							</a-typography-link>
 						</div>
 						<div>
-							<a-typography-link
+							<a-typography-paragraph copyable>
+								<a-typography-link
 								:href="
-									'https://market.layerlumi.com/index_marketplace#/detail?id=' +
-									record.id
+									record.category === 'Equipment' 
+									? 'https://www.okx.com/zh-hans/web3/marketplace/nft/collection/lumilayer3/lumiterra-game-item' 
+									: 'https://www.okx.com/zh-hans/web3/marketplace/nft/asset/lumilayer3/0x3fa10a9d43113687f2fd143fca7445d8ef8e334a/' + record.id
 								"
 								target="_blank"
 								style="margin-left: 8px"
 							>
-								{{ record.name }}
+								{{ record.name }} 
 							</a-typography-link>
+							</a-typography-paragraph>
+
 						</div>
 					</span>
 
@@ -154,7 +170,7 @@
 					</span>
 				</template>
 				<template v-if="column.key === 'rule'">
-					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' "> - </span>
+					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' ||record.name.includes('Packaging box')"> - </span>
 					<span v-else-if="record.compose.length > 0">
 						<div
 							v-for="(item, index) in record.compose"
@@ -277,23 +293,26 @@
 											（3瓶）
 										</span>
 							</a-flex>
-							
 						</div>
 					</span>
 					<span v-else> - </span>
 				</template>
 				<template v-if="column.key === 'synthetic_price'">
-					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG'"> - </span>
+					<span v-if="selectedCategory ==='Ticket' || selectedCategory ==='LUAG' ||record.name.includes('Packaging box')"> - </span>
 					<span v-else-if="record.compose.length > 0">
 						<div
 							v-for="item in record.synthetic_price"
 							style="line-height: 26px"
 							:key="item.id"
 						>
-							{{ selectedCategory ==='Potion' && selectedPotion === 'Energy Restoration' 
+							<template v-if="item == 0"> - </template>
+							<template v-else>
+								{{ selectedCategory ==='Potion' && selectedPotion === 'Energy Restoration' 
 							? ((Number(item / 1000000000000000000) + Number(!!record.luausd? record.luausd :0 ))/3).toFixed(2) + ' / 瓶'
 							: (Number(item / 1000000000000000000) + Number(!!record.luausd? record.luausd :0 )).toFixed(2) 
 						}} 
+							</template>
+							
 
 						</div>
 					</span>
@@ -332,6 +351,7 @@ const options = ref([
 	{ label: "种子", value: "Seed" },
 	{ label: "饲料肥料", value: "Fertilizer" },
 	{ label: "宠物蛋", value: "Egg" },
+	{ label: "包装盒", value: "Packaging box" },
 	{ label: "奖券门票", value: "Ticket" },
 	{ label: "材料", value: "Material" },
 	{ label: "LUAG", value: "LUAG" },
@@ -372,20 +392,22 @@ const computedData = computed(() => {
 	} else if (selectedCategory.value === "Equipment") {
 		maketPlaceProductData.value.forEach((item) => {
 			if (
-				item.category === "Equipment" &&
+				(item.category === "Equipment" || item.name_zh.includes('装备碎片')) &&
 				(selectedEquipmentType.value === "All" ||
 					item.equipmentType === selectedEquipmentType.value ||
-					item.type === "装备")
+					item.type === "装备" ||
+					(selectedEquipmentType.value === '装备碎片' && item.name_zh.includes('装备碎片'))
+				)
 			) {
 				if (selectedCareer.value === "All") tmp.push(item);
 				if (selectedCareer.value === "战斗") {
-					if (item.job_type === "战斗") tmp.push(item);
+					if (item.job_type === "战斗" || item.name.includes('战斗装备')) tmp.push(item);
 				}
-				if (selectedCareer.value === "采集") {
-					if (item.job_type === "采集") tmp.push(item);
+				if (selectedCareer.value === "采集" ) {
+					if (item.job_type === "采集" || item.name.includes('采集装备')) tmp.push(item);
 				}
-				if (selectedCareer.value === "农业") {
-					if (item.job_type === "农业") tmp.push(item);
+				if (selectedCareer.value === "农业" ) {
+					if (item.job_type === "农业" || item.name.includes('农牧装备')) tmp.push(item);
 				}
 				if (selectedCareer.value === "时装") {
 					if (item.job_type === "时装") tmp.push(item);
@@ -457,9 +479,9 @@ const computedData = computed(() => {
 					tmp.push(item);
 			}
 		});
-	}else if (selectedCategory.value === "Material") {
+	}else if (selectedCategory.value === "Material" ) {
 		maketPlaceProductData.value.forEach((item) => {
-			if (item.category === "Material") {
+			if (item.category === "Material" && !item.name_zh.includes('装备碎片')) {
 
 				const livestork = ['Blue Crystal Stone','Feces','Bone Meal','Orange Leaf','Resilient Vine','Luminescent Bone Powder','Dark Spice','Elf Snowball','Shell Scale','Snow Rabbit Fluff','Refined Arrow']
 				if (selectedMaterial.value === 'Combat' && item.job_type === '战斗') {
@@ -491,6 +513,12 @@ const computedData = computed(() => {
 				tmp.push(item);
 			}
 		});
+	}else if (selectedCategory.value === "Packaging box") {
+		maketPlaceProductData.value.forEach((item) => {
+			if(item.name.includes("Packaging box")){
+				tmp.push(item);
+			}
+		});
 	}else {
 		maketPlaceProductData.value.forEach((item) => {
 			if (item.category === selectedCategory.value) {
@@ -502,7 +530,7 @@ const computedData = computed(() => {
 	if ([ "Consumable", "Ticket"].includes(selectedCategory.value))
 		tmp.sort((a, b) => b.stock - a.stock);
 	if (
-		["Equipment", "Essence", "Potion", "Material","Seed","Egg"].includes(
+		["Equipment", "Essence", "Potion", "Material","Seed","Egg","Fertilizer","Packaging box"].includes(
 			selectedCategory.value
 		)
 	)
@@ -598,7 +626,7 @@ const pagination = ref({
 	showSizeChanger: true,
 });
 const loadData = () => {
-	loading.value = true;
+	// loading.value = true;
 	getLumiMarketProduct()
 		.then((res) => {
 			// debugger;
@@ -656,16 +684,22 @@ const loadData = () => {
 					}
 					item.synthetic_price = [];
 					if (item.compose.length > 0) {
+						
 						item.compose.forEach((i, index) => {
+							//如果其中有一个价格找不到，或者为0，则合成价格为0
+							let flag = false;
 							item.synthetic_price[index] = 0;
 							i.forEach((j) => {
 								const product =
 									res.data.find((k) => k.id === j.id) || {};
 								item.synthetic_price[index] +=
 									product?.token_price * j.amount;
+								if (!product?.token_price || product?.token_price<=0)  flag = true;
 							});
+							if(flag) item.synthetic_price[index] = 0
 							// item.synthetic_price[index] += item.luausd
 						});
+						
 					}
 					return {
 						...item,
@@ -685,7 +719,7 @@ const loadData = () => {
 function tableChange(p, filters, sorter, { currentDataSource }) {
 	pagination.value.current = p.current;
 	pagination.value.pageSize = p.pageSize;
-	getOkexTradeHistory();
+	// getOkexTradeHistory();
 }
 function currentToOne() {
 	// debugger;

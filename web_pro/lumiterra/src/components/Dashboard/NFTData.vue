@@ -77,7 +77,7 @@
 								:span="12"
 								style="text-align: left; margin-top: 4px"
 							>
-								{{ boxInfo?.Common?.nft_usd.toFixed(2) }} USDT
+								{{ Number(boxInfo?.Common?.nft_usd).toFixed(2) }} USDT
 							</a-col>
 						</a-row>
 					</template>
@@ -135,7 +135,7 @@
 								:span="12"
 								style="text-align: left; margin-top: 4px"
 							>
-								{{ boxInfo?.Uncommon?.nft_usd.toFixed(2) }}
+								{{  Number(boxInfo?.Uncommon?.nft_usd).toFixed(2) }}
 								USDT
 							</a-col>
 						</a-row>
@@ -191,7 +191,7 @@
 								:span="12"
 								style="text-align: left; margin-top: 4px"
 							>
-								{{ boxInfo?.Rare?.nft_usd.toFixed(2) }}
+								{{  Number(boxInfo?.Rare?.nft_usd).toFixed(2) }}
 								USDT
 							</a-col>
 						</a-row>
@@ -247,7 +247,7 @@
 								:span="12"
 								style="text-align: left; margin-top: 4px"
 							>
-								{{ boxInfo?.Epic?.nft_usd.toFixed(2) }}
+								{{  Number(boxInfo?.Epic?.nft_usd).toFixed(2) }}
 								USDT
 							</a-col>
 						</a-row>

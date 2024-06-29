@@ -48,11 +48,20 @@
 						<span v-if="level == 99" 
 							>无等级：</span
 						>
+						<span v-if="level == 100" 
+							>包装：</span
+						>
+						<span v-if="level == 101" 
+							>勋章：</span
+						>
+						<span v-if="level == 102" 
+							>Ticket：</span
+						>
 						</a-col>
 						<a-col :span="22">
 							<a-row :gutter="2">
 								<template v-for="item in totalProducts">
-									<a-col style="margin-bottom:2px" :key="item.id" v-if="item.level ===level && !!item.image " @click="selectE(item)" >
+									<a-col style="margin-bottom:2px" :key="item.id" v-if="showItem(item,level)" @click="selectE(item)" >
 									<a-card
 									hoverable
 									style="width: 48px; margin-right: 8px"
@@ -82,14 +91,12 @@
 								</a-card>
 								</a-col>
 								</template>
-									
-
 							</a-row>
 						</a-col>
 					</a-row>
 				</div>
 			</div>
-			<div style="width: 400px;margin-top: 8px;">
+			<div style="width: 400px;margin-top: 8px;" >
 				<a-card
 					style=""
 					:body-style="{ padding: 0}"
@@ -210,21 +217,28 @@ const totalProducts = computed(() => {
 		return (
 			item.type !== "装备" &&
 			!item.name.includes("精华") &&
+			!item.name.includes("装备碎片") &&
 			!item.name_en.includes("Potion") &&
 			!item.name_en.includes("Seed") &&
 			!item.name_en.includes("Fertilizer") &&
 			!item.name_en.includes("Feed") &&
 			!item.name_en.includes("Energy") &&
 			!item.name_en.includes("Nature") &&
+			!item.name_en.includes("Bomb") &&
+			item.type !=='宠物蛋' &&
 			blackList.findIndex((i) => i.id === item.id) < 0
 			// !blackList.includes(item.name_en)
 		);
-	});
+	}).sort((a, b) => a.level - b.level);
 });
 const levels = computed(() => {
-	return Array.from(
+	const tmp = Array.from(
 		new Set(props.maketPlaceProductData.map((i) => i.level))
-	).sort((a, b) => a - b);
+	).sort((a, b) => a - b)
+	tmp.push(100)
+	tmp.push(101)
+	tmp.push(102)
+	return tmp;
 });
 onBeforeMount(() => {
 	if (props.maketPlaceProductData.length > 0)
@@ -242,6 +256,13 @@ const selectE = (item) => {
 	// const anchor = document.getElementById("material-card");
 	// anchor.scrollIntoView({ behavior: "smooth" });
 };
+
+const showItem = (item,level)=>{
+	if(level == 100) return item.name_en.includes("Packaging")
+	else if(level == 101) return item.name_en.includes("Medal")
+	else if(level == 102) return item.name.includes("票")
+	else return item.level == level && !item.name_en.includes("Packaging") && !item.name_en.includes("Medal") && !item.name.includes("票")
+}
 // const careerChange = () => {
 // 	selectedProduct.value = totalProducts.value[0];
 // };

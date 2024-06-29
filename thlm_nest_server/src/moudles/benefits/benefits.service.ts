@@ -25,11 +25,12 @@ export class BenefitsService {
     benefitsId: string,
     benefitsNum: string | number,
     betPoint: string | number,
-    sign: string
+    sign: string,
+    realAddress: string
   ): Promise<any> {
     const res = await this.apisService.joinBenefits({address,
       benefitsId,
-      benefitsNum,betPoint,sign})
+      benefitsNum,betPoint,sign,realAddress})
     return res.code === 200 ? res.result : res
   }
   async queryMemberBenefits(

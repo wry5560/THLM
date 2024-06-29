@@ -12,6 +12,7 @@
     "airtable": "^0.12.2",
     "ant-design-vue": "4.x",
     "axios": "^1.6.8",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
     "ethers": "^6.11.1",
     "vue": "^3.4.21",

@@ -47,7 +47,7 @@
                              <svg  v-if="benefit.isEnd =='1'" :style="isEndCoinStyle" t="1715742821935" class="icon" viewBox="0 0 1169 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5231" width="200" height="200">
                             <path d="M1160.55638 346.604112L983.0168 66.515117a52.65267 52.65267 0 0 0-72.524339-16.245452L24.535142 611.02785a52.507621 52.507621 0 0 0-16.3905 72.524339l177.684629 279.943946a52.507621 52.507621 0 0 0 72.524338 16.245452l885.812271-560.903234a52.362572 52.362572 0 0 0 16.3905-72.524338z m-35.391877 42.209165L239.062135 949.426414a16.680598 16.680598 0 0 1-23.062739-5.221753L38.459815 664.260715A16.680598 16.680598 0 0 1 43.681568 641.197975L929.783935 81.019985a16.680598 16.680598 0 0 1 23.06274 5.221752l177.684629 279.943947a17.260793 17.260793 0 0 1-5.366801 23.062739zM361.33817 211.563794l14.504868 35.246828 20.016717-33.506244 38.002754-3.046022-26.39886-27.704298 8.84797-37.132461-34.956731 14.940014-32.781001-19.72662 3.771265 38.002753-29.009735 24.658275z m225.550693-105.015242l-18.276133-33.651293-15.520209 34.956731-37.567607 7.252434 29.009735 25.383518-4.931655 38.002754 33.071099-19.291475 34.666633 16.53555-8.412823-37.857705 25.963713-27.849346z m344.055462 562.788866l-30.315174-23.207788v38.147802l-31.76566 20.451864 36.407218 11.893991 10.733602 36.697315 22.627594-30.895368 38.29285 1.16039-22.482545-30.460222 12.909333-35.827024z m-123.726522 151.430819l-14.504867-35.391877-19.726621 33.216147-38.002753 2.900974 25.383519 29.009735-8.993018 37.132461 36.11712-15.955354 32.635953 20.306815-3.916315-38.002754 29.009736-24.803323z m-226.420985 103.854853l18.131085 33.651293 15.810306-34.811682 37.712656-6.817288-28.284492-25.673616 5.221752-37.857705-33.361195 18.71128-34.376537-16.53555 8.267775 38.002754-26.688957 27.704297z m-339.268855-565.68984l30.025076 23.642934v-38.147802l31.76566-21.467204-36.262169-12.184089-10.443505-36.842364-22.917691 30.605271-38.29285-1.305438 22.192447 31.040417-12.619235 36.842364zM106.922791 523.998644A476.049758 476.049758 0 0 1 797.499542 86.96698l34.956731-22.047399A512.02183 512.02183 0 0 0 83.279856 400.127074a503.754055 503.754055 0 0 0-11.313796 146.499164z m951.66437-24.803324a475.759661 475.759661 0 0 1-690.286654 437.611859l-35.10178 22.192447A511.731732 511.731732 0 0 0 1082.230095 623.792134a505.494639 505.494639 0 0 0 11.313797-146.644213zM433.862509 276.545601a275.592486 275.592486 0 0 1 131.414101-42.499262l54.103157-34.231488a314.320483 314.320483 0 0 0-333.611958 211.62602L339.725917 377.209383a277.042973 277.042973 0 0 1 94.861835-100.663782z m298.075031 470.102762a276.607827 276.607827 0 0 1-131.55915 42.644311l-53.958108 34.086439a314.61058 314.61058 0 0 0 334.337201-211.626019l-54.103157 34.956731a275.592486 275.592486 0 0 1-94.716786 100.518733z m0 0" fill="#FFFFFF" p-id="5232"></path><path d="M424.869491 717.058433c25.383518-15.520208 25.383518-24.368178 7.252434-62.225882a130.543809 130.543809 0 0 0 36.552266-6.817288c22.627594 49.751696 20.016717 69.913462-24.803324 97.327662l-81.517356 49.896745c-47.575966 29.009735-67.737732 29.009735-90.510375-8.557872l-70.348608-114.733503 30.315174-18.566231 20.596912 33.506244 111.83253-68.462975-32.200807-52.507621-151.430818 93.12125-17.695939-29.009735 182.471236-111.83253 74.700068 121.985937-30.605271 18.71128-7.107385-11.603894-111.83253 68.462975 32.200807 52.507621c9.283115 14.504868 14.504868 14.504868 42.209165-1.885633zM512.62394 498.17998c0-11.603894 0-23.642934-1.160389-35.246829l36.262169 1.16039a507.67037 507.67037 0 0 1-8.557872 93.991542l38.4379-32.345855a203.068148 203.068148 0 0 0 17.115743 24.078081c-59.324909 53.377913-68.317927 62.661028-73.539679 70.783754a209.885436 209.885436 0 0 0-26.688956-22.192448 54.103157 54.103157 0 0 0 10.87865-28.139443 246.582751 246.582751 0 0 0 5.366801-35.10178 127.932933 127.932933 0 0 0-29.009735 25.673616 240.200609 240.200609 0 0 0-27.849346-22.337496 35.536926 35.536926 0 0 0 6.382142-23.207788 335.642639 335.642639 0 0 0-7.832629-82.532698l38.002754-6.092044a424.412429 424.412429 0 0 1 1.595535 85.723768z m109.366703-88.189596l16.535549 26.979054 45.255187-27.704297 16.680598 27.849346-121.405743 74.264922-17.115744-27.704297 45.400236-27.849346-16.245451-26.688957-51.492281 31.620612-17.115744-28.139443 51.492281-32.490904-18.566231-29.009735 30.75032-18.856328 18.56623 30.315173 51.202183-31.330514 17.260793 27.994394z m-95.587078 240.200609c21.467204-17.986036 53.813059-46.995771 84.273281-74.55502l18.856328 25.963713c-27.559249 26.398859-58.019471 54.248205-80.647064 75.860458z m70.493657-124.306716l110.527091-67.737732 60.050153 98.052905-30.025076 17.986036-5.946996-9.718261-52.217524 32.055758 6.527191 10.588553-29.009736 17.55089z m44.965089 8.702921l21.902351 35.681974 51.202183-32.055758-21.902351-35.681974zM919.340431 351.825865a272.401415 272.401415 0 0 0 114.733503-0.725244 150.995673 150.995673 0 0 0-5.076704 38.727997 291.982987 291.982987 0 0 1-114.298357-7.542531l38.147802 61.35559-30.605271 18.711279-36.697315-59.905103a291.402792 291.402792 0 0 1-46.270528 102.549414 163.759956 163.759956 0 0 0-35.246829-12.329137 275.592486 275.592486 0 0 0 52.507621-102.839512l-58.01947 35.391877-48.30121-78.761432 73.394631-44.965089-11.893992-19.436523-89.349985 54.683351-16.680598-27.124102 89.640083-54.538303-14.504868-22.627594 30.605271-18.711279 14.504868 22.627594 90.510374-55.263546 16.100403 27.269151-90.075228 55.408595 11.893991 19.436522 76.150556-46.560625 48.15616 78.761432z m-107.771167 30.750319l44.820041-27.4142-16.825647-27.559249-44.96509 27.4142z m58.01947-73.684728l16.825647 27.559249 46.125479-27.994395-16.825646-27.704297z" fill="#FFFFFF" p-id="5233"></path></svg>
                         <template #cover>
-                            <img alt="example" :style="{width:'100%',height:'150px',filter: benefit.isEnd =='1' ? 'grayscale(50%)':'grayscale(0%)'}" :src="benefit.img ? benefit.img : benefitsCoverUrl" />
+                            <img alt="example" :style="{width:'100%',height:deviceType ==='desktop' ? '150px' :'110px',filter: benefit.isEnd =='1' ? 'grayscale(50%)':'grayscale(0%)'}" :src="benefit.img ? benefit.img : benefitsCoverUrl" />
                         </template>
                         <a-card-meta>
                             <template #title>
@@ -125,7 +125,7 @@
                     </a-descriptions>
                     
                 </span>
-                <a-typography>
+                <a-typography style="margin-top: -24px" v-if="deviceType==='desktop' || selectedMobilType ==='detail'">
                     <a-typography-title :level="4">福利描述</a-typography-title>
                     <a-typography-paragraph>
                         <div v-html="initHtml(benefitsDetail.benefitsDesc)"></div>
@@ -153,7 +153,8 @@
                         </div>
                     <!-- </a-typography-paragraph> -->
                     </a-typography>   
-                <a-table
+                <template v-if="recordType==='all'">
+                    <a-table
                     :dataSource="memberJoinTableData"
                     :columns="columns"
                     :loading="tableLoading"
@@ -172,36 +173,74 @@
                         </template>
                     </template>
                 </a-table>
-                <a-list v-else-if="selectedMobilType !=='detail'" item-layout="horizontal" :data-source="memberJoinTableData" style="margin-top: -20px;" :pagination="pagination2">
-                    <template #renderItem="{ item }">
-                    <a-list-item>
-                        <a-list-item-meta>
-                        <template #title>
-                            <a-row style="margin-top:-18px">
-                            <a-col :span="10"><div style="float: left;">单位积分: {{ item.betPointAvg }}</div></a-col>
-                            <a-col :span="6">数量: {{ item.benefitsNum }}</a-col>
-                            <a-col :span="8"><div style="float: left;">总积分: {{ item.betPoint }}</div></a-col>
-                            </a-row>
+                <template v-else-if="selectedMobilType !=='detail'" item-layout="horizontal">
+                    <div style="margin-top: -12px;margin-bottom: 32px;margin-left: 24px;font-weight: 600;">{{ benefitsDetail.benefitsName }}</div>
+                    <a-list v-if="memberJoinTableData.length > 0" :data-source="memberJoinTableData" style="margin-top: -20px;" :pagination="pagination2">
+                        <template #renderItem="{ item }">
+                        <a-list-item>
+                            <a-list-item-meta>
+                            <template #title>
+                                <a-row style="margin-top:-18px">
+                                <a-col :span="10"><div style="float: left;">单位积分: {{ item.betPointAvg }}</div></a-col>
+                                <a-col :span="6">数量: {{ item.benefitsNum }}</a-col>
+                                <a-col :span="8"><div style="float: left;">总积分: {{ item.betPoint }}</div></a-col>
+                                </a-row>
+                            </template>
+                            <template #description>
+                                <a-row >
+                                <a-col :span="10">{{ item.address.substr(0,6) + '...' + item.address.substr(-6) }}</a-col>
+                                <a-col :span="12">{{ item.betTime }}</a-col>
+                                </a-row>
+                            </template>
+                            </a-list-item-meta>
+                        </a-list-item>
                         </template>
-                        <template #description>
-                            <a-row >
-                            <a-col :span="10">{{ item.address.substr(0,6) + '...' + item.address.substr(-6) }}</a-col>
-                            <a-col :span="12">{{ item.betTime }}</a-col>
-                            <a-col :span="12"style="text-align: right;">
-                                <span v-if="item.busiType === '11'">加入奖励计划</span>
-                                <span v-if="item.busiType === '12'">质押奖励</span>
-                                <span v-if="item.busiType === '21'">福利投入</span>
-                                <span v-if="item.busiType === '22'">福利归还</span>
-                                <span v-if="item.busiType === '23'">福利支付</span>
-                                <span v-if="item.busiType === '30'">手动调整</span>
-                                <span v-if="item.busiType === '09'">其他收入</span>
-                            </a-col>
-                            </a-row>
-                        </template>
-                        </a-list-item-meta>
-                    </a-list-item>
+                    </a-list>   
+                    <template v-else>
+                        <div style="width:100%">
+                            <a-empty :image="simpleImage"  description="暂无数据" />
+                        </div>
                     </template>
-                </a-list>   
+                </template>
+
+                </template>
+                <template v-if="recordType ==='my'">
+                    <div v-if="deviceType !=='desktop'" style="margin-top: -12px;margin-left: 12px;font-weight: 600;">{{ benefitsDetail.benefitsName }}</div>
+                    <a-list v-if="memberJoinTableData.length > 0" style="margin-top:12px" :dataSource="memberJoinTableData">
+                        <template #renderItem="{ item }">
+                            <a-descriptions layout="vertical" :column="3" :size="deviceType==='desktop' ? 'middle' :'small'" bordered>
+                                <a-descriptions-item label="竞拍数量">{{ item.benefitsNum }}</a-descriptions-item>
+                                <a-descriptions-item label="单位积分">{{ item.benefitsNum }}</a-descriptions-item>
+                                <a-descriptions-item label="投入总积分">{{ item.betPoint }}</a-descriptions-item>
+                                <a-descriptions-item label="我的排名">{{ totalBenefitsJoinData.findIndex(i=>i.address === address) + 1 || '-' }}</a-descriptions-item>
+                                <a-descriptions-item label="竞拍结果" :span="deviceType ==='desktop' ? 1:2">
+                                    <a-tag v-if="item.isEnd =='0'" color="processing">
+                                        <template #icon>
+                                            <sync-outlined :spin="true" />
+                                        </template>进行中</a-tag>
+                                    <a-tag v-else-if="item.isWin =='1'" color="success">
+                                        <template #icon>
+                                            <check-circle-outlined />
+                                        </template>已中拍</a-tag>
+                                    <a-tag v-else-if="item.isWin =='0'" color="error">
+                                        <template #icon>
+                                            <close-circle-outlined />
+                                        </template>未中拍</a-tag>
+                                </a-descriptions-item>
+                                <a-descriptions-item v-if="item.rewardType ==='1'" label="白名单地址" >
+                                    {{ item.realAddress.substr(0,8) + '...' + item.realAddress.substr(-8) }}
+                                    <a style="margin-left: 8px;" @click="openEditAddress"><FormOutlined /></a>
+                                </a-descriptions-item>
+                                <a-descriptions-item v-if="item.rewardType ==='2'" label="激活码">{{ item.benefitsContent ?? '未发放'}}</a-descriptions-item>
+                            </a-descriptions>
+                        </template>
+                    </a-list>
+                    <template v-else>
+                        <div style="width:100%">
+                            <a-empty :image="simpleImage"  description="暂无数据" />
+                        </div>
+                    </template>
+                </template>
             </template>
         </template>
         <template v-else>
@@ -214,27 +253,46 @@
 			<p>我的可用积分：{{ pointsAmount }} 分</p>
             <p>
                 <a-row :gutter="16">
-                    <a-col :span="12">
+                    <a-col :span="24" style="margin-bottom: 18px">
                         <span style="vertical-align: middle;">竞拍数量：</span><a-input-number :disabled="haveJoined" v-model:value="benefitsNum" :min="1" :max="benefitsDetail.upLimit" />
                         <div style="color:darkgray">本福利每位会员竞拍限额为{{ benefitsDetail.upLimit }}</div>
                     </a-col>
-                    <a-col :span="12">
-                        <span style="vertical-align: middle;">竞拍积分：</span><a-input-number v-model:value="betPoint" :precision="0" :min="haveJoined ? minBetPoint :1" :max="parseInt(pointsAmount / benefitsDetail.upLimit)" />
-                        <div style="color:darkgray">每个福利投入的竞拍积分</div>
+                    <a-col :span="24" style="margin-bottom: 18px">
+                        <span style="vertical-align: middle;">{{haveJoined ? '追加' :'竞拍'}}积分：</span><a-input-number v-model:value="betPoint" :precision="0" :min="haveJoined ? minBetPoint :1" :max="parseInt(pointsAmount / benefitsDetail.upLimit)" />
+                        <div style="color:darkgray">每个福利{{haveJoined ? '追加' :'投入'}}的竞拍积分</div>
+                    </a-col>
+                    <a-col :span="24" v-if="benefitsDetail.rewardType=='1'">
+                        <span style="vertical-align: middle;">白名单地址：</span>
+                        <a-input v-model:value="realAddress" placeholder="请输入本次竞拍的白名单地址..."/>
+                        <div style="color:darkred">仅对本次福利竞拍有效，竞拍截止后不得更改</div>
                     </a-col>
                 </a-row>
             </p>
-            <p>您本次投入的总积分为：{{ betPoint * benefitsNum }} 分</p> 
+            <p>您本次{{haveJoined ? '追加' :'投入'}}的总积分为：{{ betPoint * benefitsNum }} 分</p> 
 			<div style="text-align: right">
 				<a-button @click="modalVisible = false" style="margin-right:8px">取消</a-button>
-				<a-button @click="handleJoin" type="primary" :loading="joinLoading">投入竞拍</a-button>
+				<a-button @click="handleJoin" type="primary" :loading="joinLoading">{{haveJoined ? '追加' :'投入'}}竞拍</a-button>
 			</div>
 		</a-modal>
+        <a-modal title="编辑本次竞拍的白名单地址" v-model:visible="addressModalVisible" :footer="false" >
+            <p>
+                <span style="vertical-align: middle;">白名单地址：</span>
+            </p>
+            <p>
+                    <a-input v-model:value="realAddress" placeholder="请输入本次竞拍的白名单地址..."/>
+                <div style="color:darkred">仅对本次福利竞拍有效，竞拍截止后不得更改</div>
+			</p>
+			<div style="text-align: right">
+				<a-button @click="addressModalVisible = false" style="margin-right:8px">取消</a-button>
+				<a-button @click="handleEditAddress" type="primary" :loading="editAddressLoading">确认修改</a-button>	
+			</div>
+        </a-modal>
 </template>
 
 <script setup>
 import { ref,onBeforeMount,computed,watch } from "vue";
-import { getBenefits,getMemberBenefitsByAddress,joinBenefits,getMemberBenefits } from "./apis";
+import { getBenefits,getMemberBenefitsByAddress,joinBenefits,getMemberBenefits,editRealAddress } from "./apis";
+import { FormOutlined,SyncOutlined,CloseCircleOutlined,CheckCircleOutlined} from '@ant-design/icons-vue'
 import { TransactionSendTimeoutError } from "web3";
 import { Empty, notification } from 'ant-design-vue';
 import benefitsCoverUrl from '@/assets/benefitsCover.png'
@@ -268,14 +326,18 @@ const benefitsProgressData = ref([]);
 const benefitsEndData = ref([]);
 const myBenefitsData = ref([]);
 const memberBenefitsJoinData = ref([]);
+const totalBenefitsJoinData = ref([]);
 const loading = ref(TransactionSendTimeoutError);
 const selectedType = ref('all');
 const selectedMobilType = ref('detail');
 const benefitsDetail =ref({})
 const modalVisible = ref(false);
+const addressModalVisible = ref(false);
 const detailVisable = ref(false);
 const joinLoading = ref(false);
 const tableLoading = ref(false);
+const editAddressLoading = ref(false)
+const  realAddress = ref('')
 const benefitsNum = ref(1);
 const betPoint = ref(0);
 const minBetPoint = ref(0);
@@ -284,6 +346,10 @@ const haveJoined = computed(()=>{
         return myBenefitsData.value.findIndex(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId) > -1
     }
     return false
+})
+const myBenefitsAddress = computed(()=>{
+    const tmp = myBenefitsData.value.find(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId)
+    return !!tmp ? (tmp.realAddress || '') : null
 })
 const typeOptions = [
     {label:'全部',value:'all'},
@@ -299,7 +365,7 @@ const mobileTypeOptions = [
 
 const recordType = ref('all')
 const memberJoinTableData = computed(()=>{
-    return recordType.value === 'all' ? memberBenefitsJoinData.value : memberBenefitsJoinData.value.filter(item=>item.address == props.address)
+    return recordType.value === 'all' ? memberBenefitsJoinData.value : myBenefitsData.value.filter(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId)
 })
 const columns = [
     {
@@ -346,7 +412,7 @@ const pagination = ref({
 });
 const pagination2 = ref({
     current: 1,
-    pageSize: 2,
+    pageSize: 10,
     total: 0,
     showSizeChanger: true,
     showQuickJumper: true,
@@ -383,7 +449,7 @@ function showBenefitsDetail(benefit){
     detailVisable.value = true;
     benefitsDetail.value = benefit;
     recordType.value = 'all'
-    getMemberBenefitsData()
+    getMemberBenefitsData(true)
     // console.log('benefit',benefit)
 }
 async function getBenefitsData(){
@@ -397,7 +463,7 @@ async function getBenefitsData(){
         benefitsProgressData.value = res2.result.records
     }
     if(!!props.address){
-        const res3  = await getMemberBenefitsByAddress({address:props.address,pageSize:1000});
+        const res3  = await getMemberBenefitsByAddress({address:props.address,pageSize:10000});
         if(res3.success){
             myBenefitsData.value = res3.result?.records || []
         }
@@ -418,9 +484,9 @@ async function handleJoin(){
         message: '投入竞拍失败',
         description: '竞拍积分必须大于0',
     });
-    if(haveJoined.value && betPoint.value <= minBetPoint.value) return notification.error({
-        message: '投入竞拍失败',
-        description: '追加竞拍积分必须大于上次竞拍积分',
+    if(haveJoined.value && betPoint.value <= 0) return notification.error({
+        message: '追加竞拍失败',
+        description: '追加积分必须大于0',
     })
 
     joinLoading.value = true
@@ -443,7 +509,11 @@ async function handleJoin(){
         benefitsId:benefitsDetail.value.benefitsId || benefitsDetail.value.id,
         benefitsNum:benefitsNum.value,
         betPoint:betPoint.value,
+        realAddress:realAddress.value,
         sign:signRes
+    }
+    if(haveJoined.value){
+        params.betPoint = myBenefitsData.value.find(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId).betPoint + betPoint.value
     }
     const res = await joinBenefits(params,signRes);
     // debugger
@@ -454,7 +524,11 @@ async function handleJoin(){
                 description: '投入竞拍成功',
             })
             modalVisible.value = false
-            getMemberBenefitsData()
+            getMemberBenefitsData(true)
+            const res3  = await getMemberBenefitsByAddress({address:props.address,pageSize:1000});
+            if(res3.success){
+                myBenefitsData.value = res3.result?.records || []
+            }
         }else{
         notification.error({
             message: '投入竞拍失败',
@@ -468,6 +542,39 @@ async function handleJoin(){
         });
     }
     joinLoading.value = false
+}
+async function handleEditAddress(){
+    if(!realAddress.value) return notification.error({
+        message: '未填写地址',
+    });
+    editAddressLoading.value = true
+    const res = await editRealAddress({
+        // address:props.value,
+        realAddress:realAddress.value,
+        id:myBenefitsData.value.find(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId).id
+    })
+    if(res.success && res.result){
+        notification.success({
+            message: '修改成功',
+        });
+    }else{
+        notification.error({
+            message: '修改失败',
+            description: res.result.message || res.message,
+        });
+    }
+    addressModalVisible.value = false
+    editAddressLoading.value = false
+    getMemberBenefitsData()
+    getMyBenefitsData()
+}
+function openEditAddress(){
+    // debugger
+    addressModalVisible.value = true
+    realAddress.value = myBenefitsAddress.value ?? props.address
+    // console.log('realAddress',realAddress.value)
+    // console.log('myBenefitsAddress',myBenefitsAddress.value)
+    // console.log('props.address',props.address)
 }
 function initHtml(html){
     return html.replace(/\n/g, '<br>')
@@ -485,20 +592,22 @@ function showModal(){
     betPoint.value = 0
     if(haveJoined.value){
         benefitsNum.value = myBenefitsData.value.find(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId).benefitsNum
-        betPoint.value = myBenefitsData.value.find(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId).betPoint
-        minBetPoint.value = betPoint.value
+        // betPoint.value = myBenefitsData.value.find(item=>item.benefitsId == benefitsDetail.value.id || item.benefitsId == benefitsDetail.value.benefitsId).betPoint
+        // minBetPoint.value = betPoint.value
     }
+    realAddress.value = myBenefitsAddress.value ?? props.address
     joinLoading.value = false
     modalVisible.value = true
 
 }
 
-watch(recordType,()=>{
+watch(recordType,(v)=>{
     pagination.value.current = 1
     pagination2.value.current = 1
-    getMemberBenefitsData()
+    if(v==='all') getMemberBenefitsData(true)
+    else getMyBenefitsData()
 })   
-async function getMemberBenefitsData(){
+async function getMemberBenefitsData(isTotal=false){
     tableLoading.value = true
     const params = {
         address:recordType.value=== 'my' ? props.address :undefined,
@@ -506,13 +615,30 @@ async function getMemberBenefitsData(){
         pageSize:props.deviceType==='desktop' ? pagination.value.pageSize : pagination2.value.pageSize,
         pageNo:props.deviceType==='desktop' ? pagination.value.current : pagination2.value.current,
     }
-
     const res = await getMemberBenefits(params);
     if(res.success){
         memberBenefitsJoinData.value = res.result.records
         pagination.value.total = res.result.total
         pagination2.value.total = res.result.total
     }
+    if(isTotal){
+        const params2 = {
+            benefitsId:benefitsDetail.value.benefitsId || benefitsDetail.value.id,
+            pageSize:10000
+        }
+        const res2 = await getMemberBenefits(params2)
+        if(res.success){
+            totalBenefitsJoinData.value = res2.result.records
+        }
+    }
+    tableLoading.value = false
+}
+async function getMyBenefitsData(){
+    tableLoading.value = true
+    const res3  = await getMemberBenefitsByAddress({address:props.address,pageSize:1000});
+            if(res3.success){
+                myBenefitsData.value = res3.result?.records || []
+            }
     tableLoading.value = false
 }
 function tableChange(p, filters, sorter){
@@ -526,7 +652,7 @@ const isEndCoinStyle = computed(()=>{
     return {
         position: 'absolute', 
         right: props.deviceType ==='desktop' ? '80px' : '25%',
-        bottom: '70px', 
+        bottom: props.deviceType ==='desktop' ? '70px' : '50px', 
         width: '82px',
         height: '142px',
         'z-index':9999,

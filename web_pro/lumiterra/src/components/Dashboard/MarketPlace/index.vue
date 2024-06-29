@@ -28,12 +28,16 @@
 						style="text-align: right; line-height: 48px"
 					>
 						<a-statistic
+							value="--"
+							:valueStyle="{ fontSize: '32px' }"
+						/>
+						<!-- <a-statistic
 							:value="
 								marketPlaceData?.volume / 1000000000000000000
 							"
 							:precision="2"
 							:valueStyle="{ fontSize: '32px' }"
-						/>
+						/> -->
 					</a-col>
 				</a-row>
 			</a-card>
@@ -56,11 +60,16 @@
 						:span="18"
 						style="text-align: right; line-height: 48px"
 					>
-						<a-statistic
+					<a-statistic
+							value="--"
+							:valueStyle="{ fontSize: '32px' }"
+						/>
+						<!-- <a-statistic
 							:value="marketPlaceData?.fees / 1000000000000000000"
 							:precision="2"
-							:valueStyle="{ fontSize: '32px' }"
-					/></a-col>
+							:valueStyle="{ fontSize: '32px' }" -->
+					<!-- /> -->
+				</a-col>
 				</a-row>
 			</a-card>
 		</a-col>
@@ -82,11 +91,16 @@
 						:span="18"
 						style="text-align: right; line-height: 48px"
 					>
-						<a-statistic
+					<a-statistic
+							value="--"
+							:valueStyle="{ fontSize: '32px' }"
+						/>
+						<!-- <a-statistic
 							:value="marketPlaceData?.tvl / 1000000000000000000"
 							:precision="2"
 							:valueStyle="{ fontSize: '32px' }"
-					/></a-col>
+					/> -->
+				</a-col>
 				</a-row>
 			</a-card>
 		</a-col>

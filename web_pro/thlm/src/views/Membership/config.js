@@ -1,5 +1,5 @@
-const isDev = true
-const isTestNet = true
+const isDev = false
+const isTestNet = false
 
 export const providerUrl = isTestNet ? 'https://data-seed-prebsc-1-s1.bnbchain.org:8545' : 'https://rpc.ankr.com/eth'
 export const chainId = isTestNet ? '0x61' : '0x1'

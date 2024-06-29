@@ -28,9 +28,9 @@ export class BenefitsController {
   @Get('joinBenefits')
   async joinBenefits(@Query() params:any) {
     Logger.log('joinBenefits',params)
-    const { address, benefitsId, benefitsNum,betPoint,sign } = params
-    if(!address || !benefitsId || !benefitsNum || !betPoint || !sign) throw new HttpException('缺少参数', HttpStatus.BAD_REQUEST)
-    return await this.benefitsService.joinBenefits(address, benefitsId, benefitsNum,betPoint,sign)
+    const { address, benefitsId, benefitsNum,betPoint,sign,realAddress } = params
+    if(!address || !benefitsId || !benefitsNum || !betPoint || !sign || !realAddress) throw new HttpException('缺少参数', HttpStatus.BAD_REQUEST)
+    return await this.benefitsService.joinBenefits(address, benefitsId, benefitsNum,betPoint,sign,realAddress)
   }
   @Get('memberBenefits')
   async queryMemberBenefits(@Query() params:any) {

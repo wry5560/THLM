@@ -1,0 +1,13 @@
+{
+    "name":"Eternal Genesis Guardian Medal",
+    "description":"The Genesis Guardian Medal is the proof of the first explorers of the Eternal World. They will represent the Elyos and the Asmodians to resist the invasion of the Dragons. They will gain honor and unimaginable benefits in the process of protecting the Eternity World.",
+    "image":"",
+    "animation_url":"",
+    "tokenId":1,
+    "attributes":[
+        {
+            "trait_type":"RARITY",
+            "value":"Bronze | Silver | Gold | Diamond"
+        }
+    ]
+}
