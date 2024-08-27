@@ -3,7 +3,7 @@ const isTestNet = false
 
 export const providerUrl = isTestNet ? 'https://data-seed-prebsc-1-s1.bnbchain.org:8545' : 'https://rpc.ankr.com/eth'
 export const chainId = isTestNet ? '0x61' : '0x1'
-export const thlmContractAddress = isTestNet ? '0x803d58Ff1E4A07C9eEfcf9aa5E4a7Fd49e1EbdaE' :'0xa8218CBDb4Accce36EE92874Fe34a999abC30A7a' 
+export const thlmContractAddress = isTestNet ? '0x803d58Ff1E4A07C9eEfcf9aa5E4a7Fd49e1EbdaE' :'0x0c1b0b010290509b79cAd5F6A669D7865947Be10' 
 export const thlmContractAbi = [
     {
         "inputs":[],
@@ -214,7 +214,7 @@ export const thlmContractAbi = [
     "type":"function"
 }]
 
-export const stakeContractAddress = isTestNet ? '0xE9EE6275557eA68CB15833934C96b0D4df1abFa9' : '0x4a6fBae4975F92Ed0085795C159A75552Cf8F952'
+export const stakeContractAddress = isTestNet ? '0xE9EE6275557eA68CB15833934C96b0D4df1abFa9' : '0x802e182e998c7e15462b3d453f27ac06ae7640c6'
 export const stakeContractAbi =[
     {
         "inputs":[

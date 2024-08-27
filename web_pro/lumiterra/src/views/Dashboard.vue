@@ -11,7 +11,7 @@
 		<div
 			style="
 				display: inline-block;
-				width: 120px;
+				width: 104px;
 				vertical-align: middle;
 				background-color: white;
 				line-height: 45px;
@@ -19,17 +19,41 @@
 		>
 			<a-button
 				size="middle"
+				style="color: black"
 				href="https://lumi.thlm.com"
 				target="_blank"
-				style="color: black"
-				><HomeOutlined /> 主题站
+				><HomeOutlined /> {{ t('message.dashboard.menu.home') }} 
 			</a-button>
 		</div>
 		<div
 			style="
 				display: inline-block;
+				width: 120px;
 				vertical-align: middle;
-				width: calc(100% - 120px);
+				background-color: white;
+				line-height: 45px;
+			"
+		>
+		<a-dropdown>
+			<template #overlay>
+				<a-menu @click="changeLang">
+					<a-menu-item key="zh">简体中文</a-menu-item>
+					<a-menu-item key="en">Engilsh</a-menu-item>
+				</a-menu>
+      		</template>
+			  <a-button
+				size="middle"
+				style="color: black"
+				><GlobalOutlined /> {{ t('lang') }} <DownOutlined />
+			</a-button>
+		</a-dropdown>
+			
+		</div>
+		<div
+			style="
+				display: inline-block;
+				vertical-align: middle;
+				width: calc(100% - 230px);
 				text-align: center;
 			"
 		>
@@ -44,13 +68,13 @@
 					:key="item.value"
 					:value="item.value"
 					size="large"
-					style="width: 360px"
+					style="width: 310px"
 					>{{ item.label }}</a-radio-button
 				>
 			</a-radio-group>
 		</div>
 
-		<a-alert type="warning" style="margin-top: 16px" show-icon>
+		<a-alert v-if="locale ==='zh'" type="warning" style="margin-top: 16px" show-icon>
 			<template #description>
 				本页面由头号联盟(<a-typography-link
 					href="https://thlm.com"
@@ -78,13 +102,38 @@
 					@achen65841479
 				</a-typography-link>
 				。 欢迎社区小伙伴一起积极参与 Lumiterra 生态建设,
-				为自己热爱的游戏添砖加瓦！ 特别鸣谢
-				<a-typography-link
-					href="https://twitter.com/0xBfish"
+				为自己热爱的游戏添砖加瓦！
+			</template>
+		</a-alert>
+		<a-alert v-if="locale ==='en'" type="warning" style="margin-top: 16px" show-icon>
+			<template #description>
+				This page is developed and maintained by the THLM DAO(<a-typography-link
+					href="https://thlm.com"
 					target="_blank"
 				>
-					@0xBfish 大鱼 </a-typography-link
-				>为本页数据内容提供的支持！
+					thlm.com </a-typography-link
+				>). As the CBT test of the game progresses, the content will continue to be updated, so stay tuned!
+If you find any problems or have any good suggestions, please send a private message to the website developers
+				<a-typography-link
+					href="https://twitter.com/xiaoyaoyin2023"
+					target="_blank"
+				>
+					@xiaoyaoyin2023 </a-typography-link
+				>、
+				<a-typography-link
+					href="https://twitter.com/xiniuweb3"
+					target="_blank"
+				>
+					@xiniuweb3 </a-typography-link
+				>、
+				<a-typography-link
+					href="https://twitter.com/achen65841479"
+					target="_blank"
+				>
+					@achen65841479
+				</a-typography-link>
+				. Welcome community partners to actively participate in the construction of the Lumiterra ecosystem.
+Let's contribute to the game we love!
 			</template>
 		</a-alert>
 
@@ -102,13 +151,19 @@
 
 <script setup>
 import HomeOutlined from "@ant-design/icons-vue/HomeOutlined";
+import GlobalOutlined from "@ant-design/icons-vue/GlobalOutlined";
+import DownOutlined from "@ant-design/icons-vue/DownOutlined";
 import MarketPlace from "@/components/Dashboard/MarketPlace/index.vue";
 import DefiData from "@/components/Dashboard/DefiData.vue";
 import NFTData from "@/components/Dashboard/NFTData.vue";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n();
+
+locale.value = 'en'
 
 import Info from "@/components/Info.vue";
-import { onBeforeMount, ref, onBeforeUnmount, onDeactivated } from "vue";
+import { onBeforeMount, ref, onBeforeUnmount, onDeactivated,computed } from "vue";
 
 import {
 	getLumiMarketTvl,
@@ -122,11 +177,12 @@ import { isDev } from "../config";
 import moment from "dayjs";
 const base = isDev ? "/" : "/Static/lumi/";
 const router = useRouter();
-const options = [
-	{ label: "Marketplace 概览", value: "Marketplace" },
-	{ label: "Defi 概览", value: "Defi" },
-	{ label: "NFT概览", value: "NFT" },
-];
+const options = computed(() => [
+
+	{ label: t('message.dashboard.menu.marketPlace'), value: "Marketplace" },
+	{ label: t('message.dashboard.menu.defi'), value: "Defi" },
+	{ label: t('message.dashboard.menu.nft'), value: "NFT" },
+]);
 const selectedType = ref("Marketplace");
 const marketPlaceData = ref([]);
 const maketPlaceLoading = ref(true);
@@ -163,7 +219,9 @@ onBeforeUnmount(() => {
 onDeactivated(() => {
 	clearInterval(timer);
 });
-
+const changeLang = ({ key }) => {
+	locale.value = key;
+};
 const loadData = () => {
 	// getLumiMarketTvl()
 	// 	.then((res) => {

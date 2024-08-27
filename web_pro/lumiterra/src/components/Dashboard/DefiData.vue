@@ -1,5 +1,5 @@
 <template>
-	<a-divider orientation="left">
+	<!-- <a-divider orientation="left">
 		<span
 			style="
 				width: 28px;
@@ -42,9 +42,9 @@
 					:value="defiInfo.lua_mint_price"
 				/>
 			</a-col>
-			<!-- <a-col :span="4">
+			<a-col :span="4">
 				<a-statistic title="LUA Uniswap Price" value="--" />
-			</a-col> -->
+			</a-col>
 			<a-col :span="6">
 				<a-statistic
 					title="LUA Circulate Supply"
@@ -115,14 +115,14 @@
 					:value="defiInfo.collateral_rate"
 				/>
 			</a-col>
-			<!-- <a-col :span="6">
+			<a-col :span="6">
 				<a-statistic
 					title="DAO Treasury"
 					:value="defiInfo.dao_treasury"
 				/>
-			</a-col> -->
+			</a-col>
 		</a-row>
-	</a-card>
+	</a-card> -->
 	<a-divider orientation="left">
 		<span
 			style="
@@ -143,7 +143,7 @@
 				:preview="false"
 			/>
 		</span>
-		Token Price - 代币价格
+		Token Price {{ locale ==='zh' ? '- 代币价格' :''}}
 		<!-- <a href="https://app.uniswap.org/" target="_blank">前往购买</a> -->
 	</a-divider>
 	<a-table
@@ -172,13 +172,13 @@
 				<a-typography-link
 					:href="`https://dexscreener.com/arbitrum/${record.pool_contract}`"
 					target="_blank"
-					>查看</a-typography-link
+					>{{  t('message.dashboard.defi.table.view') }}</a-typography-link
 				>
 				<a-divider type="vertical" />
 				<a-typography-link
 					:href="`https://app.uniswap.org/explore/tokens/arbitrum/${record.symbol_token_contract}`"
 					target="_blank"
-					>交易</a-typography-link
+					>{{  t('message.dashboard.defi.table.swap') }}</a-typography-link
 				>
 			</span>
 		</template>
@@ -189,7 +189,10 @@
 import { ref, computed,onBeforeMount,onBeforeUnmount,onDeactivated } from "vue";
 import {getLumiDefiInfo,
 	getLumiPortInfo,} from "@/api";
+import {subChannel,addDataParserFun,} from "@/websocketClient"
 import { isDev } from "@/config";
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n();
 import moment from "dayjs";
 const base = isDev ? "/" : "/Static/lumi/";
 const defiInfo = ref([]);
@@ -204,29 +207,29 @@ let portInfoTimer = null;
 // 	loading: Boolean,
 // 	portLoading: Boolean,
 // });
-const columns = [
+const columns =computed(()=>[
 	{
 		title: "Token",
 		dataIndex: "symbol_token_name",
 		key: "symbol_token_name",
 	},
 	{
-		title: "代币合约",
+		title: t('message.dashboard.defi.table.contract'),
 		dataIndex: "symbol_token_contract",
 		key: "symbol_token_contract",
 	},
 	{
-		title: "Uni 交易对",
+		title:  t('message.dashboard.defi.table.pair'),
 		dataIndex: "pair",
 		key: "pair",
 	},
 	{
-		title: "数据时间",
+		title:  t('message.dashboard.defi.table.time'),
 		dataIndex: "update",
 		key: "update",
 	},
 	{
-		title: "链接",
+		title:  t('message.dashboard.defi.table.link'),
 		dataIndex: "link",
 		key: "link",
 	},
@@ -235,7 +238,7 @@ const columns = [
 		dataIndex: "token_price",
 		key: "token_price",
 	},
-];
+]) 
 const luaPrice = computed(() => {
 	const luaData = portInfo.value
 		? portInfo.value?.find((item) => item.symbol_token_name === "LUA")
@@ -243,23 +246,37 @@ const luaPrice = computed(() => {
 	return luaData ? luaData.token_price : 0;
 });
 onBeforeMount(() => {
-	loadDefiInfoDeta();
-	loadPortInfoData();
-	defiInfoTimer = setInterval(() => {
-		loadDefiInfoDeta();
-	}, 60000);
-	portInfoTimer = setInterval(() => {
-		loadPortInfoData();
-	}, 30000);
+	subChannel('Lumi_Pool_Infos')
+	addDataParserFun(parseData);
+	// loadDefiInfoDeta();
+	// loadPortInfoData();
+	// defiInfoTimer = setInterval(() => {
+	// 	loadDefiInfoDeta();
+	// }, 60000);
+	// portInfoTimer = setInterval(() => {
+	// 	loadPortInfoData();
+	// }, 30000);
 });
 onBeforeUnmount(() => {
-	clearInterval(defiInfoTimer);
-	clearInterval(portInfoTimer);
+	// clearInterval(defiInfoTimer);
+	// clearInterval(portInfoTimer);
 });
 onDeactivated(() => {
-	clearInterval(defiInfoTimer);
-	clearInterval(portInfoTimer);
+	// clearInterval(defiInfoTimer);
+	// clearInterval(portInfoTimer);
 });
+const parseData = (data) => {
+	// debugger
+	if(data.event ==='sub')return 
+	if (data.event === "Lumi_Defi_Info") {
+		defiInfo.value = data.data;
+		loading.value = false;
+	}
+	if (data.event === "Lumi_Pool_Infos") {
+		portInfo.value = Object.values(data.data);
+		portLoading.value = false;
+	}
+};
 const loadDefiInfoDeta = async () => {
 	await getLumiDefiInfo()
 		.then((res) => {

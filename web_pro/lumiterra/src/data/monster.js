@@ -288,7 +288,7 @@ export const monsters =[
         "name_en": "Soul - Lord Of The Forest",
         "images": "Soul - Lord Of The Forest.png",
         "level": 4,
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "捕获HP": 400010,
         "击退伤害": 1000,
@@ -305,6 +305,19 @@ export const monsters =[
         "is_script": "是",
         "捕获HP": 500010,
         "击退伤害": 1000,
+        "击退距离": 10,
+        "所属任务等级": 999,
+        "fall": []
+    },
+    {
+        "name": "温迪戈",
+        "name_en": "Wendigo",
+        "images": "Wendigo.png",
+        "level": 3,
+        "type": "世界Boss",
+        "is_script": "否",
+        "捕获HP": 999999,
+        "击退伤害": 500,
         "击退距离": 10,
         "所属任务等级": 999,
         "fall": []
@@ -494,12 +507,6 @@ export const monsters =[
                 "id-int": "0x6aa7ec8ac2a999a90ce6c78668dffe4e487e2576a97ca366ec81ecb335af90d0",
                 "name": "棉花种子",
                 "name_en": "Cotton Seed"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },
@@ -789,12 +796,45 @@ export const monsters =[
     },
     {
         "name": "南瓜蝙蝠",
-        "name_en": "",
-        "images": "Verdant Flame Warlord.png",
-        "level": 9,
+        "name_en": "Pumpkin Bat",
+        "images": "Pumpkin Bat.png",
+        "level": 0,
+        "type": "远程",
+        "is_script": "否",
+        "捕获HP": 20,
+        "击退伤害": 20,
+        "击退距离": 30,
+        "所属任务等级": 999,
+        "fall": [
+            {
+                "id": "833",
+                "id-int": "0x7349ade3be02673f0de432e204282f4e377f5409973e184455aacc930430627f",
+                "name": "南瓜瓤",
+                "name_en": "Pumpkin pulp"
+            }
+        ]
+    },
+    {
+        "name": "森田纳",
+        "name_en": "Sentinel",
+        "images": "Sentinel.png",
+        "level": 3,
         "type": "世界Boss",
         "is_script": "否",
-        "捕获HP": 900010,
+        "捕获HP": 999999,
+        "击退伤害": 500,
+        "击退距离": 10,
+        "所属任务等级": 999,
+        "fall": []
+    },
+    {
+        "name": "温迪戈",
+        "name_en": "Wendigo",
+        "images": "Wendigo.png",
+        "level": 3,
+        "type": "世界Boss",
+        "is_script": "否",
+        "捕获HP": 999999,
         "击退伤害": 500,
         "击退距离": 10,
         "所属任务等级": 999,
@@ -888,12 +928,6 @@ export const monsters =[
                 "id-int": "0x947035e97d0f7e1937f791bc189f60c984ceaaa7a8494fc67f9f8f4de8ccf2c6",
                 "name": "猪笼草种子",
                 "name_en": "Pigmy Sundew Seed"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },
@@ -1100,7 +1134,7 @@ export const monsters =[
     {
         "name": "浪刃武士",
         "name_en": "Wandering Blade Samurai",
-        "images": "Verdant Flame Warlord.png",
+        "images": "Wandering Blade Samurai.png",
         "level": 9,
         "type": "世界Boss",
         "is_script": "否",
@@ -1108,14 +1142,7 @@ export const monsters =[
         "击退伤害": 500,
         "击退距离": 10,
         "所属任务等级": 999,
-        "fall": [
-            {
-                "id": "725",
-                "id-int": "0xf1e764f2e88f48e08025ec86f3d897612b1372d084158469606fae70df6ac982",
-                "name": "浪刃武士的勋章",
-                "name_en": "Medal of Wandering Blade Samurai "
-            }
-        ]
+        "fall": []
     },
     {
         "name": "Lv6 PvEP副本Boss",
@@ -1133,7 +1160,7 @@ export const monsters =[
     {
         "name": "阿萨克兹",
         "name_en": "Asakz",
-        "images": "Ak43.png",
+        "images": "Asakz.png",
         "level": 9,
         "type": "世界Boss",
         "is_script": "是",
@@ -1224,7 +1251,7 @@ export const monsters =[
     {
         "name": "森林之主",
         "name_en": "Lord Of The Forest",
-        "images": "Soul - Lord Of The Forest.png",
+        "images": "Lord Of The Forest.png",
         "level": 4,
         "type": "Boss",
         "is_script": "是",
@@ -1295,12 +1322,6 @@ export const monsters =[
                 "id-int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
                 "name": "勇者的勋章",
                 "name_en": "Medal of the Brave"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },
@@ -1445,7 +1466,7 @@ export const monsters =[
         "name_en": "Soul - Lord Of The Arctic",
         "images": "Soul - Lord Of The Arctic.png",
         "level": 5,
-        "type": "Boss",
+        "type": "精英",
         "is_script": "是",
         "捕获HP": 500010,
         "击退伤害": 1000,
@@ -1515,12 +1536,6 @@ export const monsters =[
                 "id-int": "0x354a83ed9988f79f6038d4c7a7dadbad8af32f4ad6df893e0e5807a1b1944ff9",
                 "name": "仙人掌种子",
                 "name_en": "Cactus Seed"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },
@@ -1579,12 +1594,6 @@ export const monsters =[
                 "id-int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
                 "name": "勇者的勋章",
                 "name_en": "Medal of the Brave"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },
@@ -2081,7 +2090,7 @@ export const monsters =[
     {
         "name": "幽魂主教",
         "name_en": "Specter Bishop",
-        "images": "Verdant Flame Warlord.png",
+        "images": "Specter Bishop.png",
         "level": 9,
         "type": "世界Boss",
         "is_script": "否",
@@ -2089,14 +2098,7 @@ export const monsters =[
         "击退伤害": 500,
         "击退距离": 10,
         "所属任务等级": 999,
-        "fall": [
-            {
-                "id": "726",
-                "id-int": "0xbd93f16804136c309e5a22fbf7fadfd9d6475178d1cefec04d8e18c18f82ee8d",
-                "name": "幽魂主教的勋章",
-                "name_en": "Medal of Specter Bishop"
-            }
-        ]
+        "fall": []
     },
     {
         "name": "雪兔巫师",
@@ -2211,12 +2213,6 @@ export const monsters =[
                 "id-int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
                 "name": "勇者的勋章",
                 "name_en": "Medal of the Brave"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },
@@ -2318,6 +2314,77 @@ export const monsters =[
         "fall": []
     },
     {
+        "name": "幽魂主教",
+        "name_en": "Specter Bishop",
+        "images": "Specter Bishop.png",
+        "level": 9,
+        "type": "世界Boss",
+        "is_script": "否",
+        "捕获HP": 900010,
+        "击退伤害": 500,
+        "击退距离": 10,
+        "所属任务等级": 999,
+        "fall": []
+    },
+    {
+        "name": "雪兔巫师",
+        "name_en": "Rabbit Wizard",
+        "images": "Rabbit Wizard.png",
+        "level": 6,
+        "type": "奶妈",
+        "is_script": "是",
+        "捕获HP": 70,
+        "击退伤害": 200,
+        "击退距离": 10,
+        "所属任务等级": 999,
+        "fall": [
+            {
+                "id": "373",
+                "id-int": "0x94b016e6b5eafb28c9d47c3523378ec087cc0ead8b7eff2840605504c1f1ac6f",
+                "name": "小法杖",
+                "name_en": "Small Wand"
+            },
+            {
+                "id": "421",
+                "id-int": "0x1265d690ccc8c01a35f1a871a5a6521571a42b37e51849017dfb227fed6d1261",
+                "name": "木薯种子",
+                "name_en": "Cassava Seed"
+            },
+            {
+                "id": "728",
+                "id-int": "0xc3fe9650c991cdf6032e38c24719fe684360e4b6f393075a32142fcb0fde4789",
+                "name": "开拓者的勋章",
+                "name_en": "Medal of Pioneers"
+            }
+        ]
+    },
+    {
+        "name": "骷髅士兵",
+        "name_en": "Skeleton Soldier",
+        "images": "Skeleton Soldier.png",
+        "level": 4,
+        "type": "战士",
+        "is_script": "否",
+        "捕获HP": 50,
+        "击退伤害": 100,
+        "击退距离": 20,
+        "所属任务等级": 4,
+        "fall": [
+            {
+                "id": "365",
+                "id-int": "0x535f6990c27693b80d059530c371f53ea19bfc595ef3bd58348694aac9095300",
+                "name": "坚硬骨头",
+                "name_en": "Tough Bone"
+            },
+            {
+                "id": "413",
+                "id-int": "0x71880bb8535eda3be1bc3614789b84ba72ab02d5ae26ba282fa1178bb7fea1e6",
+                "name": "小麦种子",
+                "name_en": "Wheat Seed"
+            }
+        ]
+    },
+    {
         "name": "终焉魔君",
         "name_en": "Demonic Lord of Perdition",
         "images": "Demonic Lord of Perdition.png",
@@ -2372,12 +2439,6 @@ export const monsters =[
                 "id-int": "0x3a44f52ba1de3b0c935f2a1676942597ac0d231e6b8a959fda551cf784a79397",
                 "name": "勇者的勋章",
                 "name_en": "Medal of the Brave"
-            },
-            {
-                "id": "801",
-                "id-int": "0x375af38c615bc3b651d74d7d59974b82de2cfc350734166de4356711f3dca129",
-                "name": "永恒碎片",
-                "name_en": "Eternel Fragment"
             }
         ]
     },

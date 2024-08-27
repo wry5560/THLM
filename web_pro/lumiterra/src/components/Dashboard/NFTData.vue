@@ -23,10 +23,10 @@
 		<a
 			href="https://www.okx.com/zh-hans/web3/marketplace/nft/collection/arbi/lumiterra-genesis-mystery-box"
 			target="_blank"
-			>前往购买</a
+			>{{t('message.dashboard.nft.toBuy')}}</a
 		>
 	</a-divider>
-	<a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ moment(boxInfo?.Common?.update * 1000).format('YYYY-MM-DD HH:mm:ss') }}</a-typography-paragraph>
+	<a-typography-paragraph style="margin-left: 60px;">{{t('message.dashboard.nft.time')}} : {{ moment(boxInfo?.Common?.update * 1000).format('YYYY-MM-DD HH:mm:ss') }}</a-typography-paragraph>
 
 	<a-row :gutter="24">
 		<a-col :span="6" style="width: 100%">
@@ -280,20 +280,20 @@
 		<a
 			href="https://www.okx.com/zh-hans/web3/marketplace/nft/collection/arbi/lumiterra-totem-404-1"
 			target="_blank"
-			>前往购买</a
+			>{{t('message.dashboard.nft.toBuy')}}</a
 		>
 	</a-divider>
-	<a-typography-paragraph style="margin-left: 60px;">数据更新时间：{{ moment(totemInfo[0]?.update * 1000).format('YYYY-MM-DD HH:mm:ss') }}</a-typography-paragraph>
+	<a-typography-paragraph style="margin-left: 60px;">{{t('message.dashboard.nft.time')}} : {{ moment(totemInfo[0]?.update * 1000).format('YYYY-MM-DD HH:mm:ss') }}</a-typography-paragraph>
 	<a-row :gutter="24">
 		<div :span="5" style="width: 19%;margin-right: 12px;margin-bottom: 12px; display: inline-block;" v-for="item in totemInfo" :key="item.nft_type">
 			<a-card :loading="loading">
 				<template #cover>
-					<img :alt="item.nft_type" :src="base +'Totem/'+ item.nft_type + '.png'" />
+					<img :alt="item.nft_type" :src="base +'Totem/Totem '+ item.nft_type + '.png'" />
 				</template>
 				<a-card-meta>
 					<template #title>
 						<div style="margin-bottom: 4px">
-							{{ item.nft_type.substring(6) }} Floor Price:
+							{{ item.nft_type }} Floor Price:
 						</div>
 						<a-row :align="`middle`">
 							<a-col :span="12">
@@ -309,7 +309,7 @@
 								/>
 							</a-col>
 							<a-col :span="12" style="text-align: left">
-								{{ item?.nft_price }} LUA
+								{{ Number(item?.nft_price)/1000000000000000000 }} LUA
 							</a-col>
 							<a-col
 								:span="12"
@@ -350,8 +350,11 @@ import {ref,onBeforeMount,onBeforeUnmount,onDeactivated} from "vue";
 import { isDev } from "@/config";
 import Building from "@/components/Building.vue";
 import moment from "dayjs";
+import { useI18n } from "vue-i18n";
+import {subChannel,addDataParserFun,unSubChannel} from "@/websocketClient"
 import {	getLumiBoxInfo,
 	getLumiTotemInfo,getLumiTotemNftInfo} from "@/api";
+	const { t,locale } = useI18n();
 const base = isDev ? "/" : "/Static/lumi/";
 const loading = ref(true);
 const boxInfo = ref([]);
@@ -359,10 +362,31 @@ const totemInfo = ref([]);
 const timer = ref(null);
 
 onBeforeMount(async () => {
-	loadData()
-	timer.value = setInterval(loadData, 30 * 1000);
+	subChannel('Lumi_Box_Nfts')
+	subChannel('Lumi_Totem_Infos')
+	subChannel('Lumi_Totem_Nft')
+	addDataParserFun(dataParser)
+	// loadData()
+	// timer.value = setInterval(loadData, 30 * 1000);
 });
-
+const dataParser = (data) => {
+    // debugger
+	if(data.event === 'sub') return
+	if (data.event === "Lumi_Box_Nfts") {
+		Object.keys(data.data).forEach(key=>{
+			const tmpKey = key.split(" ")[0]
+			boxInfo.value[tmpKey] = data.data[key]
+			loading.value = false
+		})
+	}
+	if (data.event === "Lumi_Totem_Infos") {
+		totemInfo.value = data.data;
+	}
+	if (data.event === "Lumi_Totem_Nft") {
+		// debugger
+		totemInfo.value = data.data;
+	}
+};
 const loadData = async()=>{
 	await getLumiBoxInfo().then((res) => {
 		if (res.state === "success") {
@@ -382,8 +406,14 @@ const loadData = async()=>{
 
 onBeforeUnmount(() => {
 	clearInterval(timer.value);
+	unSubChannel('Lumi_Box_Nfts')
+	unSubChannel('Lumi_Totem_Infos')
+	unSubChannel('Lumi_Totem_Nft')
 });
 onDeactivated(() => {
 	clearInterval(timer.value);
+	unSubChannel('Lumi_Box_Nfts')
+	unSubChannel('Lumi_Totem_Infos')
+	unSubChannel('Lumi_Totem_Nft')
 });
 </script>

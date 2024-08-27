@@ -2,11 +2,13 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import WxGroup from "./components/WxGroup.vue";
 import Membership from "./views/Membership/index.vue";
+import AirdropStake from "./views/AirdropStake/index.vue";
 </script>
 
 <template>
 	<!-- <wx-group /> -->
 	<membership />
+	<!-- <airdrop-stake /> -->
 </template>
 
 <style>

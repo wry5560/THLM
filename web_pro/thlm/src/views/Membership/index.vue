@@ -90,13 +90,13 @@
 					</template>
 				</div>
 				<a-card  :loading="loading" :bordered="false">
-					<template #title>我的THLM</template>
+					<template #title>我的GAME</template>
 					<template #extra>
 						<a-button
 							@click="openStakeModal"
 							type="primary"
 							v-if="stakeInfo.stakedAmount == 0"
-							>质押THLM</a-button>
+							>质押GAME</a-button>
 						<a-button
 							@click="openAddUnStakeModal"
 							style="margin-right: 8px"
@@ -106,19 +106,19 @@
 							@click="openUnStakeModal"
 							type="primary"
 							v-if="stakeInfo.stakedAmount > 0"
-							>解押THLM</a-button>
+							>解押GAME</a-button>
 						
 					</template>
 					<a-row>
 						<a-col :span="deviceType ==='desktop' ? 8 : 12">
 							<a-statistic
-								title="THLM 账户余额"
+								title="GAME 账户余额"
 								:value="parseInt(addressBalance)"
 							/>
 						</a-col>
 						<a-col :span="deviceType ==='desktop' ? 8 : 12">
 							<a-statistic
-								title="THLM 捐赠数量"
+								title="GAME 捐赠数量"
 								:value="parseInt(memberInfo.donationAmount)"
 							/>
 						</a-col>
@@ -129,9 +129,9 @@
 							/>
 						</a-col>
 						<a-col :span="deviceType ==='desktop' ? 8 : 12">
-							<a-statistic title="THLM 质押数量" :value="parseInt(stakeInfo.stakedAmount)" v-if="stakeInfo.stakedAmount > 0"/>
+							<a-statistic title="GAME 质押数量" :value="parseInt(stakeInfo.stakedAmount)" v-if="stakeInfo.stakedAmount > 0"/>
 								<a-statistic
-								title="THLM 质押数量"
+								title="GAME 质押数量"
 								value="--"
 								v-else
 							/>
@@ -172,13 +172,13 @@
 				<pointsHistory v-if="current[0] ==='pointsHistory'" :address="walletAddress"  :reloadNum="reloadNum" :deviceType="deviceType" />
 			</div>
 		</div>
-		<a-modal title="质押THLM" v-model:visible="stakeModalVisible" :footer="false" >
-			<p>当前可用余额：{{ parseInt(addressBalance) }} THLM</p>
+		<a-modal title="质押GAME" v-model:visible="stakeModalVisible" :footer="false" >
+			<p>当前可用余额：{{ parseInt(addressBalance) }} GAME</p>
 			<p>
 				<a-input-number style="width:300px" placeholder="请输入质押的数量..." v-model:value="amoutToStake" :min="1000000" :max="addressBalance">
 			</a-input-number>
 			<a style="color:darkgray;margin-left: 8px;vertical-align: middle;" @click="amoutToStake = addressBalance"> MAX </a>
-			<div style="color:darkgray;">最少质押100万 THLM</div>
+			<div style="color:darkgray;">最少质押100万 GAME</div>
 		</p>
 			<p>
 				<a-radio-group v-model:value="stakeLevel" button-style="solid">
@@ -197,9 +197,9 @@
 				<div v-if="showWaitTip" style="margin-top:4px;color:darkgray">交易确认中，请耐心等待...</div>
 			</div>
 		</a-modal>
-		<a-modal title="追加质押THLM" v-model:visible="addStakeModalVisible" :footer="false" >
-			<p>当前可用余额：{{ parseInt(addressBalance) }} THLM</p>
-			<p>当前已质押：{{ parseInt(stakeInfo.stakedAmount) }} THLM</p>
+		<a-modal title="追加质押GAME" v-model:visible="addStakeModalVisible" :footer="false" >
+			<p>当前可用余额：{{ parseInt(addressBalance) }} GAME</p>
+			<p>当前已质押：{{ parseInt(stakeInfo.stakedAmount) }} GAME</p>
 			<p>
 				<a-input-number style="width:300px" placeholder="请输入质押的数量..." v-model:value="amoutToAddStake" :min="0" :max="addressBalance">
 			</a-input-number>
@@ -221,22 +221,22 @@
 				<div v-if="showWaitTip" style="margin-top:4px;color:darkgray">交易确认中，请耐心等待...</div>
 			</div>
 		</a-modal>
-		<a-modal title="解押THLM" v-model:visible="unStakeModalVisible" :footer="false" >
+		<a-modal title="解押GAME" v-model:visible="unStakeModalVisible" :footer="false" >
 			<a-skeleton v-if="getUserUnstakeLoading"/>
 			<template v-else>
-				<!-- <p>当前质押的数量为：{{ stakeInfo.stakedAmount }} THLM</p> -->
-				<!-- <p>当前可解押的数量为：{{ userGetAmount.toFixed(0) }} THLM</p> -->
-				<!-- <p>解押后损失的数量为：{{ userLostAmount.toFixed(0) }} THLM</p> -->
+				<!-- <p>当前质押的数量为：{{ stakeInfo.stakedAmount }} GAME</p> -->
+				<!-- <p>当前可解押的数量为：{{ userGetAmount.toFixed(0) }} GAME</p> -->
+				<!-- <p>解押后损失的数量为：{{ userLostAmount.toFixed(0) }} GAME</p> -->
 				<a-alert
-					message="注意：您的质押未到期，立即解押会损失部分THLM！"
-					:description="'解押后损失的数量为：'+userLostAmount.toFixed(0)+' THLM，您将获得 '+userGetAmount.toFixed(0)+' THLM'"
+					message="注意：您的质押未到期，立即解押会损失部分GAME！"
+					:description="'解押后损失的数量为：'+userLostAmount.toFixed(0)+' GAME，您将获得 '+userGetAmount.toFixed(0)+' GAME'"
 					type="warning"
 					v-if="userLostAmount.toFixed(0)>0"
 					style="margin:16px 0"
 					show-icon
 					/>
 				<a-alert
-					:message="'质押已到期，解押可获得全额 '+ userGetAmount.toFixed(0)+' THLM'"
+					:message="'质押已到期，解押可获得全额 '+ userGetAmount.toFixed(0)+' GAME'"
 					type="success"
 					v-else
 					style="margin:16px 0"
@@ -402,7 +402,7 @@ onDeactivated(()=>{
 })
 async function getData(){
 	if(!!walletAddress.value && !isWrongChain.value){
-		await getTHLMBalance()
+		await getGameBalance()
 		await getMemberPoints()
 		await getStakeInfo()
 		await getMemberInfo({address:walletAddress.value}).then(res=>{
@@ -474,7 +474,7 @@ async function connectWallet() {
 			});
 			if (accounts.length > 0) {
 				walletAddress.value = accounts[0];
-				await getTHLMBalance();
+				await getGameBalance();
 				await getStakeInfo()
 			}
 		} catch (error) {
@@ -513,7 +513,7 @@ async function checkChainId(){
 				}
 			}
 }
-async function getTHLMBalance() {
+async function getGameBalance() {
 	if (!walletAddress.value) {
 		alert("请先连接钱包");
 		return;
@@ -560,7 +560,7 @@ async function openStakeModal(){
 	 if(!isWrongChain.value){
 		stakeModalVisible.value = true;
 		checkAllowance()
-		getTHLMBalance()
+		getGameBalance()
 		getStakeInfo()
 	 }
 }
@@ -589,7 +589,7 @@ async function openUnStakeModal(){
 		getUserUnstakeLoading.value = false
 	})
 		checkAllowance()
-		getTHLMBalance()
+		getGameBalance()
 		getStakeInfo()
 	 }
 }
@@ -599,7 +599,7 @@ async function openAddUnStakeModal(){
 		addStakeModalVisible.value = true;
 		amoutToAddStake.value = null;
 	 	checkAllowance()
-	 	getTHLMBalance()
+	 	getGameBalance()
 	 	getStakeInfo()
 	}
 }
@@ -622,7 +622,7 @@ async function checkAllowance(){
 async function handleStake(type='stake'){
 	if(amoutToStake.value < 1000000){
 		notification.error({
-			message: "最少质押1000000 THLM",
+			message: "最少质押1000000 GAME",
 			duration: 1.5,
 		});
 		return;
@@ -919,7 +919,7 @@ async function handleApprove(){
 // 		unstakeLoading.value = false;
 // 		addStakeLoading.value = false;
 // 		addStakeModalVisible.value = false;
-// 		await getTHLMBalance()
+// 		await getGameBalance()
 // 	}else return setTimeout(()=>checkStake(type), 5000);
 // }
 

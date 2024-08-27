@@ -20,13 +20,13 @@
 				加入 THLM DAO Holder 微信群
 			</a-typography-title>
 			<a-typography-paragraph
-				>持有THLM代币超过
+				>持有GAME代币超过
 				<a-typography-text strong>500W</a-typography-text>
 				的小伙伴们可以通过点击右上角【钱包登录】进行验证，验证通过即可获得进群的邀请码。</a-typography-paragraph
 			>
 			<a-typography-paragraph style="color: darkred"
-				>注:本操作只获取您钱包 THLM
-				代币的数量，无任何风险。如果您不放心，可以把 THLM
+				>注:本操作只获取您钱包 GAME
+				代币的数量，无任何风险。如果您不放心，可以把 GAME
 				代币打入一个新钱包，用新钱包进行验证。</a-typography-paragraph
 			>
 			<a-typography-text mark
@@ -50,8 +50,10 @@
 									<a-tooltip :title="walletAddress">{{
 										walletDisplay
 									}}</a-tooltip
-									>, THLM 余额为:
-									{{ parseInt(addressBalance) }}, 质押余额为：{{ parseInt(stakeBalance) }}
+									>, GAME 余额为:
+									{{ parseInt(addressBalance) }}
+									, 福利质押余额为：{{ parseInt(stakeBalance) }}
+									, 空投质押余额为：{{ parseInt(Number(airdropStakeBalance).toFixed(2)) }}
 								</div>
 							</template>
 							<template #extra>
@@ -79,7 +81,7 @@
 									style="font-size: 24px"
 									href="https://app.uniswap.org/explore/tokens/ethereum/0xa8218cbdb4accce36ee92874fe34a999abc30a7a"
 								>
-									购买 THLM</a-typography-link
+									购买 GAME</a-typography-link
 								>
 								一起做家人吧！
 							</template>
@@ -89,8 +91,10 @@
 									<a-tooltip :title="walletAddress">{{
 										walletDisplay
 									}}</a-tooltip
-									>, THLM 余额为:
-									{{ parseInt(addressBalance) }}， 质押余额为：{{ parseInt(stakeBalance) }}
+									>, GAME 余额为:
+									{{ parseInt(addressBalance) }}
+									， 福利质押余额为：{{ parseInt(stakeBalance) }}
+									, 空投质押余额为：{{ parseInt(Number(airdropStakeBalance).toFixed(2)) }}
 								</div>
 							</template>
 							<template #extra>
@@ -193,9 +197,10 @@ import { InfoCircleOutlined, InfoCircleTwoTone,ArrowRightOutlined } from "@ant-d
 
 const walletAddress = ref(null);
 const requiredBalance = 5000000;
-const groupSignData = "THLM_VIP_GROUP_01";
+const groupSignData = "GAME_VIP_GROUP_01";
 const addressBalance = ref(0);
 const stakeBalance = ref(0);
+const airdropStakeBalance = ref(0);
 const loading = ref(true);
 const connectLoading = ref(false);
 const signLoading = ref(false);
@@ -228,7 +233,7 @@ async function autoConnectWallet() {
 		});
 		if (accounts.length > 0) {
 			walletAddress.value = accounts[0];
-			await getTHLMBalance();
+			await getGAMEBalance();
 		}
 		window.ethereum.on("accountsChanged", function (accounts) {
 			// console.log("accountsChanged");
@@ -236,7 +241,7 @@ async function autoConnectWallet() {
 			// 当钱包地址变化时，更新你的页面状态
 			if (accounts.length > 0) {
 				walletAddress.value = accounts[0];
-				getTHLMBalance();
+				getGAMEBalance();
 			}
 		});
 	} else {
@@ -263,7 +268,7 @@ async function connectWallet() {
 			});
 			if (accounts.length > 0) {
 				walletAddress.value = accounts[0];
-				await getTHLMBalance();
+				await getGAMEBalance();
 			}
 		} catch (error) {
 			notification.error({
@@ -282,7 +287,7 @@ async function connectWallet() {
 	}
 }
 
-async function getTHLMBalance() {
+async function getGAMEBalance() {
 	if (!walletAddress.value) {
 		alert("请先连接钱包");
 		return;
@@ -331,17 +336,39 @@ async function getTHLMBalance() {
             "type":"function"
         },
 	]
+	let airdropStakeAbi = [
+	{
+            "inputs":[
+                {"internalType":"address","name":"user","type":"address"}
+            ],
+            "name":"getUserStakeInfo",
+            "outputs":[
+                {"components":[
+                    {"internalType":"uint256","name":"stakeAmount","type":"uint256"},
+                    {"internalType":"uint256","name":"stakeTimestamp","type":"uint256"}
+                ],
+                "internalType":"struct THLMMember.StakeInfo","name":"","type":"tuple"}
+            ],
+            "stateMutability":"view",
+            "type":"function"
+        },
+	]
 	const web3s = new Web3(
 		new Web3.providers.HttpProvider("https://rpc.ankr.com/eth")
 	);
 	const contract = new web3s.eth.Contract(
 		abi,
-		"0xa8218cbdb4accce36ee92874fe34a999abc30a7a"
+		"0x0c1b0b010290509b79cAd5F6A669D7865947Be10"
 	);
 	const stakeContract = new web3s.eth.Contract(
 		stakeAbi,
-		"0x4a6fBae4975F92Ed0085795C159A75552Cf8F952"
+		"0x802e182e998c7e15462b3d453f27ac06ae7640c6"
 	);
+	const airdropStakeContract = new web3s.eth.Contract(
+		airdropStakeAbi,
+		"0x7355a6832b9b55B49B244f477F16b47297BDF194"
+	);
+
 	try {
 		const balance = await contract.methods
 			.balanceOf(walletAddress.value)
@@ -349,9 +376,14 @@ async function getTHLMBalance() {
 		const stakeInfo = await stakeContract.methods
 			.getUserStakeInfo(walletAddress.value)
 			.call();
-		// console.log("stakeAmount:", stakeInfo.stakeAmount);
+		const airdropStakeInfo = await airdropStakeContract.methods
+			.getUserStakeInfo(walletAddress.value)
+			.call();
+		// console.log("airdropStakeInfo:", airdropStakeInfo);
 		addressBalance.value = web3.utils.fromWei(balance, "ether");
 		stakeBalance.value = web3.utils.fromWei(Number(stakeInfo.stakeAmount), "ether");
+		airdropStakeBalance.value = web3.utils.fromWei(parseInt(airdropStakeInfo.stakeAmount), "ether");
+		// console.log("airdropStakeBalance:", airdropStakeBalance.value);
 	} catch (error) {
 		console.error("获取余额失败:", error);
 		notification.error({
@@ -373,7 +405,7 @@ async function requestJoinGroup(item) {
 	signLoading.value = true;
 	try {
 		const web3 = new Web3(window.ethereum);
-		if (parseInt(addressBalance.value) + parseInt(stakeBalance.value) < item.requiredBalance) {
+		if (parseInt(addressBalance.value) + parseInt(stakeBalance.value + parseInt(airdropStakeBalance.value.toFixed(2))) < item.requiredBalance) {
 			notification.error({
 				message: "您的代币余额不足",
 				duration: 1.5,
@@ -416,6 +448,7 @@ function disconnectWallet() {
 	// 这里你可能还需要清除其他相关的状态，比如余额信息等
 	addressBalance.value = 0;
 	stakeBalance.value = 0;
+	airdropStakeBalance.value = 0;
 	window.ethereum
 		.request({
 			method: "wallet_revokePermissions",
