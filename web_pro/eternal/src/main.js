@@ -31,7 +31,7 @@ import {
 
 const i18n = createI18n({
 	legacy: false,
-	locale: "zh",
+	locale: "en",
 	messages: langs,
 });
 

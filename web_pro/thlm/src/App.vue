@@ -3,12 +3,14 @@ import HelloWorld from "./components/HelloWorld.vue";
 import WxGroup from "./components/WxGroup.vue";
 import Membership from "./views/Membership/index.vue";
 import AirdropStake from "./views/AirdropStake/index.vue";
+import Gpoints from "./views/Gpoints/index.vue";
 </script>
 
 <template>
 	<!-- <wx-group /> -->
-	<membership />
+	<!-- <membership /> -->
 	<!-- <airdrop-stake /> -->
+	 <gpoints />
 </template>
 
 <style>

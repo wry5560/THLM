@@ -146,7 +146,7 @@ import { ref, computed, onBeforeMount, h,onBeforeUnmount,onDeactivated } from "v
 import { thlmContractAddress,thlmContractAbi,providerUrl,stakeContractAbi,stakeContractAddress,chainId } from './config';
 import { notification } from "ant-design-vue";
 import logoMobileUrl from '../../assets/thlm_logo.png?url'
-import bannerUrl from '../../assets/aridrop_banner_1920.jpg?url'
+import bannerUrl from '../../assets/aridrop_banner_1920.png?url'
 import Web3 from "web3";
 const walletAddress = ref(null);
 const addressBalance = ref(0);

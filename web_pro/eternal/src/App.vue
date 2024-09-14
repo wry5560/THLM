@@ -4,10 +4,7 @@ import { useRouter } from "vue-router";
 </script>
 
 <template>
-	<div>
-		<router-view />
-	</div>
-
+	<router-view />
 </template>
 
 <style>

@@ -23,7 +23,9 @@ export default defineConfig({
 	//根据当前运行环境设置 base值
 	// base: process.env.NODE_ENV === "production" ? "/Static/lumi/thlm" : "/",  	// 持币入群页面测试环境编译
 	// base: process.env.NODE_ENV === "production" ? "/thlmholder" : "/",			// 持币入群页面生产环境编译
-	base: process.env.NODE_ENV === "production" ? productUrl : "/",			// 会员中心 & 空投质押 页面生产环境编译
+	// base: process.env.NODE_ENV === "production" ? productUrl : "/",			// 会员中心 & 空投质押 页面生产环境编译
+	// base: process.env.NODE_ENV === "production" ? '/Static/membership/gpoints' : "/",			// G分系统
+	base: process.env.NODE_ENV === "production" ? '/' : "/",			// G分系统
 	resolve: {
 		alias: [
 			// /@/xxxx => src/xxxx

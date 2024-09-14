@@ -14,6 +14,6 @@ export class ScheduleTasksService {
   @Cron('0 */10 * * * *')
   async fetchAddressesTronifyInfoCron() {
     if (isDev) return;
-    this.logger.log('获取Tornify信息，定时任务执行...');
+    // this.logger.log('获取Tornify信息，定时任务执行...');
   }
 }

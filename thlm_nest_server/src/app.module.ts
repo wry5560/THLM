@@ -5,6 +5,7 @@ import { UserModule } from './moudles/users/user.module';
 import { ScheduleTasksModule } from './moudles/scheduleTasks/scheduleTasks.module';
 import { BenefitsModule } from './moudles/benefits/benefits.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { GpointsModule } from './moudles/gpoints/gpoints.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { redisOptions, mongoOptions } from 'src/config';
@@ -14,6 +15,7 @@ import { redisOptions, mongoOptions } from 'src/config';
     UserModule,
     ScheduleTasksModule,
     BenefitsModule,
+    GpointsModule,
     // MongooseModule.forRoot(mongoOptions.url),
     // RedisModule.forRoot({
     //   config: redisOptions,

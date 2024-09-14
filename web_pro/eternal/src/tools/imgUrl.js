@@ -21,4 +21,5 @@ export const imgUrl = {
     'telegram-icon':'https://www.eternal.game/images/telegram-icon.svg',
     'twitter-icon':'https://www.eternal.game/images/twitter-icon.svg',
     'white-button':'https://www.eternal.game/images/white-button.png',
+    'Fheader-logo-icon':'https://www.eternal.game/_next/image?url=%2Fimages%2Fheader-logo-icon.png&w=384&q=75',
 }

@@ -24,7 +24,7 @@ const sendRequest = async (config)=>{
   if(config.method === 'post') tmpParams = config.data
   Logger.log('tmpParams', tmpParams)
   let postStr = ''
-  Object.keys(tmpParams).sort().forEach(key => {
+  if(tmpParams)Object.keys(tmpParams).sort().forEach(key => {
     postStr += key + '='+tmpParams[key] + '&'
   })
   postStr = postStr.substring(0, postStr.length - 1) + secretKey + timestamp
@@ -34,35 +34,17 @@ const sendRequest = async (config)=>{
     'X-API-KEY': apiKey,
     'X-Api-Sign': sha1(md5(postStr))
   }
-  Logger.log('config', config)
-
+//   Logger.log('config', config)
+//   Logger.log('postStr', postStr)
   return await requestClient(config)
 }
 
 @Injectable()
-export class ApisService {
+export class GpointsApisService {
   constructor() {}
-  async getMemberInfo(address: string): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/getMemberInfo',
-      method: 'get',
-      params: {
-        address
-      }
-    });
-  }
   async getMpsMemberInfo(address: string): Promise<any> {
     return await sendRequest({
       url: baseApiUrl + '/thlm/mps/api/getMpsMemberInfo',
-      method: 'get',
-      params: {
-        address
-      }
-    });
-  }
-  async getMemberPointsBalance(address: string): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/getMemberPointsBalance',
       method: 'get',
       params: {
         address
@@ -78,75 +60,41 @@ export class ApisService {
       }
     });
   }
-  async queryBenefits(params: any): Promise<any> {
+  async getAllMpsProjectInfo(params:any): Promise<any> {
     return await sendRequest({
-      url: baseApiUrl + '/thlm/api/queryBenefits',
+      url: baseApiUrl + '/thlm/mps/api/getAllMpsProjectInfoPage',
       method: 'get',
       params
     });
   }
-  async joinBenefits(params: any): Promise<any> {
+  async getMpsProjectInfo(projectId:string): Promise<any> {
     return await sendRequest({
-      url: baseApiUrl + '/thlm/api/joinBenefits',
+      url: baseApiUrl + '/thlm/mps/api/getMpsProjectInfo',
+      method: 'get',
+      params: {
+        projectId
+      }
+    });
+  }
+  async queryMpsMemberPayRankPage(params:any): Promise<any> {
+    return await sendRequest({
+      url: baseApiUrl + '/thlm/mps/api/queryMpsMemberPayRankPage',
       method: 'get',
       params
     });
   }
-  async queryMemberBenefits(params: any): Promise<any> {
+  async queryMpsMemberPointsJournal(params:any): Promise<any> {
     return await sendRequest({
-      url: baseApiUrl + '/thlm/api/queryMemberBenefits',
+      url: baseApiUrl + '/thlm/mps/api/queryMpsMemberPointsJournal',
       method: 'get',
       params
     });
   }
-  async queryMemberBenefitsByAddress(params: any): Promise<any> {
+  async editMpsMemberInfo(data: any): Promise<any> {
     return await sendRequest({
-      url: baseApiUrl + '/thlm/api/queryMemberBenefitsByAddress',
-      method: 'get',
-      params
-    });
-  }
-  async queryMemberStake(params: any): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/queryMemberStake',
-      method: 'get',
-      params
-    });
-  }
-  async queryMemberPointsJournal(params: any): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/queryMemberPointsJournal',
-      method: 'get',
-      params
-    });
-  }
-  async addStake(data: any): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/addStake',
+      url: baseApiUrl + '/thlm/mps/api/editMpsMemberInfo',
       method: 'post',
       data
     });
   }
-  async delStake(params: any): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/delStake',
-      method: 'get',
-      params
-    });
-  }
-  async editRealAddress(params: any): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/editRealAddress',
-      method: 'get',
-      params
-    });
-  }
-  async editSocial(data: any): Promise<any> {
-    return await sendRequest({
-      url: baseApiUrl + '/thlm/api/editSocial',
-      method: 'post',
-      data
-    });
-  }
-  
 }
